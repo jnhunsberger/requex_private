@@ -9,6 +9,6 @@ Team:
 - Elizabeth Shulok
 
 Directories:
-./data - raw data
-./papers - research supporting our solution
+- ./data - raw data
+- ./papers - research supporting our solution
 
