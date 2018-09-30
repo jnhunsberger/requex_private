@@ -9,6 +9,7 @@ Team:
 - Elizabeth Shulok
 
 Directories:
-- ./data - raw data
+- ./code - all our code
+- ./data - raw data with subdirectories for the date of each download
 - ./papers - research supporting our solution
 
