@@ -1,0 +1,11 @@
+# Cisco Umbrella top 1 million domains home page
+http://s3-us-west-1.amazonaws.com/umbrella-static/index.html
+
+# Cisco Umbrella top 1 million Latest feed
+http://s3-us-west-1.amazonaws.com/umbrella-static/top-1m.csv.zip
+
+# Bambenek Consulting All Data Feeds
+http://osint.bambenekconsulting.com/feeds/
+
+# Bambenek Consulting DGA High-Confidence Feed
+http://osint.bambenekconsulting.com/feeds/dga-feed-high.csv
