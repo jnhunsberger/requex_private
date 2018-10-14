@@ -9,3 +9,17 @@ http://osint.bambenekconsulting.com/feeds/
 
 # Bambenek Consulting DGA High-Confidence Feed
 http://osint.bambenekconsulting.com/feeds/dga-feed-high.csv
+
+# Valid top level domains from ICANN and from major commercial providers:
+https://publicsuffix.org/list/
+https://publicsuffix.org/list/public_suffix_list.dat
+
+# Team Cymru IP to ASN Mapping Resources
+https://www.team-cymru.com/IP-ASN-mapping.html
+
+Python code for querying the IP-ADN mapping tool:
+https://pypi.org/project/cymruwhois/#description
+
+# Raw data location for Regional Internet Registrars
+
+ftp://ftp.arin.net/pub/stats/
