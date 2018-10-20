@@ -5,6 +5,7 @@ http://s3-us-west-1.amazonaws.com/umbrella-static/index.html
 http://s3-us-west-1.amazonaws.com/umbrella-static/top-1m.csv.zip
 
 # Bambenek Consulting All Data Feeds
+http://www.bambenekconsulting.com/about/
 http://osint.bambenekconsulting.com/feeds/
 
 # Bambenek Consulting DGA High-Confidence Feed
