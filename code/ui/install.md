@@ -417,9 +417,19 @@ Note that you will need to use a api port number that is exposed outside the con
 127.0.0.1:18082/?query=zcsfsdferewrewrw.com
 ```
 
+### Alternatively, you can use curl
+
+```
+$ curl "127.0.0.1:18082/?query=news.google.com"
+{
+    "type": "Benign",
+    "url": "news.google.com"
+}
+```
 ### you will see logs like this on docker-compose window
 ```
 cyber-backend | 172.27.0.1 - - [04/Nov/2018 21:56:41] "GET /?query=google.com HTTP/1.1" 200 -
 cyber-backend | 172.27.0.1 - - [04/Nov/2018 21:56:52] "GET /?query=netflix.com HTTP/1.1" 200 -
 cyber-backend | 172.27.0.1 - - [04/Nov/2018 21:57:11] "GET /?query=zcsfsdferewrewrw.com HTTP/1.1" 200 -
+cyber-backend | 172.27.0.1 - - [04/Nov/2018 23:02:45] "GET /?query=news.google.com HTTP/1.1" 200 -
 ```
