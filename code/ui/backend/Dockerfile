@@ -8,14 +8,17 @@ RUN pip3 install --upgrade pip==9.0.3 \
     && pip3 install setuptools
 
 # for flask web server
-EXPOSE 8081
+EXPOSE 8082
 
 # set working directory
-ADD . /app
+#ADD ./ /app
+# install required libraries
 WORKDIR /app
 
-# install required libraries
-RUN pip3 install -r requirements.txt
+COPY requirements.txt /app/
+RUN pip3 install -r /app/requirements.txt
 
 # This is the runtime command for the container
-CMD python3 app.py
+CMD python3 /app/ui/backend/app.py
+#CMD sleep 100
+#CMD tail -f anything

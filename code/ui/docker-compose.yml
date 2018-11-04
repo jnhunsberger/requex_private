@@ -2,21 +2,23 @@ version: "3"
 services:
   frontend:
     image: frontend-angular
+    #command: tail -F anything
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: "frontend-app"
+    container_name: "cyber-frontend"
     volumes:
       - ./frontend/src:/app/src # for watching files
     ports:
       - "4200:4200"
   backend:
     image: backend-flask
+    #command: tail -F anything
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: "backend-app"
+    container_name: "cyber-backend"
     volumes:
-        - ./backend:/app # for watching files
+        - ../:/app # for watching files
     ports:
-      - "18081:18081" # if changed, please change port in `frontend/proxy.conf.dev.json`
+      - "18082:8082" # if changed, please change port in `frontend/proxy.conf.dev.json`

@@ -9,21 +9,21 @@ import 'hammerjs';
 import {AppComponent} from './app.component';
 import {SharedModule} from "./shared/shared.module";
 import {ROUTES} from "./app.routes";
-import {HomeComponent} from "./pages/home/home.component";
-import {IrisService} from "./pages/home/iris.service";
+//import {HomeComponent} from "./pages/home/home.component";
+import { LstmComponent } from './demo/lstm/lstm.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        HomeComponent,
-    ],
+        LstmComponent
+        ],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
         RouterModule.forRoot(ROUTES, {useHash: false, preloadingStrategy: PreloadAllModules}),
         SharedModule
     ],
-    providers: [IrisService],
+    providers: [],
     bootstrap: [AppComponent]
 })
 export class AppModule {

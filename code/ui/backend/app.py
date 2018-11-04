@@ -1,50 +1,73 @@
-from flask import Flask, request, jsonify
-from sklearn import svm
-from sklearn import datasets
-from sklearn.externals import joblib
+from flask import Flask
+from flask_restful import reqparse, abort, Api, Resource
+import pickle
+import numpy as np
+
+import sys
+PROJECT_ROOT = "./"
+#PROJECT_ROOT = "/app/"
+sys.path.append(PROJECT_ROOT)
+import lstm_binary 
 
 # declare constants
 HOST = '0.0.0.0'
-PORT = 8081
+PORT = 8082
+
+TOKENIZER_FILE = PROJECT_ROOT + "saved_models/tokenizer"
+MODEL_JSON = PROJECT_ROOT + "saved_models/binary_LSTM.json"
+MODEL_H5 = PROJECT_ROOT + "saved_models/binary_LSTM.h5"
 
 # initialize flask application
 app = Flask(__name__)
+api = Api(app)
+
+testmodel = lstm_binary.LSTMBinary()
+testmodel.load(TOKENIZER_FILE, MODEL_JSON, MODEL_H5)
+
+'''
+@app.route('/api/load', methods=['GET', 'POST'])
+def load():
+    testmodel.load(TOKENIZER_FILE, MODEL_JSON, MODEL_H5)
+
+    return "Successfully loaded the model files"
 
 
-@app.route('/api/train', methods=['POST'])
-def train():
-    # get parameters from request
-    parameters = request.get_json()
+@app.route('/api/predict', methods=['GET', 'POST'])
+def predict(url):
+    urltypes = testmodel.predict([url])
+    return jsonify([{'url': url, 'type': urltype}])
+'''
 
-    # read iris data set
-    iris = datasets.load_iris()
-    X, y = iris.data, iris.target
-
-    # fit model
-    clf = svm.SVC(C=float(parameters['C']),
-                  probability=True,
-                  random_state=1)
-    clf.fit(X, y)
-
-    # persist model
-    joblib.dump(clf, 'model.pkl')
-
-    return jsonify({'accuracy': round(clf.score(X, y) * 100, 2)})
+# argument parsing
+parser = reqparse.RequestParser()
+parser.add_argument('query')
 
 
-@app.route('/api/predict', methods=['POST'])
-def predict():
-    # get iris object from request
-    X = request.get_json()
-    X = [[float(X['sepalLength']), float(X['sepalWidth']), float(X['petalLength']), float(X['petalWidth'])]]
+class PredictUrl(Resource):
+    def get(self):
+        # use parser and find the user's query
+        args = parser.parse_args()
+        user_query = args['query']
 
-    # read model
-    clf = joblib.load('model.pkl')
-    probabilities = clf.predict_proba(X)
+        print("User Query String: ", user_query)
 
-    return jsonify([{'name': 'Iris-Setosa', 'value': round(probabilities[0, 0] * 100, 2)},
-                    {'name': 'Iris-Versicolour', 'value': round(probabilities[0, 1] * 100, 2)},
-                    {'name': 'Iris-Virginica', 'value': round(probabilities[0, 2] * 100, 2)}])
+        prediction = testmodel.predict([user_query])
+
+        # Output either 'Negative' or 'Positive' along with the score
+        if prediction == 0:
+            pred_text = 'Benign'
+        else:
+            pred_text = 'Malicious'
+
+        # create JSON object
+        output = {'url': user_query, 'type': pred_text}
+
+        return output
+
+
+# Setup the Api resource routing here
+# Route the URL to the resource
+api.add_resource(PredictUrl, '/')
 
 
 if __name__ == '__main__':

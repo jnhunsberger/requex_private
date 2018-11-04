@@ -1,2 +1,7 @@
 flask
+flask-restful
 scikit-learn[alldeps]
+pandas
+numpy
+tensorflow
+Keras

@@ -10,6 +10,7 @@ from keras.layers.recurrent import LSTM
 from keras.preprocessing import sequence
 from keras.preprocessing import text
 
+import tensorflow as tf
 from tensorflow.python.client import device_lib
 
 import pickle
@@ -81,11 +82,15 @@ class LSTMBinary:
         file.close()
         self.model = model_from_json(model_load)
         self.model.load_weights(model_h5)
+        global graph
+        graph = tf.get_default_graph()
 
         print('SAVED MODEL IS NOW LOADED!')
 
 
     def predict(self, input):
+        print(input)
         inputSeq = sequence.pad_sequences(self.encoder.texts_to_sequences(input), maxlen=75)
-        output = self.model.predict_classes(inputSeq)
+        with graph.as_default():
+            output = self.model.predict_classes(inputSeq)
         return output

@@ -1,7 +1,7 @@
 {
-    "name": "Data-Science-Web-App",
+    "name": "Team-Cyber-WebApp",
     "version": "1.0.0",
-    "author": "Daniel Elsner <dvelsner@gmail.com>",
+    "author": "Team Cyber",
     "scripts": {
         "ng": "ng",
         "start": "ng serve --proxy-config proxy.conf.json",

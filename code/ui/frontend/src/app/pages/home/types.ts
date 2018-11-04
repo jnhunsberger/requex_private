@@ -17,3 +17,21 @@ export class SVCParameters {
 export class SVCResult {
     accuracy: number;
 }
+
+export class CyberLSTMModel {
+    modelJSON: string;
+    modelH5: string;
+}
+
+export class LoadResult {
+    returnStatus: string;
+}
+
+export class CyberLSTMPredict {
+    url: string;
+}
+
+export class URLResult {
+    url: string;
+    type: string;
+}
