@@ -1,0 +1,12 @@
+#!/bin/sh
+# to be placed in /etc/rc.d
+
+. /etc/rc.subr
+
+name=unbound
+rcvar=unbound_enable
+
+command="/usr/local/sbin/${name}"
+
+load_rc_config $name
+run_rc_command "$1"

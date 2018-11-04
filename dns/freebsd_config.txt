@@ -1,0 +1,121 @@
+GCP FreeBSD 11.2
+
+pkg search unbound
+- only had version 1.7.0; current version is v1.8.1
+sudo portsnap fetch
+sudo portsnap extract
+cd /usr/ports/dns/unbound/
+make install clean
+[menu displayed - see image]
+installed:
+- DNSTAP
+- DOCS
+- ECDSA
+- GOST
+- LIBEVENT
+- PYTHON
+- THREADS
+accepted defaults for all subsequent menu items
+...
+several hours passed...
+...
+hit control-c at libdrm-2.4.93,1
+installed tmux: sudo pkg install tmux
+installed bash: sudo pkg install bash
+set bash as default shell: sudo chsh -s /usr/local/bin/bash jnhunsberger
+...
+sudo pkg install bash-completion
+sudo pkg install vim-console
+cd /usr/ports/dns/unbound/
+sudo make install
+[accepted all defaults]
+sudo pkg install wget
+sudo pkg install bind-tools
+sudo /usr/local/sbin/unbound-anchor -a /usr/local/etc/unbound/root.key
+sudo /usr/local/sbin/unbound-control-setup -d /usr/local/etc/unbound
+sudo chown -R unbound:wheel /usr/local/etc/unbound
+sudo chmod 640 /usr/local/etc/unbound/*
+NOTE: freebsd comes with a (really old) version of unbound which is in /usr/sbin. We don't want that one. We want the one installed at /usr/local/sbin.
+[to start unbound:]
+sudo /usr/local/sbin/unbound
+
+[edit /etc/hosts and add to the bottom of the file]
+127.0.0.1 localhost
+::1 localhost
+[reboot the server]
+
+[created an rc.d service script called "unbound_dns" which allows us to start and stop unbound like a service.]
+
+[check to see if unbound is running:
+$ ps aux | grep unbound
+
+use the pid to kill unbound if needed:
+sudo kill {pid}
+]
+
+[start unbound:
+$ sudo service unbound_dns onestart
+]
+
+[stop unbound:
+$ sudo service unbound_dns stop
+]
+
+edited rc.conf
+
+DNSTAP install
+
+sudo pkg install go
+sudo pkg install git
+sudo git clone https://github.com/farsightsec/fstrm.git
+cd fstrm
+sudo sh ./autogen.sh
+sudo ./configure && make && sudo make install
+sudo go get -u -v github.com/farsightsec/golang-framestream
+
+sudo pkg install autotools
+
+
+
+
+## Build #2
+
+sudo portsnap fetch
+sudo portsnap extract
+sudo pkg install bash
+sudo pkg install bash-completion
+sudo chsh -s /usr/local/bin/bash jnhunsberger
+[[ $PS1 && -f /usr/local/share/bash-completion/bash_completion.sh ]] && \
+	source /usr/local/share/bash-completion/bash_completion.sh
+sudo pkg install vim-console
+sudo pkg install tmux
+sudo pkg install wget
+sudo pkg install bind-tools
+reboot
+edited hosts file
+sudo pkg install git
+git clone https://github.com/farsightsec/fstrm.git
+sudo pkg install autotools
+sudo pkg set -o devel/pkg-config:devel/pkgconf
+[see: https://www.freshports.org/devel/pkg-config]
+sudo pkg install -f devel/pkgconf
+sudo pkg install gmake
+./autogen.sh && ./configure --without-pkgconfigdir && gmake && gmake check && gmake install
+[failed]
+sudo pkg install lsof
+sudo pkg install clang-devel
+sudo pkg install fstrm
+wget https://nlnetlabs.nl/downloads/unbound/unbound-latest.tar.gz
+tar xf unbound-latest.tar.gz
+cd unbound-1.8.1/
+./configure --enable-dnstap && make && sudo make install
+[unbound is installed in /usr/local/sbin and the conf file is in /usr/local/etc/unbound/]
+
+sudo unbound-anchor -a /usr/local/etc/unbound/root.key
+sudo unbound-control-setup -d /usr/local/etc/unbound
+sudo wget https://www.internic.net/domain/named.root -O /usr/local/etc/unbound/root.hints
+sudo chown -R unbound:unbound unbound/
+[updated unbound.conf - see example]
+[when done run this command]
+sudo ./unbound-checkconf
+drill -S FreeBSD.org @localhost
