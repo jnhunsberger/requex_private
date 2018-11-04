@@ -407,10 +407,19 @@ cyber-backend | Using TensorFlow backend.
 cyber-backend |  * Debugger is active!
 cyber-backend |  * Debugger PIN: 200-875-271
 ```
-### Launch a rest query from postman and you will see logs like this 
+### Launch a rest query from postman
+
+Note that you will need to use a api port number that is exposed outside the container. The committed docker-compose file has external port number 18082 mapped to 8082.
+
 ```
-cyber-backend | 172.27.0.1 - - [04/Nov/2018 21:37:08] "GET /?query=ibnlive.org HTTP/1.1" 200 -
-cyber-backend | 172.27.0.1 - - [04/Nov/2018 21:37:18] "GET /?query=ibnlive.org HTTP/1.1" 200 -
-cyber-backend | 172.27.0.1 - - [04/Nov/2018 21:37:19] "GET /?query=ibnlive.org HTTP/1.1" 200 -
-cyber-backend | 172.27.0.1 - - [04/Nov/2018 21:37:20] "GET /?query=ibnlive.org HTTP/1.1" 200 -
+127.0.0.1:18082/?query=google.com
+127.0.0.1:18082/?query=netflix.com
+127.0.0.1:18082/?query=zcsfsdferewrewrw.com
+```
+
+### you will see logs like this on docker-compose window
+```
+cyber-backend | 172.27.0.1 - - [04/Nov/2018 21:56:41] "GET /?query=google.com HTTP/1.1" 200 -
+cyber-backend | 172.27.0.1 - - [04/Nov/2018 21:56:52] "GET /?query=netflix.com HTTP/1.1" 200 -
+cyber-backend | 172.27.0.1 - - [04/Nov/2018 21:57:11] "GET /?query=zcsfsdferewrewrw.com HTTP/1.1" 200 -
 ```
