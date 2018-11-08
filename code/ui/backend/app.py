@@ -2,6 +2,9 @@ from flask import Flask
 from flask_restful import reqparse, abort, Api, Resource
 import pickle
 import numpy as np
+from flask import render_template
+from flask import request
+
 
 import sys
 PROJECT_ROOT = "./"
@@ -42,6 +45,26 @@ def predict(url):
 parser = reqparse.RequestParser()
 parser.add_argument('query')
 
+@app.route("/")
+def get():
+    query = request.args.get("URL")
+    if not query:
+            user_query = "www.example.com"
+    else:
+            user_query = query.lower()
+
+    prediction = testmodel.predict([user_query])
+
+    # Output either 'Negative' or 'Positive' along with the score
+    if prediction == 0:
+        pred_text = 'Benign'
+    else:
+        pred_text = 'Malicious'
+
+    # create JSON object
+    output = {'url': user_query, 'type': pred_text}
+
+    return render_template("cyber.html", output=output)
 
 class PredictUrl(Resource):
     def get(self):
@@ -49,7 +72,7 @@ class PredictUrl(Resource):
         args = parser.parse_args()
         user_query = args['query']
 
-        print("User Query String: ", user_query)
+        print("User Query String: ", user_query)  
 
         prediction = testmodel.predict([user_query])
 
@@ -67,7 +90,8 @@ class PredictUrl(Resource):
 
 # Setup the Api resource routing here
 # Route the URL to the resource
-api.add_resource(PredictUrl, '/')
+# api.add_resource(PredictUrl, '/')
+
 
 
 if __name__ == '__main__':
