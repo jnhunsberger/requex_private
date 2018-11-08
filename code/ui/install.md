@@ -1,4 +1,4 @@
-# Team Cyber Docker Installation guide
+# Team Cyber UI Installation and Tryout guide
 
 ### Clone the repository
 
@@ -379,7 +379,8 @@ Successfully built 2b52693fe6fa
 Successfully tagged backend-flask:latest
 ```
 
-### Run the containers (Ignore the frontend container errors for now)
+### Run the containers 
+#### *You can ignore the frontend container errors for now. Looks like we dont need a frontend container, will remove it soon*
 ```
 $ docker-compose up
 Recreating cyber-backend  ... done
@@ -433,3 +434,7 @@ cyber-backend | 172.27.0.1 - - [04/Nov/2018 21:56:52] "GET /?query=netflix.com H
 cyber-backend | 172.27.0.1 - - [04/Nov/2018 21:57:11] "GET /?query=zcsfsdferewrewrw.com HTTP/1.1" 200 -
 cyber-backend | 172.27.0.1 - - [04/Nov/2018 23:02:45] "GET /?query=news.google.com HTTP/1.1" 200 -
 ```
+
+### Lastly, open the browser and type 127.0.0.1:18082
+
+You should see a option to enter an URL and submit, which should display the prediction for the url. 
