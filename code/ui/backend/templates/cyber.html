@@ -23,11 +23,24 @@
 </head>
 <br />
 <body>
+    <h5>Binary Model</h5>
 <form>
-    <input type="text" name="URL" placeholder="Enter URL" />
+    <input type="text" name="URL_Binary" />
     <input type="submit" value="Submit" />
 </form>
 
-<p>URL: <b>{{output.url}}</b> </p>
-<p>Type: <b>{{output.type}}</b></p>
+<p><b>Results</b></p>
+<p>URL: <b>{{binary_output.url}}</b> </p>
+<p>Type: <b>{{binary_output.type}}</b></p>
+
+<h5>Multiclass Model</h5>
+
+<form>
+        <input type="text" name="URL_Multi" />
+        <input type="submit" value="Submit" />
+    </form>
+    
+    <p><b>Results</b></p>
+    <p>URL: <b>{{multi_output.url}}</b> </p>
+    <p>DGA Class: <b>{{multi_output.type}}</b></p>    
 </body>

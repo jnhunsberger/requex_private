@@ -47,7 +47,7 @@ class LSTMMulti:
         X_train_pad=sequence.pad_sequences(X_train_tz, maxlen=75)
         Y_train_binarized = to_categorical(Y_train, num_classes=len(self.categories))
 
-        self.model.fit(X_train_pad, Y_train_binarized, batch_size=self.batch_size, epochs=self.num_epochs)
+        # self.model.fit(X_train_pad, Y_train_binarized, batch_size=self.batch_size, epochs=self.num_epochs)
 
     def save(self, tokenizer_file, categories_file, model_json_file, model_h5_file):
         #
@@ -59,6 +59,7 @@ class LSTMMulti:
         #
         # Save the model and the weights
         #
+        """
         model_save = self.model.to_json()
         with open(model_json_file, 'w') as file:
             file.write(model_save)
@@ -66,6 +67,7 @@ class LSTMMulti:
         self.model.save_weights(model_h5_file)
 
         print('MODEL SAVED TO DISK!')
+        """
         pass
 
     def load(self, tokenizer_file, categories_file, model_json, model_h5):
@@ -89,16 +91,18 @@ class LSTMMulti:
         file.close()
         self.model = model_from_json(model_load)
         self.model.load_weights(model_h5)
+
         global lstm_multi_graph
         lstm_multi_graph = tf.get_default_graph()
 
         print('SAVED MULTICLASS MODEL IS NOW LOADED!')
 
 
-    def predict(self, input):
-        print(input)
-        inputSeq = sequence.pad_sequences(self.encoder.texts_to_sequences(input), maxlen=75)
+    def predict(self, _input):
+        print("LSTM MUlticlass Prediction")
+        print("Input: ", _input)
+        inputSeq = sequence.pad_sequences(self.encoder.texts_to_sequences(_input), maxlen=75)
         with lstm_multi_graph.as_default():
             output = self.model.predict_classes(inputSeq)
         print(output)
-        return self.categories[output]
+        return self.categories[output] 

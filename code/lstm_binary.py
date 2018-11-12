@@ -80,6 +80,7 @@ class LSTMBinary:
         file = open(model_json, 'r')
         model_load = file.read()
         file.close()
+
         self.model = model_from_json(model_load)
         self.model.load_weights(model_h5)
         global graph

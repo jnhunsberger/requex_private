@@ -1,16 +1,5 @@
 version: "3"
 services:
-  frontend:
-    image: frontend-angular
-    #command: tail -F anything
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    container_name: "cyber-frontend"
-    volumes:
-      - ./frontend/src:/app/src # for watching files
-    ports:
-      - "4200:4200"
   backend:
     image: backend-flask
     #command: tail -F anything

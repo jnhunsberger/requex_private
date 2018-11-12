@@ -75,14 +75,14 @@ def prepDataset(dga_file, cisco_file):
 #
 # Get the train and test data
 #
-X_train, X_test, Y_train, Y_test = prepDataset(dga_csv, cisco_csv)
+# X_train, X_test, Y_train, Y_test = prepDataset(dga_csv, cisco_csv)
 
 #
 # Train the model
 #
-train_model = lstm_multiclass.LSTMMulti()
-train_model.train(X_train, Y_train)
-train_model.save(TOKENIZER_FILE, CATEGORIES_FILE, MODEL_JSON, MODEL_H5)
+# train_model = lstm_multiclass.LSTMMulti()
+# train_model.train(X_train, Y_train)
+# train_model.save(TOKENIZER_FILE, CATEGORIES_FILE, MODEL_JSON, MODEL_H5)
 
 #
 # Test
@@ -90,6 +90,7 @@ train_model.save(TOKENIZER_FILE, CATEGORIES_FILE, MODEL_JSON, MODEL_H5)
 testmodel = lstm_multiclass.LSTMMulti()
 testmodel.load(TOKENIZER_FILE, CATEGORIES_FILE, MODEL_JSON, MODEL_H5)
 
-urllist = ["www.google.com", "www.netflix.com", "plvklpgwivery.com"]
+# urllist = ["www.google.com", "www.netflix.com", "plvklpgwivery.com"]
+urllist = ["www.google.com"]
 urltypes = testmodel.predict(urllist)
-print("URL type:", urltypes)
+print("URL type:", urltypes[0])
