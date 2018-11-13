@@ -21,6 +21,9 @@ https://www.team-cymru.com/IP-ASN-mapping.html
 Python code for querying the IP-ADN mapping tool:
 https://pypi.org/project/cymruwhois/#description
 
+# Phishing Data
+https://www.phishtank.com/developer_info.php
+
 # Raw data location for Regional Internet Registrars
 
 ftp://ftp.arin.net/pub/stats/
