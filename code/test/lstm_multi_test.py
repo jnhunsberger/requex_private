@@ -2,10 +2,11 @@
 
 REFPATH = "./"
 PROJECT_ROOT = "/Users/nscsekhar/Desktop/nscsekhar/Desktop/Surya/Personal/MIDS/W210/Project/team_cyber/"
-TOKENIZER_FILE = PROJECT_ROOT + "code/saved_models/tokenizer"
-CATEGORIES_FILE = PROJECT_ROOT + "code/saved_models/multiclass_categories"
-MODEL_JSON = PROJECT_ROOT + "code/saved_models/multiclass_LSTM.json"
-MODEL_H5 = PROJECT_ROOT + "code/saved_models/multiclass_LSTM.h5"
+MULTI_TOKENIZER_FILE = PROJECT_ROOT + "saved_models/multiclass_tokenizer.pkl"
+MULTI_CATEGORIES_FILE = PROJECT_ROOT + "saved_models/multiclass_categories.pkl"
+MULTI_MODEL_JSON = PROJECT_ROOT + "saved_models/multiclass_LSTM.json"
+MULTI_MODEL_H5 = PROJECT_ROOT + "saved_models/multiclass_LSTM.h5"
+
 dga_csv = PROJECT_ROOT + "data/2018_0923/dga-feed-high.csv"
 cisco_csv = PROJECT_ROOT + "data/2018_0923/top-1m.csv"
 SUFFIXES = [' DGA', ' (', ' -']
@@ -88,9 +89,10 @@ def prepDataset(dga_file, cisco_file):
 # Test
 #
 testmodel = lstm_multiclass.LSTMMulti()
-testmodel.load(TOKENIZER_FILE, CATEGORIES_FILE, MODEL_JSON, MODEL_H5)
+testmodel.load(MULTI_TOKENIZER_FILE, MULTI_CATEGORIES_FILE, MULTI_MODEL_JSON, MULTI_MODEL_H5)
 
 # urllist = ["www.google.com", "www.netflix.com", "plvklpgwivery.com"]
 urllist = ["www.google.com"]
-urltypes = testmodel.predict(urllist)
-print("URL type:", urltypes[0])
+urltypes, pred_probs = testmodel.predict(urllist)
+print("URL type:", urltypes)
+print("Probabilty:", pred_probs)

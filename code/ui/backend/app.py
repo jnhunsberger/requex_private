@@ -17,10 +17,13 @@ import lstm_multiclass
 HOST = '0.0.0.0'
 PORT = 8082
 
-TOKENIZER_FILE = PROJECT_ROOT + "saved_models/tokenizer"
+BINARY_TOKENIZER_FILE = PROJECT_ROOT + "saved_models/binary_tokenizer.pkl"
+BINARY_CATEGORIES_FILE = PROJECT_ROOT + "saved_models/binary_categories.pkl"
 BINARY_MODEL_JSON = PROJECT_ROOT + "saved_models/binary_LSTM.json"
 BINARY_MODEL_H5 = PROJECT_ROOT + "saved_models/binary_LSTM.h5"
-CATEGORIES_FILE = PROJECT_ROOT + "saved_models/multiclass_categories"
+
+MULTI_TOKENIZER_FILE = PROJECT_ROOT + "saved_models/multiclass_tokenizer.pkl"
+MULTI_CATEGORIES_FILE = PROJECT_ROOT + "saved_models/multiclass_categories.pkl"
 MULTI_MODEL_JSON = PROJECT_ROOT + "saved_models/multiclass_LSTM.json"
 MULTI_MODEL_H5 = PROJECT_ROOT + "saved_models/multiclass_LSTM.h5"
 
@@ -29,9 +32,10 @@ app = Flask(__name__)
 api = Api(app)
 
 binary_model = lstm_binary.LSTMBinary()
-binary_model.load(TOKENIZER_FILE, BINARY_MODEL_JSON, BINARY_MODEL_H5)
+binary_model.load(BINARY_TOKENIZER_FILE, BINARY_MODEL_JSON, BINARY_MODEL_H5)
+
 multi_model = lstm_multiclass.LSTMMulti()
-multi_model.load(TOKENIZER_FILE, CATEGORIES_FILE, MULTI_MODEL_JSON, MULTI_MODEL_H5)
+multi_model.load(MULTI_TOKENIZER_FILE, MULTI_CATEGORIES_FILE, MULTI_MODEL_JSON, MULTI_MODEL_H5)
 
 '''
 @app.route('/api/load', methods=['GET', 'POST'])
@@ -68,12 +72,12 @@ def get_binary(binary_query):
 
 def get_multi(multi_query):
 
-    prediction = multi_model.predict([multi_query])
+    urltype, pred_prob = multi_model.predict([multi_query])
 
-    print("MULTICLASS Prediction: ", multi_query, " Type: ", prediction)
+    # print("MULTICLASS Prediction: ", multi_query, " Type: ", urltype)
 
     # create JSON object
-    output = {'url': multi_query, 'type': prediction[0]}
+    output = {'url': multi_query, 'type': urltype[0], 'probability': pred_prob[0]}
     return output
 
 @app.route("/")
@@ -93,10 +97,10 @@ def get():
         binary_query = binary_query.lower()
         binary_response =  get_binary(binary_query)
 
-    multi_query = request.args.get("URL_Multi")
-    if multi_query:
-        multi_query = multi_query.lower()
-        multi_response = get_multi(multi_query)
+    # multi_query = request.args.get("URL_Multi")
+    # if multi_query:
+    #     multi_query = multi_query.lower()
+        multi_response = get_multi(binary_query)
 
     return render_template("cyber.html", binary_output=binary_response, multi_output=multi_response )
 

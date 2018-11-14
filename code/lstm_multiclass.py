@@ -83,6 +83,8 @@ class LSTMMulti:
         with open(categories_file, 'rb') as handle:
             self.categories = pickle.load(handle)
 
+        print(self.categories)
+
         #
         # Load the model and its weights
         #
@@ -103,6 +105,13 @@ class LSTMMulti:
         print("Input: ", _input)
         inputSeq = sequence.pad_sequences(self.encoder.texts_to_sequences(_input), maxlen=75)
         with lstm_multi_graph.as_default():
-            output = self.model.predict_classes(inputSeq)
-        print(output)
-        return self.categories[output] 
+            output_classes = self.model.predict_classes(inputSeq)
+            output_pred_probs = self.model.predict(inputSeq)
+            pred_probs = [ output_pred_probs[idx][output_classes[idx]] for idx in range(0, output_classes.shape[0]) ]
+            # for  output_class in output_classes:
+                
+            # pred_table['predProb'] = [output_pred_prob[output_class][Y_pred[idx]] for idx in range(0, Y_pred.shape[0]) ]
+
+        print(output_classes)
+        print(pred_probs)
+        return (self.categories[output_classes], pred_probs)

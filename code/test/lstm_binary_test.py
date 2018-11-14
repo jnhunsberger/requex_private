@@ -1,10 +1,13 @@
 #!/usr/bin/python3
 
 REFPATH = "../"
-PROJECT_ROOT = "/Users/nscsekhar/Desktop/nscsekhar/Desktop/Surya/Personal/MIDS/W210/Project/team_cyber/"
-TOKENIZER_FILE = PROJECT_ROOT + "code/saved_models/tokenizer"
-MODEL_JSON = PROJECT_ROOT + "code/saved_models/binary_LSTM.json"
-MODEL_H5 = PROJECT_ROOT + "code/saved_models/binary_LSTM.h5"
+PROJECT_ROOT = "/Users/nscsekhar/Desktop/nscsekhar/Desktop/Surya/Personal/MIDS/W210/Project/team_cyber/code/"
+
+BINARY_TOKENIZER_FILE = PROJECT_ROOT + "saved_models/binary_tokenizer.pkl"
+BINARY_CATEGORIES_FILE = PROJECT_ROOT + "saved_models/binary_categories.pkl"
+BINARY_MODEL_JSON = PROJECT_ROOT + "saved_models/binary_LSTM.json"
+BINARY_MODEL_H5 = PROJECT_ROOT + "saved_models/binary_LSTM.h5"
+
 dga_csv = PROJECT_ROOT + "data/2018_0923/dga-feed-high.csv"
 cisco_csv = PROJECT_ROOT + "data/2018_0923/top-1m.csv"
 
@@ -52,7 +55,7 @@ X_train, X_test, Y_train, Y_test = prepDataset(dga_csv, cisco_csv)
 # Test
 #
 testmodel = lstm_binary.LSTMBinary()
-testmodel.load(TOKENIZER_FILE, MODEL_JSON, MODEL_H5)
+testmodel.load(BINARY_TOKENIZER_FILE, BINARY_MODEL_JSON, BINARY_MODEL_H5)
 
 urllist = ["www.google.com", "www.netflix.com", "plvklpgwivery.com"]
 urltypes = testmodel.predict(urllist)

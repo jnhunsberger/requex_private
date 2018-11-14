@@ -23,24 +23,25 @@
 </head>
 <br />
 <body>
-    <h5>Binary Model</h5>
 <form>
     <input type="text" name="URL_Binary" />
     <input type="submit" value="Submit" />
 </form>
 
+<h5>Binary Model</h5>
 <p><b>Results</b></p>
 <p>URL: <b>{{binary_output.url}}</b> </p>
 <p>Type: <b>{{binary_output.type}}</b></p>
 
 <h5>Multiclass Model</h5>
 
-<form>
+<!-- <form>
         <input type="text" name="URL_Multi" />
         <input type="submit" value="Submit" />
-    </form>
+    </form> -->
     
     <p><b>Results</b></p>
     <p>URL: <b>{{multi_output.url}}</b> </p>
     <p>DGA Class: <b>{{multi_output.type}}</b></p>    
+    <p>Prediction Probability: <b>{{multi_output.probability}}</b></p>    
 </body>
