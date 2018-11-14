@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 REFPATH = "../"
-PROJECT_ROOT = "/Users/nscsekhar/Desktop/nscsekhar/Desktop/Surya/Personal/MIDS/W210/Project/team_cyber/code/"
+PROJECT_ROOT = "/Users/nscsekhar/Desktop/nscsekhar/Desktop/Surya/Personal/MIDS/W210/Project/1114/team_cyber/code/"
 
 BINARY_TOKENIZER_FILE = PROJECT_ROOT + "saved_models/binary_tokenizer.pkl"
 BINARY_CATEGORIES_FILE = PROJECT_ROOT + "saved_models/binary_categories.pkl"
@@ -42,7 +42,7 @@ def prepDataset(dga_file, cisco_file):
 #
 # Get the train and test data
 #
-X_train, X_test, Y_train, Y_test = prepDataset(dga_csv, cisco_csv)
+# X_train, X_test, Y_train, Y_test = prepDataset(dga_csv, cisco_csv)
 
 #
 # Train the model

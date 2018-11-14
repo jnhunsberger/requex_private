@@ -59,7 +59,7 @@ def get_binary(binary_query):
     prediction = binary_model.predict([binary_query])
 
     # Output either 'Negative' or 'Positive' along with the score
-    if prediction == 0:
+    if prediction == 1:
         pred_text = 'Benign'
     else:
         pred_text = 'Malicious'
