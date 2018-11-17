@@ -1,47 +1,39 @@
-<style>
-    html {
-        font-family: "Arial";
-        background: white;
-    }
-    
-    body {
-        background: lightgrey;
-        margin: 0 auto;
-    }
-              
-    head {
-        background: lightsteelblue;
-    }
-    </style>
+<head margin-top: 80px;>
 
-<head>
-    <br />
-    <b>Team Cyber - Malicious URL detection</b>
-    <br />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
+<link rel="stylesheet" href="http://people.ischool.berkeley.edu/~shulok/cyber/styles.css">
 </head>
+
+<div>  <h1>RequeX</h1>
+
+<h5>Malicious Domain Detection </h5>
+</div>
 <br />
 <body>
+
+
 <form>
-    <input type="text" name="URL_Binary" />
+<div class="form-group">
+    <input type="text" name="URL_Binary" id="dynamic-label-input" placeholder="Enter a domain name">
     <input type="submit" value="Submit" />
+</div>
+
 </form>
 
-<h5>Binary Model</h5>
-<p><b>Results</b></p>
+<div class="results-group">
+
+<h2>Binary Model</h2>
 <p>URL: <b>{{binary_output.url}}</b> </p>
 <p>Type: <b>{{binary_output.type}}</b></p>
 
-<h5>Multiclass Model</h5>
-
+<h2>Multiclass Model</h2>
+    <p>URL: <b>{{multi_output.url}}</b> </p>
+    <p>DGA Class: <b>{{multi_output.type}}</b></p>    
+    <p>Prediction Probability: <b>{{multi_output.probability}}</b></p> 
 <!-- <form>
         <input type="text" name="URL_Multi" />
         <input type="submit" value="Submit" />
     </form> -->
     
-    <p><b>Results</b></p>
-    <p>URL: <b>{{multi_output.url}}</b> </p>
-    <p>DGA Class: <b>{{multi_output.type}}</b></p>    
-    <p>Prediction Probability: <b>{{multi_output.probability}}</b></p>    
+
+</div>	
 </body>
