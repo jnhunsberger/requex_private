@@ -29,7 +29,7 @@ input:placeholder-shown + label {
 }
 
 html { 
-  background: url("http://people.ischool.berkeley.edu/~shulok/cyber/code_full.jpg") no-repeat center fixed; 
+  background: url("code_full.jpg") no-repeat center fixed; 
   background-size: cover;
   font-family: "Arial";
 }
