@@ -72,8 +72,8 @@ def run():
     approved = ['.csv', '.dat']
 
     # retreive the current date (UTC)
-    now = datetime.utcnow()
-    date = now.strftime('%Y-%m-%d')
+    # now = datetime.utcnow()
+    # date = now.strftime('%Y-%m-%d')
 
     # MAIN
     # archive all file names that have a datestamp and approved extension
@@ -92,7 +92,7 @@ def run():
             found_date = re.search(r'\d\d\d\d-\d\d-\d\d|$', filename).group()
             if found_date != '':
                 # file contains a date, archive it
-                dest_file = create_dest_filename(file, date)
+                dest_file = create_dest_filename(file, found_date)
                 upload_blob('requex_archives_raw', file, dest_file)
 
 
