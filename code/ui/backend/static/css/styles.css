@@ -1,0 +1,106 @@
+.form-group {
+    position: relative;
+	background-color: #009933;
+    text-align: center;
+	opacity: .75;
+	padding: 15px 0;
+}
+
+.results-group {
+	position: relative;
+	background-color: 	#000000;
+    text-align: center;
+	opacity: .80;
+	padding: 10px 0;
+}
+
+label {
+    position: absolute;
+    top: 0;
+    font-size: var(--font-size-small);
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.2s ease-out;
+}
+
+input:placeholder-shown + label {
+    opacity: 0;
+    transform: translateY(1rem);
+}
+
+html { 
+  background: url("code_full.jpg") no-repeat center fixed; 
+  background-size: cover;
+  font-family: "Arial";
+}
+
+head {
+	text-align: center;
+	color: white;
+}
+
+div {
+	
+}
+
+body {
+	margin: 0 auto;
+	text-align: center;
+	color: white;
+}
+		  
+h1 {
+    color: white;
+    font-family: Impact;
+    font-size: 500%;
+	text-align: center;
+}
+
+h5 {
+    color: white;
+    font-family: Impact;
+    font-size: 300%;
+	text-align: center;
+}
+
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+/* Centered text */
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+table.center {
+    width:40%; 
+    margin-left:30%; 
+    margin-right:30%;
+}
+
+table, th, td {
+    table-layout: fixed ;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+th {
+    text-align: left;
+}
+
+.eighty {
+  width: 70%;
+}
+.twenty {
+  width: 30%;
+}
+
+.color_bar { 
+    background-color: #A0A0A0;
+	text-align: center
+}
