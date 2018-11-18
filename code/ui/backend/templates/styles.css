@@ -100,7 +100,56 @@ th {
   width: 30%;
 }
 
-.color_bar { 
-    background-color: #A0A0A0;
-	text-align: center
+/* Add a black background color to the top navigation */
+.topnav {
+    background-color: black;
+    overflow: hidden;
+	padding: 14px 16px;
+	margin: 20px 0;
+	border-bottom: 3px solid red;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: right;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+	margin: 20px 0;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.btn {
+    border: 2px solid white;
+    background-color: #009933;
+    color: black;
+    padding: 5px 28px;
+    font-size: 16px;
+    cursor: pointer;
+	border-radius: 10px;
+}
+
+/* Green */
+.success {
+    border-color: white;
+    color: white;
+}
+
+.success:hover {
+    background-color: white;
+	border: 2px solid black;
+    color: black;
 }
