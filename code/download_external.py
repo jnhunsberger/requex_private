@@ -7,7 +7,7 @@
 # Libraries
 import os
 import requests
-from datetime import datetime
+
 
 def run():
     # HTTP SUCCESS STATUS CODE
@@ -52,6 +52,7 @@ def run():
             f.write(r.content)
 
         r = None
+
 
 if __name__ == '__main__':
     run()
