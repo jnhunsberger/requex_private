@@ -1,0 +1,42 @@
+{
+"external_data": [
+    "http://s3-us-west-1.amazonaws.com/umbrella-static/top-1m.csv.zip",
+    "http://osint.bambenekconsulting.com/feeds/dga-feed-high.csv"
+    ],
+"file_map": {
+    "dga": "bambanek",
+    "top": "umbrella"
+    },
+"root_dir": "/Users/jnhunsberger/Documents/Personal/Academics/MIDS_Program/Classes/2018_W210_Capstone/team_cyber/",
+"code_dir": "code/",
+"downloads_dir": "data/local/downloads/",
+"staging_dir": "data/local/staging/",
+"models_dir": "data/local/models/",
+"analysis_dir": "data/local/analysis/",
+"excluded_files": [
+    ".DS_Store",
+    "__init__.py"
+    ],
+"google_cloud_storage_archive": "requex_archives_raw",
+"google_auth_json": "code/requex-svc.json",
+"data_formats": [
+    ".csv",
+    ".dat"
+    ],
+"archive_formats": [
+    ".zip"
+    ],
+"requex_data_prep_log": "data/local/staging/requex_data_prep.log",
+"multiclass_model": {
+    "model_json": "multiclass_LSTM.json",
+    "model_H5": "multiclass_LSTM.h5",
+    "model_tokenizer": "multiclass_tokenizer.pkl",
+    "model_categories": "multiclass_categories.pkl"
+    },
+"binary_model": {
+    "model_json": "binary_LSTM.json",
+    "model_H5": "binary_LSTM.h5",
+    "model_tokenizer": "binary_tokenizer.pkl",
+    "model_categories": "binary_categories.pkl"
+    }
+}

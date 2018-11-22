@@ -11,6 +11,7 @@ import shlex
 import re
 import subprocess
 import argparse
+import json
 import pandas as pd     # for its handy date range functions
 import dateutil         # for timezone support with pandas
 from pprint import pprint
@@ -19,14 +20,32 @@ from datetime import timedelta
 from google.cloud import storage
 
 
+def valid_filename(filename):
+    '''valid_filename: determines if the given filename is a real file. Assumes that the file is in the current working directory for the program.
+
+    returns: given file name
+    '''
+    if not os.path.isfile(filename):
+        msg = "The given file '{}' does not exist at '{}'.".format(
+            filename,
+            os.getcwd()
+            )
+        raise argparse.ArgumentTypeError(msg)
+
+    return filename
+
+
 def parse_args():
-    '''parse_args: parses command line arguments. Returns a dictionary of arguements.
+    '''parse_args: parses command line arguments. Returns a dictionary of arguments.
     '''
     parser = argparse.ArgumentParser(
         description='Downloads files from the Requex archive.',
         prog='download_archive',
         epilog='If more than one argument is given, the most specific is selected. For example if -t and -w are given, the program will be run with -t. The order of precedence is: today, yesterday, week, month, recent, date range(first/last).')
-
+    parser.add_argument('config_file',
+                        type=valid_filename,
+                        metavar='CONFIG_FILE',
+                        help="File path to requex configuration file. File must be in JSON format.")
     parser.add_argument('-i', '--interactive', choices=['yes', 'no'],
                         default='yes',
                         help="Determines if the script is run in interactive mode. If omitted, the script runs interactively.")
@@ -46,6 +65,39 @@ def parse_args():
                         help='The last date from which to pull archive data. Must be in the format: YYYY-MM-DD. If last is used, either -f or -m must be provided.')
 
     return vars(parser.parse_args())
+
+
+def get_config_filename(filename=None):
+    '''get_config_filename: returns a verified Requex configuration file name. This function handles the ambiguity around whether the module was called from a shell with command line arguments or if called from another program using the run() function. If filename is none, the function assumes that there are
+
+    return: string; valid filename.
+    '''
+    if filename is None:
+        # get command line arguments
+        args = parse_args()
+        filename = args['config_file']
+    else:
+        if not os.path.isfile(filename):
+            print("The given file '{}' does not exist at '{}'.".format(
+                filename,
+                os.getcwd()
+                ))
+            exit(1)
+    return filename
+
+
+def get_config(filename):
+    '''get_config: reads the configuration JSON file and stores values in a dictionary for processing.
+
+    PRE: assumes the file already exists
+
+    return: dict of configuration settings
+    '''
+
+    with open(filename, "r") as f:
+        config = json.load(f)
+
+    return config
 
 
 def build_commands(args):
@@ -264,7 +316,7 @@ def download_blob(bucket_name, source_blob_name, destination_file_name):
 
     blob.download_to_filename(destination_file_name)
 
-    print('Blob {} downloaded to {}.'.format(
+    print("success: blob '{}' downloaded to '{}'.".format(
         source_blob_name,
         destination_file_name))
 
@@ -276,20 +328,24 @@ def clean_filenames(files):
     return [prefix.sub('', f) for f in files]
 
 
-def main():
+def run(config_file=None):
+    # get configuration parameters
+    config_file = get_config_filename(config_file)
+    config = get_config(config_file)
+    # print('configuration settings:')
+    # pprint(config)
 
     # set environment variable
     env_var = 'GOOGLE_APPLICATION_CREDENTIALS'
 
     # requex-svc file path for connecting to GCP storage bucket
-    svc_path = "/Users/jnhunsberger/Documents/Personal/Academics/MIDS_Program/Classes/2018_W210_Capstone/team_cyber/code/requex-svc.json"
-
-    # download destination path:
-    # assumes the code is in team_cyber/code/
-    data_write_path = '../data/local/downloads/'
+    svc_path = config['root_dir']+config['google_auth_json']
 
     # set the local environment variable
     os.environ[env_var] = svc_path
+
+    # use the downloads directory for all actions
+    downloads_dir = config['root_dir']+config['downloads_dir']
 
     # get command line arguments
     args = parse_args()
@@ -300,7 +356,7 @@ def main():
     for num, command in enumerate(commands):
         print('{:>3}: {}'.format(num, command))
 
-    # build file list
+    # build Google Cloud Storage file list
     files = []
     for command in commands:
         file_list = query_gcs(command)
@@ -309,6 +365,10 @@ def main():
 
     # flatten the nested lists
     files = [f for nested in files for f in nested]
+    files = clean_filenames(files)
+    print()
+    print('Requex archive files to download: -----------------')
+    pprint(files)
 
     if args['interactive'] == 'yes':
         if files:
@@ -319,16 +379,13 @@ def main():
         else:
             exit()
 
-    files = clean_filenames(files)
-
-    pprint(files)
     for file in files:
         filename = os.path.basename(file)
         # print('file requested: {}'.format(file))
         # print('file downloaded: {}'.format(data_write_path+filename))
         # TODO: check to see if file already exists locally; if so, skip download
-        download_blob('requex_archives_raw', file, data_write_path+filename)
+        download_blob('requex_archives_raw', file, downloads_dir+filename)
 
 
 if __name__ == '__main__':
-    main()
+    run()
