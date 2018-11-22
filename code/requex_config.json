@@ -7,7 +7,7 @@
     "dga": "bambanek",
     "top": "umbrella"
     },
-"root_dir": "/Users/jnhunsberger/Documents/Personal/Academics/MIDS_Program/Classes/2018_W210_Capstone/team_cyber/",
+"root_dir": "../",
 "code_dir": "code/",
 "downloads_dir": "data/local/downloads/",
 "staging_dir": "data/local/staging/",
