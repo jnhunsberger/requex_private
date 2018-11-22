@@ -286,7 +286,7 @@ def run(config_file=None):
         elif type == 'umbrella':
             df = prep_umbrella(working_dir+file, working_dir)
         else:
-            pass
+            continue
         df_master = merge_df(df, df_master, working_dir)
 
     # deduplicate stats
