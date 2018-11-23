@@ -20,8 +20,8 @@ class LSTMBinary:
     def __init__(self):
         
         self.max_features = 1000                                # length of vocabulary
-        self.batch_size = 128                                   # input batch size
-        self.num_epochs = 5                                     # epochs to train
+        self.batch_size = 16384                                   # input batch size
+        self.num_epochs = 10                                     # epochs to train
         self.encoder = text.Tokenizer(num_words=500, char_level=True)
 
         self.model = Sequential()
@@ -42,10 +42,9 @@ class LSTMBinary:
         # Pad sequence where sequences are case insensitive characters encoded to
         # integers from 0 to number of valid characters
         X_train_pad=sequence.pad_sequences(X_train_tz, maxlen=75)
-        '''
         # Train where Y_train is 0-1
         self.model.fit(X_train_pad, Y_train, batch_size=self.batch_size, epochs=self.num_epochs)
-        '''
+
     def save(self, tokenizer_file, model_json_file, model_h5_file):
         #
         # Save the tokenizer
