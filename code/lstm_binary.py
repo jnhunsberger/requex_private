@@ -20,8 +20,8 @@ class LSTMBinary:
     def __init__(self):
         
         self.max_features = 1000                                # length of vocabulary
-        self.batch_size = 16384                                   # input batch size
-        self.num_epochs = 10                                     # epochs to train
+        self.batch_size = 4096                                   # input batch size
+        self.num_epochs = 5                                     # epochs to train
         self.encoder = text.Tokenizer(num_words=500, char_level=True)
 
         self.model = Sequential()
@@ -55,7 +55,6 @@ class LSTMBinary:
         #
         # Save the model and the weights
         #
-        '''
         model_save = self.model.to_json()
         with open(model_json_file, 'w') as file:
             file.write(model_save)
@@ -63,7 +62,6 @@ class LSTMBinary:
         self.model.save_weights(model_h5_file)
 
         print('MODEL SAVED TO DISK!')
-        '''
         pass
 
     def load(self, tokenizer_file, model_json, model_h5):
