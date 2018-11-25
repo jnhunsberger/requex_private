@@ -21,6 +21,8 @@ BINARY_TOKENIZER_FILE = PROJECT_ROOT + "saved_models/binary_tokenizer.pkl"
 BINARY_CATEGORIES_FILE = PROJECT_ROOT + "saved_models/binary_categories.pkl"
 BINARY_MODEL_JSON = PROJECT_ROOT + "saved_models/binary_LSTM.json"
 BINARY_MODEL_H5 = PROJECT_ROOT + "saved_models/binary_LSTM.h5"
+BINARY_MODEL_METRICS_REPORT = PROJECT_ROOT + "saved_models/binary_metrics_report"
+BINARY_MODEL_CLASS_REPORT = PROJECT_ROOT + "saved_models/binary_class_report"
 
 MULTI_TOKENIZER_FILE = PROJECT_ROOT + "saved_models/multiclass_tokenizer.pkl"
 MULTI_CATEGORIES_FILE = PROJECT_ROOT + "saved_models/multiclass_categories.pkl"

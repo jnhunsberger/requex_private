@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, classification_report
 
 from keras.models import Sequential, model_from_json
 from keras.layers.core import Dense, Dropout, Activation
@@ -14,6 +14,7 @@ import tensorflow as tf
 from tensorflow.python.client import device_lib
 
 import pickle
+import json
 
 class LSTMBinary:
 
@@ -92,3 +93,68 @@ class LSTMBinary:
         with graph.as_default():
             output = self.model.predict_classes(inputSeq)
         return output
+
+    def dump_reports(self, X_test, Y_test, Y_pred, bit_mask, format_m_report, format_c_report, verbose=False):
+    '''input : input domain strings and true classes
+       predictions: output classes from calling predict()
+       bit_mask: single bit switches for multiple output dumps
+                 0x01: prediction metrics
+                 0x02: FP and FN predictions table
+       format_m_report: 'json' format only, csv doesn't fit correctly here
+       format_c_report: ['json', 'csv']  # list of atleast 1 of: 'csv' or 'json'
+       verbose: print messages at checkpoints
+    '''
+    
+    '''PENDING RESOLUTION:
+    - labels # class order mappings
+    - name_nonDGA, name_DGA # class name mappings
+    - format_m_report, format_c_report # file dump formats, (made as input arguments, for now)
+    - name_m_report, name_c_report # file names, (currently set in app.py)
+    '''
+
+       # accuracy, precision, recall, f1, false positive, false negative
+       pred_table = X_test.to_frame()
+       pred_table.columns = ['domain']
+       pred_table['trueClass'] = [labels[i] for i in Y_test]
+       pred_table['predClass'] = [labels[i] for i in Y_pred]
+       pred_table['predProb'] = [Y_pred_prob[idx][Y_pred[idx]] for idx in range(0, Y_pred.shape[0]) ]
+       
+       pred_table_FP = pred_table[(pred_table['trueClass'] == name_nonDGA) & (pred_table['predClass'] == name_DGA) ]
+       pred_FP_frac = pred_table_FP.shape[0]/pred_table.shape[0]
+       
+       pred_table_FN = pred_table[(pred_table['trueClass'] == name_DGA) & (pred_table['predClass'] == name_nonDGA) ]
+       pred_FN_frac = pred_table_FN.shape[0]/pred_table.shape[0]
+       
+       acc = accuracy_score(Y_test, Y_pred)
+       
+       if verbose:
+          print("Metrics now calculated."
+          print("Starting file dump."
+          
+       if bit_mask & 0x01:
+          metrics_report = classification_report(Y_test, Y_pred, target_names=labels, output_dict=True)
+          metrics_report['accuracy'] = acc
+          metrics_report['false positives'] = pred_FP_frac
+          metrics_report['false negatives'] = pred_FN_frac
+          
+          if format_m_report == 'json':
+             fileName = name_m_report + '.' + format_m_report
+             with open(fileName, 'w') as filePath:
+                   json.dump(metrics_report, fp=filePath)
+          
+       # False Positives and False Negatives
+       if bit_mask & 0x02:
+          pred_table_FP.insert(0, 'type', 'FP')
+          pred_table_FN.insert(0, 'type', 'FN')
+          
+          for extn in format_c_report:
+             filePath = name_c_report + '.' + extn
+             if extn == 'csv':
+                   pred_table_FP.to_csv(filePath, mode='w', index=False, header=True)
+                   pred_table_FN.to_csv(filePath, mode='a', index=False, header=False)
+             elif extn == 'json':
+                   pred_table_FP.append(pred_table_FN)
+                   pred_table_FP.to_json(filePath, orient='table', index=False)
+       
+       if verbose:
+          print("Finished file dump."
