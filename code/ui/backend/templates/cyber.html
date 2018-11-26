@@ -293,6 +293,15 @@
     </form>
     <div class="results-group">
         <h4>Binary Model</h4>
+        <h4>Model Metrics</h4>
+        <p>F1 Score: <b>{{binary_metrics.f1score}}</b> </p>
+        <p>Accuracy: <b>{{binary_metrics.accuracy}}</b></p>
+        <p>Precision: <b>{{binary_metrics.precision}}</b> </p>
+        <p>Recall: <b>{{binary_metrics.recall}}</b></p>
+        <p>False Positives: <b>{{binary_metrics.fp}}</b></p>
+        <p>False Negatives: <b>{{binary_metrics.fn}}</b></p>
+    
+    
         <p>URL: <b>{{binary_output.url}}</b> </p>
         <p>Type: <b>{{binary_output.type}}</b></p>
         <br />
@@ -325,13 +334,13 @@
             <tr>
                 <td style="font-size: 17px; font-style: italic; color:black">Title</td>
                 <td style="font-size: 17px; font-style: italic; color:black">Title</td>
-                <td style="font-size: 17px; font-style: italic; color:black">Title</td>
+                <td style="font-size: 17px; font-style: italic; color:black">Distinguished Engineer</td>
                 <td style="font-size: 16px; font-style: italic; color:black">Principal Engineer</td>
             </tr>
             <tr>
                 <td style="font-size: 17px; font-weight: bold; color:#595959;">Company</td>
                 <td style="font-size: 17px; font-weight: bold; color:#595959;">Company</td>
-                <td style="font-size: 17px; font-weight: bold; color:#595959;">Company</td>
+                <td style="font-size: 17px; font-weight: bold; color:#595959;">Juniper Networks</td>
                 <td style="font-size: 16px; font-weight: bold; color:#595959;">Autodesk</td>
             </tr>
             <!--<tr>

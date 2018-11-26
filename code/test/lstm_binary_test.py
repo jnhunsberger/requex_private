@@ -37,7 +37,7 @@ def test_predict():
     #
     testmodel = lstm_binary.LSTMBinary()
     testmodel.load(BINARY_TOKENIZER_FILE, BINARY_MODEL_JSON, BINARY_MODEL_H5, BINARY_METRICS_REPORT)
-    testmodel.show()
+    print(testmodel.get_metrics())
 
     urllist = ["www.google.com", "www.netflix.com", "plvklpgwivery.com"]
     urltypes = testmodel.predict(urllist)
