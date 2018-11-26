@@ -8,10 +8,46 @@
 
 .results-group {
 	position: relative;
-	background-color: 	#000000;
-    text-align: center;
-	opacity: .80;
+	text-align: center;
 	padding: 10px 0;
+}
+
+.black-group {
+    margin: 50px 0px;
+    position: relative;
+    background: rgba(0, 0, 0, 0.8);
+    text-align: left;
+    padding: 60px 16px;
+    min-height: 100%;
+}
+
+.white-group {
+    margin: 50px 0px;
+    position: relative;
+    background: rgba(255, 255, 255, 0.8);
+    text-align: left;
+    padding: 60px 16px;
+    color: black;
+}
+
+img {
+    text-align: center;
+
+}
+
+img.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+
+input[type=text] {
+    padding: 12px 20px;
+    box-sizing: border-box;
+	border: 3px solid gray;
+    border-radius: 10px;
 }
 
 label {
@@ -29,9 +65,25 @@ input:placeholder-shown + label {
 }
 
 html { 
-  background: url("code_full.jpg") no-repeat center fixed; 
+  background: url("http://people.ischool.berkeley.edu/~shulok/cyber/code_full.jpg") no-repeat center fixed; 
   background-size: cover;
   font-family: "Arial";
+  font-size: 20px;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.imgbox {
+	display: grid;
+	height: 100%;
+}
+.center-fit {
+	max-width: 100%;
+	max-height: 100vh;
+	margin: auto;
 }
 
 head {
@@ -39,8 +91,70 @@ head {
 	color: white;
 }
 
-div {
-	
+.firstpage {
+    height: 100%;
+}
+
+body, html, .main {
+    min-height: 50%;
+}
+
+.column {
+    float: left;
+}
+
+
+/* Left and right column */
+.column.side {
+    width: 25%;
+}
+
+/* Middle column */
+.column.middle {
+    width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .column.side, .column.middle {
+        width: 100%;
+    }
+}
+
+.subcolumn {
+    float: left;
+}
+
+
+.subcolumn.left {
+    width: 50%;
+}
+
+/* Middle column */
+.subcolumn.right {
+    width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+p {
+    margin-top: 50px;
+   
+}
+
+section {
+    height: 50%;
 }
 
 body {
@@ -50,17 +164,25 @@ body {
 }
 		  
 h1 {
+	margin: 50px;
     color: white;
     font-family: Impact;
     font-size: 500%;
 	text-align: center;
+	
 }
 
-h5 {
+h2 {
+	margin: 20px;
     color: white;
     font-family: Impact;
     font-size: 300%;
 	text-align: center;
+}
+
+h3 {
+    font-family: Impact;
+    font-size: 200%;
 }
 
 .container {
@@ -85,12 +207,43 @@ table.center {
 
 table, th, td {
     table-layout: fixed ;
-	border: 1px solid black;
+	text-align: center;
 	border-collapse: collapse;
+    margin: 20px;
 }
 
 th {
     text-align: left;
+}
+
+.subtable {
+    table-layout: fixed;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+    .subtable td {
+       
+        text-align: left;
+        vertical-align: text-top;
+        font-family: "Arial";
+        font-size: 20px;
+    }
+
+.subtable th {
+    
+    text-align: center;
+    
+}
+
+    .subtable td, .subtable.th {
+        width: 50%;
+        padding: 20px;
+    }
+
+a {
+    color: red;
+    font-weight: bold;
 }
 
 .eighty {
@@ -100,7 +253,98 @@ th {
   width: 30%;
 }
 
-.color_bar { 
-    background-color: #A0A0A0;
-	text-align: center
+/* Add a black background color to the top navigation */
+.topnav {
+    position: fixed;
+	top: 0;
+    right: 0;
+	width: 100%;
+    background-color: black;
+    overflow: hidden;
+	border-bottom: 2px solid red;
+	z-index: 10;
 }
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: right;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+	text-decoration: none;
+    font-size: 17px;
+}
+
+/* Change the color of buttons on hover */
+.topnav a:hover {
+    background-color: #71c174;
+    color: black;
+}
+
+/* Add a color to the active/current button */
+.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.topnavbtn {
+	float: right;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+	text-decoration: none;
+    font-size: 17px;
+}
+
+.btnlarge {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 28px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 2px solid white;
+}
+
+.btnlarge:hover {
+    background-color: #71c174;
+}
+
+.btn {
+    border: 2px solid white;
+    background-color: #009933;
+    color: black;
+    padding: 5px 28px;
+    font-size: 16px;
+    cursor: pointer;
+	border-radius: 10px;
+}
+
+/* Green */
+.success {
+    border-color: white;
+    color: white;
+}
+
+.success:hover {
+    background-color: white;
+	border: 2px solid black;
+    color: black;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+}
+
