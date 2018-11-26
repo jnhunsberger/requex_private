@@ -96,7 +96,7 @@ class LSTMBinary:
         print('MODEL SAVED TO DISK!')
         pass
 
-    def load(self, tokenizer_file, model_json, model_h5, model_report):
+    def load(self, tokenizer_file, model_json, model_h5, model_report=None):
         #
         # Load the tokenizer
         #
@@ -115,6 +115,7 @@ class LSTMBinary:
         global graph
         graph = tf.get_default_graph()
 
+        '''
         with open(model_report) as report:
             metrics = json.load(report)
             self.f1score = metrics["DGA"]["f1-score"]
@@ -123,9 +124,8 @@ class LSTMBinary:
             self.accuracy = metrics["accuracy"]
             self.fp = metrics["false positives"]
             self.fn = metrics["false negatives"]
-
+        '''
         print('SAVED BINARY MODEL IS NOW LOADED!')
-
 
     def predict(self, input):
         print(input)
