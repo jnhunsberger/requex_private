@@ -27,6 +27,17 @@ class LSTMBinary:
 
         self.model = Sequential()
 
+        #
+        # Model metrics
+        #
+        self.f1score = 0.0
+        self.accuracy = 0.0
+        self.precision = 0.0
+        self.recall = 0.0
+        self.fp = 0.0
+        self.fn = 0.0
+
+
     def train(self, X_train, Y_train):
         # encode string characters to integers
         self.encoder.fit_on_texts(X_train)                                    # build character indices
@@ -45,6 +56,26 @@ class LSTMBinary:
         X_train_pad=sequence.pad_sequences(X_train_tz, maxlen=75)
         # Train where Y_train is 0-1
         self.model.fit(X_train_pad, Y_train, batch_size=self.batch_size, epochs=self.num_epochs)
+
+    def show(self):
+        print("\nMODEL Parameters")
+        print("\tMax Features: ", self.max_features)
+        print("\tBatch size: ", self.batch_size)
+        print("\tNum epochs: ", self.num_epochs)
+
+        print("\nMODEL Metrics")
+        print("\tF1 Score: ", self.f1score)
+        print("\tAccuracy: ", self.accuracy)
+        print("\tPrecision: ", self.precision)
+        print("\tRecall: ", self.recall)
+        print("\tFalse Positives: ", self.fp)
+        print("\tFalse Negatives: ", self.fn)
+
+    def validate(self, test_data, test_classes):
+        '''
+        Return pred_classes
+        '''
+        pass
 
     def save(self, tokenizer_file, model_json_file, model_h5_file):
         #
@@ -65,7 +96,7 @@ class LSTMBinary:
         print('MODEL SAVED TO DISK!')
         pass
 
-    def load(self, tokenizer_file, model_json, model_h5):
+    def load(self, tokenizer_file, model_json, model_h5, model_report):
         #
         # Load the tokenizer
         #
@@ -84,6 +115,15 @@ class LSTMBinary:
         global graph
         graph = tf.get_default_graph()
 
+        with open(model_report) as report:
+            metrics = json.load(report)
+            self.f1score = metrics["DGA"]["f1-score"]
+            self.precision = metrics["DGA"]["precision"]
+            self.recall = metrics["DGA"]["recall"]
+            self.accuracy = metrics["accuracy"]
+            self.fp = metrics["false positives"]
+            self.fn = metrics["false negatives"]
+
         print('SAVED BINARY MODEL IS NOW LOADED!')
 
 
@@ -94,11 +134,6 @@ class LSTMBinary:
             output = self.model.predict_classes(inputSeq)
         return output
 
-    def validate(self, test_data, test_classes):
-        '''
-        Return pred_classes
-        '''
-        pass
 
     def dump_reports(self, X_test, Y_test, Y_pred, bit_mask, format_m_report, format_c_report, verbose=False):
         '''input : input domain strings and true classes
