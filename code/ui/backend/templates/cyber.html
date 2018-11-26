@@ -1,50 +1,345 @@
-<head margin-top: 80px;>
+<head>
 
   <link type="text/css" rel="stylesheet" href="{{url_for('static', filename='css/styles.css') }}" /> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
 
+       
+  // Add smooth scrolling to all links
+  $("a").on('click', function(event) {
+
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+            });
+
+        // Add active class to the current button (highlight it)
+        var header = document.getElementById("navigation");
+        var btns = header.getElementsByClassName("topnavbtn");
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function() {
+                var current = document.getElementsByClassName("active");
+                if (current.length > 0) { 
+                    current[0].className = current[0].className.replace(" active", "");
+                }
+                this.className += " active";
+            });
+        }
+
+    } // End if
+        });
+
+       
+});
+
+
+</script>
 </head>
-<div class="topnav">
-  <a href="#team">Team</a>
-  <a class="active" href="#demo">Demo</a>
-  <a href="#model">Model</a>
-  <a href="#home">Home</a>
-  
+<div class="topnav" id="navigation">
+    
+    <a class="topnavbtn" href="#team">Team</a>
+    <a class="topnavbtn" href="#demo">Demo</a>
+    <a class="topnavbtn" href="#model">Model</a>
+    <a class="topnavbtn" href="#about">Solution</a>
+    <a class="topnavbtn" href="#problem">Problem</a>
+    <a class="topnavbtn" href="#story">Story</a>
+    <a class="topnavbtn" href="#home">Home</a>
+    
 </div>
 
-<div>  
-<h1>RequeX</h1>
-<h5>Malicious Domain Detection </h5>
+<div id="home"><br /></div>
+<div class="firstpage">  
+<h1>RequeX DNS</h1>
+<h2>Malicious Domain Detection </h2>
+<br /><br /><br />
+<a class="btnlarge" href="#story"><b>Learn More >></b></a>
 </div>
-<br />
+
 <body>
+    <div class="black-group" id="story">
+        <h2 text-align: center>Story</h2>
+        <div class="row">
+            <div class="column side">
+                <br />
+            </div>
+            <div class="column middle">
+
+                <p>
+                    In September 2018, hurricane Florence struck the North Carolina coast as a powerful Category 1 storm. It brought with it not only high winds,
+                    but also record levels of rainfall. In its path was the North Carolina shoreline. Onslow County took a direct hit from Hurricane Florence.
+                    With some areas in the county receiving over 30 inches of rainfall over the course of the multi-day storm, there was massive flooding.
+                </p>
+                <p><img class="displayed" src="{{url_for('static', filename='css/hurricane-florence.jpg') }}" alt="Hurricane Florence"></p>
+                <figcaption>Source: Threat Post</figcaption>
+                <p>
+                    The Onslow Water and Sewer Authority (ONWASA) is responsible for providing clean water to the over 175,000 people who live in Onslow County.
+                    With all the flooding and infrastructure damage, they had an incredible task ahead of them. What they didn’t realize was that
+                    the hurricane was not the only problem they were going to face.
+                </p>
+                <p>
+                    Starting on October 4th, ONWASA IT personnel noticed an aggressive malware infiltrating their network defenses.
+                    It was a well-known and dangerous malware called Emotet. Despite their multi-layered security protections, the IT staff struggled to control it.
+                    Then it took a turn for the worse. Around 3am on October 13th, the Emotet malware contacted its command and control servers and downloaded a new payload,
+                    the ransomware RYUK. This ransomware encrypted and locked out all of ONWASA’s computers unless a ransom was paid.
+                </p>
+                <p>
+                    On October 15th, ONWASA issued a <a href="https://www.onwasa.com/DocumentCenter/View/3701/Scan-from-2018-10-15-08_08_13-A">press release</a>
+                    saying that their network was compromised and all computer systems used to process service orders, manage water connections/disconnections,
+                    and all engineering activities were inoperable. ONWASA refused to pay the ransom and had to revert to responding to all requests using
+                    manual processes. The water authority spent weeks recovering from the attack.
+                </p>
+                <br />
+            </div>
+            <div class="column side">
+                <br />
+            </div>
+        </div>
+    </div>
+    <div class="main">
+        <section></section>
+    </div>
+<div class="black-group" id="problem">
+    <h2 style="text-align: center">The Problem</h2>
+    <div class="row">
+        <div class="column side">
+            <br />
+        </div>
+        <div class="column middle">
+            <p>
+                Emotet is causing problems beyond just ONWASA. The Quarterly Threat Report for the third quarter, 2018 from
+                <a href="https://www.proofpoint.com/us">Proofpoint</a> (a cybersecurity company that provides threat intelligence on the latest
+                cyber attacks being launched via multiple sources) shows that banking trojans are the largest, most active category of
+                malware across email, mobile apps, and social media.
+            </p>
+            <p>
+                <img class="displayed" src="{{url_for('static', filename='css/malware_by_category.png') }}" alt="Malware by category pie chart">
+                <figcaption>Source: Proofpoint</figcaption>
+            </p>
+            <p>Of banking trojans, Emotet is the second most popular malware in use today.</p>
+            <p>
+                <img class="displayed" src="{{url_for('static', filename='css/relative_volume.png') }}" alt="Relative volume of banking trojan pie chart">
+                <figcaption>Source: Proofpoint</figcaption>
+            </p>
+            <p>
+                A key element in Emotet's attack sequence is its communication with command and control servers (C2 servers). Emotet thives on its ability to
+                update itself and offer iteself on the black market as a platform for further malware delivery. It was this capability that downloaded
+                the ransomeware that caused the most acute trouble for ONWASA.
+            </p>
+            <p>
+                <img class="displayed" src="{{url_for('static', filename='css/emotet_infection_process.png') }}" alt="Emotet infection process">
+                <figcaption>Source: US-CERT, emphasis on step 3 added</figcaption>
+            </p>
+
+            <p>
+                Emotet is one of many malware variants that utilize a domain generation algorithm (DGA) to evade established malware protection
+                strategies. These domain generating algorithms are capable of creating thousands of domains per day. The typical operation of 
+                DGA-based malware is depicted in the diagram below.
+            </p>
+            <p>
+                <img class="displayed" src="{{url_for('static', filename='css/DGAalgorithm.png') }}" alt="DGA-based malware operation">
+            </p>
+            <p>
+                <ul style="list-style-type:circle">
+                    <li>Step 1: The malware sends requests to a DNS server to see if a generated domain exists.</li>
+                    <li>Step 2: The vast majority of domains do not exist.</li>
+                    <li>
+                        Step 3: But for the malware operator, that is ok. They only need to register a small percentage of the domains for the 
+                        malware to connect successfully to its C2 server. Once the malware has the IP address, the malware can then request 
+                        its update.
+                    </li>
+                    <li>Step 4: The C2 server sends an update which launches the next phase of the attack.</li>
+                </ul>
+            </p>
+            <p>The asymmetry of the DGA works to the advantage of the attacker. The bad guys only have to register a statistically small number 
+                of these domains for the malware to receive their instructions. The good guys would have a full time job trying to chase down 
+                all of those domains and blocking them.</p>
+            <p>
+                Thousands of malware rely on this communication technique to advance their goals and take advantage of their victims.
+                Our team is dedicated to stopping these communications in their tracks.
+            </p>      
 
 
-<form>
-<div class="form-group">
-    <input type="text" style="height:30px" name="URL_Binary" id="dynamic-label-input" placeholder="Enter a domain name">
-    <input class="btn success" type="submit" value="Submit" />
+        </div>
+        <div class="column side">
+            <br />
+        </div>
+    </div>
 </div>
 
-</form>
-
-<div class="results-group">
-
-<h2>Binary Model</h2>
-<p>URL: <b>{{binary_output.url}}</b> </p>
-<p>Type: <b>{{binary_output.type}}</b></p>
-
-<h2>Multiclass Model</h2>
-    <p>URL: <b>{{multi_output.url}}</b> </p>
-    <p>DGA Class: <b>{{multi_output.type}}</b></p>    
-    <p>Prediction Probability: <b>{{multi_output.probability}}</b></p> 
-
+<div class="main">
+    <section></section>
 </div>
 
-
-<div>	
-
-<h2 id="team">Our Team</h2>
-<h3>Jason<h3>
+<div class="black-group" id="about">
+    <h2 style="text-align: center">Solution</h2>
+    <div class="row">
+        <div class="column side">
+            <br />
+        </div>
+        <div class="column middle">
+            <p>We believe that a combination of threat intelligence and machine learning integrated into DNS servers can halt the C2 server communications 
+                used by malware.</p>
+            <p>
+                Our solution is RequeX DNS, a cloud-based, network security intelligent DNS firewall that protects consumers and businesses. Rather than
+                preventing the initial infection, the goal of RequeX DNS is to halt all communications from a malware to its command and control servers.
+            </p>
+            <p>Most DNS servers do not block traffic, and most DNS firewalls only use blacklists of known malicious domain names to determine if a domain 
+                is malicious or benign.</p>
+            <p>
+                Our post-infection protection system uses a modified DNS server to prevent communications between malware and C2 servers.
+                It can also be used to identify which networks and computers on a network are infected by DGA-based malware.
+            </p>
+            <p>Below is an updated diagram illustrating how our solution works. In this diagram you can see the same process as in the previous section, 
+                however the last domain is blocked by our model.</p>
+            <p>
+                <img class="displayed" src="{{url_for('static', filename='css/RequeXDiagram.png') }}" alt="DNS solution that halts communication with C2 servers">
+            </p>
+            <p>
+                Our solution uses machine learning models to classify domain requests as malicious or non-malicious. If they are deemed malicious,
+                our models will block the DNS traffic. This blockage prevents the malware from communicating with its C2 server. 
+                In ONWASA’s case, the RYUK ransomware would never have attacked them.
+            </p>
+        </div>
+        <div class="column side">
+            <br />
+        </div>
+    </div>
 </div>
 
+<div class="main">
+    <section></section>
+</div>
+
+<div class="black-group" id="model">
+    <h2>Our Model</h2>
+    <div class="row">
+        <div class="column side">
+            <br />
+        </div>
+        <div class="column middle">
+            <table class="subtable">
+                <tr>
+                    <th><h3>Objective</h3></th>
+                    <th><h3>Data</h3></th>
+                </tr>
+                <tr>
+                    <td>
+                        Our main objective was to predict whether a domain name represented a malicious website or a benign one, with at least
+                        a 99% accuracy. Our second objective was to predict the DGA class of domain names deemed malicious. And our third
+                        objective was to minimize our false positives so as not to block benign websites.
+                    </td>
+                    <td>
+                        Our data came from two main sources: the free Cisco Umbrella list of the top million domain names by popularity, which we
+                        assumed to be benign, and Bambenek Consulting's free feeds of recent DGA domains. For the Bambenek list, we used both the
+                        default (or mixed) confidence feed, and the high confidence feed. We analyzed a total of 1.36M domain names,
+                        1 million benign (73.5%) and 360k malicious (26.5%).
+                    </td>
+                </tr>
+            </table>
+            <h3>The Machine Learning Model</h3>
+            <p>To prepare the data for training, we tokenized the domain name strings by converting the characters in the domain names to an integer based sequence.</p>
+            <p>
+                <img class="displayed" src="{{url_for('static', filename='css/tokenizing.png') }}" alt="Tokening of domain names">
+            </p>
+            <p>We created binary and multi-class LSTM models.</p>
+            <p>
+                <img class="displayed" src="{{url_for('static', filename='css/modeling.png') }}" alt="Tokening of domain names">
+            </p>
+        </div>
+        <div class="column side">
+            <br />
+        </div>
+    </div>
+</div>
+
+<div class="main">
+    <section></section>
+</div>
+  
+<div class="black-group" id="demo">
+    <h2>Demo</h2>
+    <div class="row">
+        <div class="column side">
+            <br />
+        </div>
+        <div class="column middle">
+            <p>This demo allows you to manually test a domain name to predict whether it is a malicious DGA domain or a benign domain.</p>
+            <br />
+        </div>
+        <div class="column side">
+            <br />
+        </div>
+        
+    </div>
+    <form>
+        <div class="form-group">
+            <input type="text" style="height:30px" name="URL_Binary" placeholder="Enter a domain name">
+            <input class="btn success" type="submit" value="Submit" />
+        </div>
+    </form>
+    <div class="results-group">
+        <h4>Binary Model</h4>
+        <p>URL: <b>{{binary_output.url}}</b> </p>
+        <p>Type: <b>{{binary_output.type}}</b></p>
+        <br />
+        <h4>Multiclass Model</h4>
+        <p>URL: <b>{{multi_output.url}}</b> </p>
+        <p>DGA Class: <b>{{multi_output.type}}</b></p>
+        <p>Prediction Probability: <b>{{multi_output.probability}}</b></p>
+    </div>
+</div>
+
+<div class="main">
+    <section></section>
+</div>
+
+    <div class="white-group" id="team">
+        <h2 style="text-align:center; color:black;">Our Team</h2>
+        <table style="width:100%">
+            <tr>
+                <td><img src="{{url_for('static', filename='css/jhunsberger.png') }}" alt="Jason Hunsberger"></td>
+                <td><img src="{{url_for('static', filename='css/aniruddh.png') }}" alt="Aniruddh Nautiyal" style="opacity: 1;"></td>
+                <td><img src="{{url_for('static', filename='css/surya.png') }}" alt="Surya Nimmagadda"></td>
+                <td><img src="{{url_for('static', filename='css/liz.png') }}" alt="Elizabeth Shulok"></td>
+            </tr>
+            <tr>
+                <td style="font-size: 18px; font-weight: bold; color:black">Jason Hunsberger</td>
+                <td style="font-size: 18px; font-weight: bold; color:black">Aniruddh Nautiyal</td>
+                <td style="font-size: 18px; font-weight: bold; color:black">Surya Nimmagadda</td>
+                <td style="font-size: 18px; font-weight: bold; color:black">Elizabeth Shulok</td>
+            </tr>
+            <tr>
+                <td style="font-size: 17px; font-style: italic; color:black">Title</td>
+                <td style="font-size: 17px; font-style: italic; color:black">Title</td>
+                <td style="font-size: 17px; font-style: italic; color:black">Title</td>
+                <td style="font-size: 16px; font-style: italic; color:black">Principal Engineer</td>
+            </tr>
+            <tr>
+                <td style="font-size: 17px; font-weight: bold; color:#595959;">Company</td>
+                <td style="font-size: 17px; font-weight: bold; color:#595959;">Company</td>
+                <td style="font-size: 17px; font-weight: bold; color:#595959;">Company</td>
+                <td style="font-size: 16px; font-weight: bold; color:#595959;">Autodesk</td>
+            </tr>
+            <!--<tr>
+                <td style="font-size: 17px; font-weight: bold; color:#595959;">Company</td>
+                <td style="font-size: 17px; font-weight: bold; color:#595959;">Company</td>
+                <td style="font-size: 17px; font-weight: bold; color:#595959;">Company</td>
+                <td><a href="https://www.linkedin.com/in/eshulok/"><img src={{url_for('static', filename='css/In-Black-14px.png') }} alt="LinkedIn"></a></td>
+            </tr>-->
+        </table>
+    </div>
 </body>
