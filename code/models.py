@@ -284,7 +284,8 @@ def get_model_info(model_type, config):
         'model_json': root_dir+models_dir+model['model_json'],
         'model_H5': root_dir+models_dir+model['model_H5'],
         'model_tokenizer': root_dir+models_dir+model['model_tokenizer'],
-        'model_categories': root_dir+models_dir+model['model_categories']
+        'model_categories': root_dir+models_dir+model['model_categories'],
+        'model_algorithm': model['model_algorithm']
     }
 
     return model
@@ -426,7 +427,7 @@ def load_inference_data(filename):
     return domains
 
 
-def write_predictions(domains, predictions, model_type, config):
+def write_predictions(domains, predictions, model_type, model_algo, version, config):
     '''write_predictions: takes a 1-D list of domains and predictions and writes them to the inference file output. File name will be 'predictions_YYYY-MM-DD.txt'.
     '''
 
@@ -438,7 +439,7 @@ def write_predictions(domains, predictions, model_type, config):
     datestamp = time.strftime('%Y-%m-%d', time.gmtime())
     timestamp = time.strftime('%H:%M.%S', time.gmtime())
 
-    output_file = root_dir+models_dir+model_type+'_predictions_'+datestamp+'.txt'
+    output_file = root_dir+models_dir+model_type+model_algo+'_predictions_'+datestamp+'_v'+version+'.csv'
 
     # write the predictions to disk
     with open(output_file, 'wt') as f:
@@ -446,6 +447,16 @@ def write_predictions(domains, predictions, model_type, config):
         for i, p in enumerate(predictions):
             # print('i: {}, p: {}, domains: {}'.format(i, p, domains[i]))
             f.write('{}, {}\n'.format(domains[i], p))
+
+
+def get_version_number(filename):
+    '''get_version_number: extracts the version number from the filename.
+
+    returns: string with a version number in it.
+    '''
+    basename = os.path.basename(filename)
+    reg = re.compile(r'(?:_v\d+)|$', flags=re.IGNORECASE)
+    return re.search(reg, basename).group()[2:]
 
 
 def run(config_file=None, model_type='', train_file='', inference_file=''):
@@ -496,6 +507,7 @@ def run(config_file=None, model_type='', train_file='', inference_file=''):
 
     if train_file != '':
         # a training file was provided
+        model_version = get_version_number(train_file)
 
         # get training data from disk
         df, metrics = get_training_data(train_file, metrics, logpath)
@@ -554,6 +566,7 @@ def run(config_file=None, model_type='', train_file='', inference_file=''):
 
     if inference_file != '':
         # an inference file was provided
+        model_version = get_version_number(inference_file)
         print('inference file: {}'.format(inference_file))
         if model_type == 'binary':
             metrics['filename'] = inference_file
@@ -587,7 +600,7 @@ def run(config_file=None, model_type='', train_file='', inference_file=''):
             # print("domains: {}, predictions: {}".format(len(domains), len(predictions)))
 
             # write the predictions to file
-            write_predictions(domains, predictions, model_type, config)
+            write_predictions(domains, predictions, model_type, model_info['model_algorithm'], model_version, config)
 
             # write_to_train_logfile(metrics, logpath, True)
         elif model_type == 'multiclass':
@@ -623,7 +636,7 @@ def run(config_file=None, model_type='', train_file='', inference_file=''):
             # print("domains: {}, predictions: {}".format(len(domains), len(predictions)))
 
             # write the predictions to file
-            write_predictions(domains, predictions, model_type, config)
+            write_predictions(domains, predictions, model_type, model_info['model_algorithm'], model_version, config)
         else:
             print("error: unrecognized model type.")
             exit(1)

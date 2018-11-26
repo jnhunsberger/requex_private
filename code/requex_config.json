@@ -19,24 +19,34 @@
     ],
 "google_cloud_storage_archive": "requex_archives_raw",
 "google_auth_json": "code/requex-svc.json",
-"data_formats": [
+"data_formats_raw": [
     ".csv",
     ".dat"
+    ],
+"data_formats_merged": [
+    ".csv"
+    ],
+"data_formats_models": [
+    ".h5",
+    ".json",
+    ".pkl"
     ],
 "archive_formats": [
     ".zip"
     ],
 "requex_data_prep_log": "data/local/staging/requex_data_prep.log",
 "multiclass_model": {
-    "model_json": "multiclass_LSTM.json",
-    "model_H5": "multiclass_LSTM.h5",
-    "model_tokenizer": "multiclass_tokenizer.pkl",
-    "model_categories": "multiclass_categories.pkl"
+    "model_json": "multiclass_LSTM_2018-11-22_v0.json",
+    "model_H5": "multiclass_LSTM_2018-11-22_v0.h5",
+    "model_tokenizer": "multiclass_LSTM_tokenizer_2018-11-22_v0.pkl",
+    "model_categories": "multiclass_LSTM_categories_2018-11-22_v0.pkl",
+    "model_algorithm": "LSTM"
     },
 "binary_model": {
-    "model_json": "binary_LSTM.json",
-    "model_H5": "binary_LSTM.h5",
-    "model_tokenizer": "binary_tokenizer.pkl",
-    "model_categories": "binary_categories.pkl"
+    "model_json": "binary_LSTM_2018-11-22_v0.json",
+    "model_H5": "binary_LSTM_2018-11-22_v0.h5",
+    "model_tokenizer": "binary_LSTM_tokenizer_2018-11-22_v0.pkl",
+    "model_categories": "",
+    "model_algorithm": "LSTM"
     }
 }
