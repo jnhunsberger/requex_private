@@ -39,12 +39,12 @@ binary_model.load(BINARY_TOKENIZER_FILE, BINARY_MODEL_JSON, BINARY_MODEL_H5, BIN
 multi_model = lstm_multiclass.LSTMMulti()
 multi_model.load(MULTI_TOKENIZER_FILE, MULTI_CATEGORIES_FILE, MULTI_MODEL_JSON, MULTI_MODEL_H5)
 
-binary_metrics = {'f1score': binary_model.f1score, 
-                    'accuracy': binary_model.accuracy, 
-                    'precision': binary_model.precision, 
-                    'recall': binary_model.recall, 
-                    'fp': binary_model.fp, 
-                    'fn': binary_model.fn  }
+binary_metrics = {'f1score': round(binary_model.f1score, 3), 
+                    'accuracy': round(binary_model.accuracy, 3), 
+                    'precision': round(binary_model.precision, 3), 
+                    'recall': round(binary_model.recall, 3), 
+                    'fp': round(binary_model.fp, 3), 
+                    'fn': round(binary_model.fn, 3)  }
 
 
 # argument parsing
