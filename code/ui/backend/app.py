@@ -21,7 +21,7 @@ BINARY_TOKENIZER_FILE = PROJECT_ROOT + "saved_models/binary_tokenizer.pkl"
 BINARY_CATEGORIES_FILE = PROJECT_ROOT + "saved_models/binary_categories.pkl"
 BINARY_MODEL_JSON = PROJECT_ROOT + "saved_models/binary_LSTM.json"
 BINARY_MODEL_H5 = PROJECT_ROOT + "saved_models/binary_LSTM.h5"
-BINARY_MODEL_METRICS_REPORT = PROJECT_ROOT + "saved_models/binary_metrics_report"
+BINARY_MODEL_METRICS_REPORT = PROJECT_ROOT + "saved_models/binary_metrics_report.json"
 BINARY_MODEL_CLASS_REPORT = PROJECT_ROOT + "saved_models/binary_class_report"
 
 MULTI_TOKENIZER_FILE = PROJECT_ROOT + "saved_models/multiclass_tokenizer.pkl"
@@ -34,24 +34,18 @@ app = Flask(__name__)
 api = Api(app)
 
 binary_model = lstm_binary.LSTMBinary()
-binary_model.load(BINARY_TOKENIZER_FILE, BINARY_MODEL_JSON, BINARY_MODEL_H5)
+binary_model.load(BINARY_TOKENIZER_FILE, BINARY_MODEL_JSON, BINARY_MODEL_H5, BINARY_MODEL_METRICS_REPORT)
 
 multi_model = lstm_multiclass.LSTMMulti()
 multi_model.load(MULTI_TOKENIZER_FILE, MULTI_CATEGORIES_FILE, MULTI_MODEL_JSON, MULTI_MODEL_H5)
 
-'''
-@app.route('/api/load', methods=['GET', 'POST'])
-def load():
-    testmodel.load(TOKENIZER_FILE, MODEL_JSON, MODEL_H5)
+binary_metrics = {'f1score': round(binary_model.f1score, 3), 
+                    'accuracy': round(binary_model.accuracy, 3), 
+                    'precision': round(binary_model.precision, 3), 
+                    'recall': round(binary_model.recall, 3), 
+                    'fp': round(binary_model.fp, 3), 
+                    'fn': round(binary_model.fn, 3)  }
 
-    return "Successfully loaded the model files"
-
-
-@app.route('/api/predict', methods=['GET', 'POST'])
-def predict(url):
-    urltypes = testmodel.predict([url])
-    return jsonify([{'url': url, 'type': urltype}])
-'''
 
 # argument parsing
 parser = reqparse.RequestParser()
@@ -104,34 +98,7 @@ def get():
     #     multi_query = multi_query.lower()
         multi_response = get_multi(binary_query)
 
-    return render_template("cyber.html", binary_output=binary_response, multi_output=multi_response )
-
-# class PredictUrl(Resource):
-#     def get(self):
-#         # use parser and find the user's query
-#         args = parser.parse_args()
-#         user_query = args['query']
-
-#         print("User Query String: ", user_query)  
-
-#         prediction = binary_model.predict([user_query])
-
-#         # Output either 'Negative' or 'Positive' along with the score
-#         if prediction == 0:
-#             pred_text = 'Benign'
-#         else:
-#             pred_text = 'Malicious'
-
-#         # create JSON object
-#         output = {'url': user_query, 'type': pred_text}
-
-#         return output
-
-
-# Setup the Api resource routing here
-# Route the URL to the resource
-# api.add_resource(PredictUrl, '/')
-
+    return render_template("cyber.html", binary_metrics=binary_metrics, binary_output=binary_response, multi_output=multi_response )
 
 
 if __name__ == '__main__':

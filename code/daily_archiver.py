@@ -9,6 +9,7 @@ import download_external
 import extract
 import rename
 import archive
+import json
 
 
 def valid_filename(filename):
@@ -89,7 +90,7 @@ def run(config_file=None):
     rename.run(config_file)
     print("------ rename finished.")
     print("------ archive started.")
-    archive.run(config_file)
+    archive.run(config_file, "raw")
     print("------ archive finished.")
 
     print("Daily archiver complete.")

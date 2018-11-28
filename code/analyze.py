@@ -84,7 +84,7 @@ def get_file_list(directory):
 
 
 def copy_analysis(src, dst):
-    '''move_staging: copies the source file (src) to the dst directory. src must be a file and dst must be a directory. Exclusions is an optional parameter that allows for files with certain file names to be excluded from being moved.
+    '''copy_analysis: copies the source file (src) to the dst directory. src must be a file and dst must be a directory.
     '''
     # check to see if a directory for the dst directory exists
     if not os.path.isdir(dst):

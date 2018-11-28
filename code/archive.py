@@ -44,6 +44,8 @@ def parse_args():
                         type=valid_filename,
                         metavar='CONFIG_FILE',
                         help="File path to requex configuration file. File must be in JSON format.")
+    parser.add_argument('-t', '--type', choices=['raw', 'merged', 'models'],
+                        help="Specify the type of data to be archived. 'raw' archives data downloaded from external data sources in '../data/local/downloads/' and is unmodified. 'merged' archives merged data files from '../data/local/staging/'. And 'models' archvies model files from '../data/local/models/'.")
 
     return vars(parser.parse_args())
 
@@ -94,27 +96,50 @@ def upload_blob(bucket_name, source_file_name, destination_blob_name):
         destination_blob_name))
 
 
-def create_dest_filename(file, date, file_map):
+def create_dest_filename(filename, date, file_map, data_type):
     '''create_dest_filename: takes the file name, archive date, and a dictionary that contains a file map and assembles the correct
     file path in the archive for the file's storage location.
 
-    file: the filename with extension, but without path
+    filename: the filename with extension, but without path
     date: string of the date where the file is to be stored in
     YYYY-MM-DD format
     file_map: dictionary of first three letters of a filename and the map to the root directory in the archive into which to store the file.
+    data_type: Choices include: 'raw', 'merged', 'models'.
 
     returns: string; a gcs-formatted filename.
     '''
     year, month, day = date.split('-')
 
-    basename = os.path.basename(file)
-    file_prefix = basename[:3]
-    archive_dir = file_map.get(file_prefix)
+    basename = os.path.basename(filename)
 
-    if archive_dir is not None:
-        return archive_dir+'/'+year+'/'+month+'/'+day+'/'+basename
+    if data_type == 'raw':
+        file_prefix = basename[:3]
+        archive_dir = file_map.get(file_prefix)
+
+        if archive_dir is not None:
+            return archive_dir+'/'+year+'/'+month+'/'+day+'/'+basename
+        else:
+            return ''
+    elif data_type == 'merged':
+        file_prefix = basename[:len('merged')]
+        if file_prefix == 'merged':
+            return file_prefix+'/'+year+'/'+month+'/'+day+'/'+basename
+        else:
+            return ''
+    elif data_type == 'models':
+        # insert decision logic for 'model type' and 'model algo'
+        # insert way to select the version number
+        model_type = re.search(r'(?:binary|multiclass)|$', basename, flags=re.IGNORECASE).group()
+        model_algo = re.search(r'(?:LSTM)|$', basename, flags=re.IGNORECASE).group()
+        reg = re.compile(r'(?:_v\d+)|$', flags=re.IGNORECASE)
+        version = re.search(reg, basename).group()[1:].lower()
+        if (model_type != '') and (model_algo != '') and (version != ''):
+            return 'models/'+model_type+'/'+model_algo+'/'+year+'/'+month+'/'+day+'/'+version+'/'+basename
+        else:
+            return ''
     else:
-        return basename
+        print("error: data_type '{}' is not a recognized type.".format(data_type))
+        exit(1)
 
 
 def get_file_list(directory):
@@ -122,12 +147,18 @@ def get_file_list(directory):
             if os.path.isfile(directory+f)]
 
 
-def run(config_file=None):
+def run(config_file=None, data_type=None):
     # get configuration parameters
     config_file = get_config_filename(config_file)
     config = get_config(config_file)
     # print('configuration settings:')
     # pprint(config)
+    if data_type is None:
+        args = parse_args()
+        data_type = args['type']
+    elif data_type != 'raw' and data_type != 'merged' and data_type != 'models':
+        print("error: archive.py called with invalid data_type option '{}'".format(data_type))
+        exit(1)
 
     # environment variable
     env_var = 'GOOGLE_APPLICATION_CREDENTIALS'
@@ -138,20 +169,34 @@ def run(config_file=None):
     # set the local environment variable
     os.environ[env_var] = svc_path
 
-    # use the downloads directory for all actions
-    downloads_dir = config['root_dir']+config['downloads_dir']
-
     # filenames to exclude from renaming
     exclude = config['excluded_files']
 
     # approved file extensions
-    approved = config['data_formats']
+    if data_type == 'raw':
+        # set the approved file extensions and source directory for 'raw' data
+        # types.
+        approved = config['data_formats_raw']
+        source_dir = config['root_dir']+config['downloads_dir']
+    elif data_type == 'merged':
+        # set the approved file extensions and source directory for 'merged'
+        # data types.
+        approved = config['data_formats_merged']
+        source_dir = config['root_dir']+config['staging_dir']
+    elif data_type == 'models':
+        # set the approved file extensions and source directory for 'models'
+        # data types.
+        approved = config['data_formats_models']
+        source_dir = config['root_dir']+config['models_dir']
+    else:
+        print("error: data_type '{}' is not a recognized type.".format(data_type))
+        exit(1)
 
     # Google Cloud Storage archive name
     gcs_name = config['google_cloud_storage_archive']
 
-    # get a list of all files in the downloads directory
-    files = get_file_list(downloads_dir)
+    # get a list of all files in the source directory
+    files = get_file_list(source_dir)
 
     # archive all file names that have a datestamp and approved extension
     for file in files:
@@ -168,11 +213,14 @@ def run(config_file=None):
             if found_date != '':
                 # file contains a date, archive it
                 dest_file = create_dest_filename(
-                    downloads_dir+file,
+                    source_dir+file,
                     found_date,
-                    config['file_map']
+                    config['file_map'],
+                    data_type
                     )
-                upload_blob(gcs_name, downloads_dir+file, dest_file)
+                if dest_file != '':
+                    # print(dest_file)
+                    upload_blob(gcs_name, source_dir+file, dest_file)
 
 
 if __name__ == '__main__':

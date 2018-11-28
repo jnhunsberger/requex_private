@@ -71,6 +71,10 @@ class LSTMBinary:
         print("\tFalse Positives: ", self.fp)
         print("\tFalse Negatives: ", self.fn)
 
+    def get_metrics(self):
+        return json.dumps({'F1 Score': self.f1score, 'Accuracy': self.accuracy, 'Precision': self.precision, 'Recall': self.recall, 'False Positives': self.fp, 'False Negatives': self.fn})
+
+
     def validate(self, test_data, test_classes):
         '''
         Return pred_classes
@@ -115,7 +119,6 @@ class LSTMBinary:
         global graph
         graph = tf.get_default_graph()
 
-        '''
         with open(model_report) as report:
             metrics = json.load(report)
             self.f1score = metrics["DGA"]["f1-score"]
@@ -124,7 +127,7 @@ class LSTMBinary:
             self.accuracy = metrics["accuracy"]
             self.fp = metrics["false positives"]
             self.fn = metrics["false negatives"]
-        '''
+
         print('SAVED BINARY MODEL IS NOW LOADED!')
 
     def predict(self, input):

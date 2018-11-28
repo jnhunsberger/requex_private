@@ -14,6 +14,7 @@ EXPOSE 8082
 #ADD ./ /app
 # install required libraries
 WORKDIR /app
+VOLUME ["/app"]
 
 COPY requirements.txt /app/
 RUN pip3 install -r /app/requirements.txt
