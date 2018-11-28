@@ -210,58 +210,65 @@
         <section></section>
     </div>
 
-    <div class="black-group" id="about">
-        <h2 style="text-align: center">Solution</h2>
-        <div class="row">
-            <div class="column side">
-                <br />
-            </div>
-            <div class="column middle">
-                <p>We believe that a combination of threat intelligence and machine learning integrated into DNS
-                    servers can halt the C2 server communications
-                    used by malware.</p>
-                <p>
-                    Our solution is RequeX DNS, a cloud-based, network security intelligent DNS firewall that protects
-                    consumers and businesses. Rather than
-                    preventing the initial infection, the goal of RequeX DNS is to halt all communications from a
-                    malware to its command and control servers.
-                </p>
-                <p>Most DNS servers do not block traffic, and most DNS firewalls only use blacklists of known malicious
-                    domain names to determine if a domain
-                    is malicious or benign.</p>
-                <p>
-                    Our post-infection protection system uses a modified DNS server to prevent communications between
-                    malware and C2 servers.
-                    It can also be used to identify which networks and computers on a network are infected by DGA-based
-                    malware.
-                </p>
-                <p>Below is an updated diagram illustrating how our solution works. In this diagram you can see the
-                    same process as in the previous section,
-                    however the last domain is blocked by our model.</p>
-                <p>
-                    <img class="displayed" src="{{url_for('static', filename='css/RequeXDiagram.png') }}" alt="DNS solution that halts communication with C2 servers">
-                </p>
-                <p>
-                    Our solution uses machine learning models to classify domain requests as malicious or
-                    non-malicious. If they are deemed malicious,
-                    our models will block the DNS traffic. This blockage prevents the malware from communicating with
-                    its C2 server.
-                    In ONWASA’s case, the RYUK ransomware would never have attacked them.
-                </p>
-                <h3>Architecture</h3>
-            </div>
-            <div class="column side">
-                <br />
-            </div>
+<div class="black-group" id="about">
+    <h2 style="text-align: center">Solution</h2>
+    <div class="row">
+        <div class="column side">
+            <br />
         </div>
-        <div style="margin-left: 10%; margin-right: 10%"><p>
-            <img class="displayed" src="{{url_for('static', filename='css/architecture.png') }}" alt="RequeX architecture" width="1210">
-        </p></div>
+        <div class="column middle">
+            <p>We believe that a combination of threat intelligence and machine learning integrated into DNS
+                servers can halt the C2 server communications
+                used by malware.</p>
+            <p>
+                Our solution is RequeX DNS, a cloud-based, network security intelligent DNS firewall that protects
+                consumers and businesses. Rather than
+                preventing the initial infection, the goal of RequeX DNS is to halt all communications from a
+                malware to its command and control servers.
+            </p>
+            <p>Most DNS servers do not block traffic, and most DNS firewalls only use blacklists of known malicious
+                domain names to determine if a domain
+                is malicious or benign.</p>
+            <p>
+                Our post-infection protection system uses a modified DNS server to prevent communications between
+                malware and C2 servers.
+                It can also be used to identify which networks and computers on a network are infected by DGA-based
+                malware.
+            </p>
+            <p>Below is an updated diagram illustrating how our solution works. In this diagram you can see the
+                same process as in the previous section,
+                however the last domain is blocked by our model.</p>
+            <p>
+                <img class="displayed" src="{{url_for('static', filename='css/RequeXDiagram.png') }}" alt="DNS solution that halts communication with C2 servers">
+            </p>
+            <p>
+                Our solution uses machine learning models to classify domain requests as malicious or
+                non-malicious. If they are deemed malicious,
+                our models will block the DNS traffic. This blockage prevents the malware from communicating with
+                its C2 server.
+                In ONWASA’s case, the RYUK ransomware would never have attacked them.
+            </p>
+            <h3>Architecture</h3>
+        </div>
         <div class="column side">
             <br />
         </div>
     </div>
-
+    <div style="margin-left: 10%; margin-right: 10%"><p>
+        <img class="displayed" src="{{url_for('static', filename='css/architecture.png') }}" alt="RequeX architecture" width="1210">
+    </p></div>
+    <div class="row">
+        <div class="column side">
+            <br />
+        </div>
+        <div class="column middle">
+            <h3>Data Pipeline</h3>
+        </div>
+        <div class="column side">
+            <br />
+        </div>
+    </div>
+</div>
     <div class="main">
         <section></section>
     </div>
