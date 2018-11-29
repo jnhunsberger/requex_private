@@ -106,12 +106,12 @@ body, html, .main {
 
 /* Left and right column */
 .column.side {
-    width: 25%;
+    width: 20%;
 }
 
 /* Middle column */
 .column.middle {
-    width: 50%;
+    width: 60%;
 }
 
 /* Clear floats after the columns */
@@ -186,6 +186,12 @@ h3 {
     margin-top: 20px;
 }
 
+h4 {
+    font-family: Impact;
+    font-size: 100%;
+    margin-top: 10px;
+}
+
 .container {
     position: relative;
     text-align: center;
@@ -223,13 +229,13 @@ th {
     width: 100%;
 }
 
-    .subtable td {
+.subtable td {
        
-        text-align: left;
-        vertical-align: text-top;
-        font-family: "Arial";
-        font-size: 20px;
-    }
+    text-align: left;
+    vertical-align: text-top;
+    font-family: "Arial";
+    font-size: 20px;
+}
 
 .subtable th {
     
@@ -237,9 +243,26 @@ th {
     
 }
 
-    .subtable td, .subtable.th {
+.subtable td, .subtable.th {
+    width: 50%;
+    padding: 20px;
+}
+
+.metricstable {
+    table-layout: fixed;
+    border-collapse: collapse;
+    width: 70%;
+}
+
+    .metricstable td {
+        text-align: left;
+        vertical-align: text-top;
+        font-family: "Arial";
+        font-size: 20px;
+    }
+
+    .metricstable td, .metricstable.th {
         width: 50%;
-        padding: 20px;
     }
 
 a {

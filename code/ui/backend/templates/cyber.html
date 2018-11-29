@@ -54,7 +54,7 @@
     <a class="topnavbtn" href="#team">Team</a>
     <a class="topnavbtn" href="#demo">Demo</a>
     <a class="topnavbtn" href="#model">Model</a>
-    <a class="topnavbtn" href="#eda">Data</a>
+    <a class="topnavbtn" href="#data">Data</a>
     <a class="topnavbtn" href="#about">Solution</a>
     <a class="topnavbtn" href="#problem">Problem</a>
     <a class="topnavbtn" href="#story">Story</a>
@@ -107,8 +107,10 @@
                     ransom was paid.
                 </p>
                 <p>
-                    On October 15th, ONWASA issued a <a href="https://www.onwasa.com/DocumentCenter/View/3701/Scan-from-2018-10-15-08_08_13-A">press
-                        release</a>
+                    On October 15th, ONWASA issued a <a href="https://www.onwasa.com/DocumentCenter/View/3701/Scan-from-2018-10-15-08_08_13-A">
+                        press
+                        release
+                    </a>
                     saying that their network was compromised and all computer systems used to process service orders,
                     manage water connections/disconnections,
                     and all engineering activities were inoperable. ONWASA refused to pay the ransom and had to revert
@@ -159,7 +161,7 @@
                 </p>
                 <p>
                     <img class="displayed" src="{{url_for('static', filename='css/emotet_infection_process.png') }}"
-                        alt="Emotet infection process">
+                         alt="Emotet infection process">
                     <figcaption>Source: US-CERT, emphasis on step 3 added</figcaption>
                 </p>
 
@@ -187,11 +189,13 @@
                         <li>Step 4: The C2 server sends an update which launches the next phase of the attack.</li>
                     </ul>
                 </p>
-                <p>The asymmetry of the DGA works to the advantage of the attacker. The bad guys only have to register
+                <p>
+                    The asymmetry of the DGA works to the advantage of the attacker. The bad guys only have to register
                     a statistically small number
                     of these domains for the malware to receive their instructions. The good guys would have a full
                     time job trying to chase down
-                    all of those domains and blocking them.</p>
+                    all of those domains and blocking them.
+                </p>
                 <p>
                     Thousands of malware rely on this communication technique to advance their goals and take advantage
                     of their victims.
@@ -210,65 +214,163 @@
         <section></section>
     </div>
 
-<div class="black-group" id="about">
-    <h2 style="text-align: center">Solution</h2>
-    <div class="row">
-        <div class="column side">
-            <br />
+    <div class="black-group" id="about">
+        <h2 style="text-align: center">Solution</h2>
+        <div class="row">
+            <div class="column side">
+                <br />
+            </div>
+            <div class="column middle">
+                <p>
+                    We believe that a combination of threat intelligence and machine learning integrated into DNS
+                    servers can halt the C2 server communications
+                    used by malware.
+                </p>
+                <p>
+                    Our solution is RequeX DNS, a cloud-based, network security intelligent DNS firewall that protects
+                    consumers and businesses. Rather than
+                    preventing the initial infection, the goal of RequeX DNS is to halt all communications from a
+                    malware to its command and control servers.
+                </p>
+                <p>
+                    Most DNS servers do not block traffic, and most DNS firewalls only use blacklists of known malicious
+                    domain names to determine if a domain
+                    is malicious or benign.
+                </p>
+                <p>
+                    Our post-infection protection system uses a modified DNS server to prevent communications between
+                    malware and C2 servers.
+                    It can also be used to identify which networks and computers on a network are infected by DGA-based
+                    malware.
+                </p>
+                <p>
+                    Below is an updated diagram illustrating how our solution works. In this diagram you can see the
+                    same process as in the previous section,
+                    however the last domain is blocked by our model.
+                </p>
+                <p>
+                    <img class="displayed" src="{{url_for('static', filename='css/RequeXDiagram.png') }}" alt="DNS solution that halts communication with C2 servers">
+                </p>
+                <p>
+                    Our solution uses machine learning models to classify domain requests as malicious or
+                    non-malicious. If they are deemed malicious,
+                    our models will block the DNS traffic. This blockage prevents the malware from communicating with
+                    its C2 server.
+                    In ONWASA’s case, the RYUK ransomware would never have attacked them.
+                </p>
+                <h3>Architecture</h3>
+            </div>
+            <div class="column side">
+                <br />
+            </div>
         </div>
-        <div class="column middle">
-            <p>We believe that a combination of threat intelligence and machine learning integrated into DNS
-                servers can halt the C2 server communications
-                used by malware.</p>
+        <div style="margin-left: 10%; margin-right: 10%">
             <p>
-                Our solution is RequeX DNS, a cloud-based, network security intelligent DNS firewall that protects
-                consumers and businesses. Rather than
-                preventing the initial infection, the goal of RequeX DNS is to halt all communications from a
-                malware to its command and control servers.
+                <img class="displayed" src="{{url_for('static', filename='css/architecture.png') }}" alt="RequeX architecture" width="1210">
             </p>
-            <p>Most DNS servers do not block traffic, and most DNS firewalls only use blacklists of known malicious
-                domain names to determine if a domain
-                is malicious or benign.</p>
-            <p>
-                Our post-infection protection system uses a modified DNS server to prevent communications between
-                malware and C2 servers.
-                It can also be used to identify which networks and computers on a network are infected by DGA-based
-                malware.
-            </p>
-            <p>Below is an updated diagram illustrating how our solution works. In this diagram you can see the
-                same process as in the previous section,
-                however the last domain is blocked by our model.</p>
-            <p>
-                <img class="displayed" src="{{url_for('static', filename='css/RequeXDiagram.png') }}" alt="DNS solution that halts communication with C2 servers">
-            </p>
-            <p>
-                Our solution uses machine learning models to classify domain requests as malicious or
-                non-malicious. If they are deemed malicious,
-                our models will block the DNS traffic. This blockage prevents the malware from communicating with
-                its C2 server.
-                In ONWASA’s case, the RYUK ransomware would never have attacked them.
-            </p>
-            <h3>Architecture</h3>
         </div>
-        <div class="column side">
-            <br />
+        <div class="row">
+            <div class="column side">
+                <br />
+            </div>
+            <div class="column middle">
+                <h3>Training Pipeline</h3>
+            </div>
+            <div class="column side">
+                <br />
+            </div>
+        </div>
+        <div style="margin-left: 10%; margin-right: 10%">
+            <p>
+                <img class="displayed" src="{{url_for('static', filename='css/datapipeline.png') }}" alt="RequeX training pipeline" width="1210">
+            </p>
+        </div>
+        <div class="row">
+            <div class="column side">
+                <br />
+            </div>
+            <div class="column middle">
+                <h3>Inference Pipeline</h3>
+            </div>
+            <div class="column side">
+                <br />
+            </div>
+        </div>
+        <div style="margin-left: 10%; margin-right: 10%">
+            <p>
+                <img class="displayed" src="{{url_for('static', filename='css/inferencepipeline.png') }}" alt="RequeX training pipeline" width="1210">
+            </p>
+        </div>
+        <div class="row">
+            <div class="column side">
+                <br />
+            </div>
+            <div class="column middle">
+                <h3>Serving Applications</h3>
+                <p>
+                    <img class="displayed" src="{{url_for('static', filename='css/servingapplication.png') }}" alt="RequeX training pipeline" width="1210">
+                </p>
+            </div>
+            <div class="column side">
+                <br />
+            </div>
+        </div>
+        <div style="margin-left: 10%; margin-right: 10%">
+            
+        </div>
+
+    </div>
+    <div class="main">
+        <section></section>
+    </div>
+
+    <div class="black-group" id="data">
+        <h2>Exploratory Data Analysis</h2>
+        <div class="row">
+            <div class="column side">
+                <br />
+            </div>
+            <div class="column middle">
+                <h3>Datasets</h3>
+                <p>
+                    Our data came from two main sources: the free Cisco Umbrella list of the top million domain
+                    names by popularity, which we assumed to be benign, and Bambenek Consulting's free feeds of
+                    recent DGA domains. For the Bambenek list, we used both the default (or mixed) confidence feed,
+                    and the high confidence feed. We analyzed a total of 1.36M domain names, 1 million benign (73.5%)
+                    and 360k malicious (26.5%).
+                </p>
+                <h3>Analysis</h3>
+                <p>
+                    We performed some EDA on the datasets to see if there were obvious differences in the names of the DGA domains and the
+                    benign domains. A few differences were apparent.
+                </p>
+                <p><b>Character Frequency Analysis</b></p>
+                <p>The following chart shows the normalized character frequencies of the characters in each domain name set.</p>
+            </div>
+            <div class="column side">
+                <br />
+            </div>
+        </div>
+        <div style="margin-left: 10%; margin-right: 10%">
+            <p>
+                <img class="displayed" src="{{url_for('static', filename='css/character analysis.png') }}" alt="Character analysis">
+            </p>
+        </div>
+        <div class="row">
+            <div class="column side">
+                <br />
+            </div>
+            <div class="column middle">
+                <p>The domain names have distinct differences in frequency counts. There are far more j's, q's, x's and z's in the malicious
+                    domain  names than in the benign ones. There are also no dashes in the malicious domain names and far more periods in the
+                    benign dataset.</p>
+            </div>
+            <div class="column side">
+                <br />
+            </div>
         </div>
     </div>
-    <div style="margin-left: 10%; margin-right: 10%"><p>
-        <img class="displayed" src="{{url_for('static', filename='css/architecture.png') }}" alt="RequeX architecture" width="1210">
-    </p></div>
-    <div class="row">
-        <div class="column side">
-            <br />
-        </div>
-        <div class="column middle">
-            <h3>Data Pipeline</h3>
-        </div>
-        <div class="column side">
-            <br />
-        </div>
-    </div>
-</div>
+
     <div class="main">
         <section></section>
     </div>
@@ -280,37 +382,22 @@
                 <br />
             </div>
             <div class="column middle">
-                <table class="subtable">
-                    <tr>
-                        <th>
-                            <h3>Objective</h3>
-                        </th>
-                        <th>
-                            <h3>Data</h3>
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            Our main objective was to predict whether a domain name represented a malicious website or
-                            a benign one, with at least
-                            a 99% accuracy. Our second objective was to predict the DGA class of domain names deemed
-                            malicious. And our third
-                            objective was to minimize our false positives so as not to block benign websites.
-                        </td>
-                        <td>
-                            Our data came from two main sources: the free Cisco Umbrella list of the top million domain
-                            names by popularity, which we
-                            assumed to be benign, and Bambenek Consulting's free feeds of recent DGA domains. For the
-                            Bambenek list, we used both the
-                            default (or mixed) confidence feed, and the high confidence feed. We analyzed a total of
-                            1.36M domain names,
-                            1 million benign (73.5%) and 360k malicious (26.5%).
-                        </td>
-                    </tr>
-                </table>
+               
+                <h3>Objective</h3>
+                        
+                <p>
+                    Our main objective was to predict whether a domain name represented a malicious website or
+                    a benign one, with at least
+                    a 99% accuracy. Our second objective was to predict the DGA class of domain names deemed
+                    malicious. And our third
+                    objective was to minimize our false positives so as not to block benign websites.
+                </p>
+                        
                 <h3>The Machine Learning Model</h3>
-                <p>To prepare the data for training, we tokenized the domain name strings by converting the characters
-                    in the domain names to an integer based sequence.</p>
+                <p>
+                    To prepare the data for training, we tokenized the domain name strings by converting the characters
+                    in the domain names to an integer based sequence.
+                </p>
                 <p>
                     <img class="displayed" src="{{url_for('static', filename='css/tokenizing.png') }}" alt="Tokening of domain names">
                 </p>
@@ -318,12 +405,10 @@
                 <p>
                     <img class="displayed" src="{{url_for('static', filename='css/modeling.png') }}" alt="Tokening of domain names">
                 </p>
-                <h5 style="text-align:left; color:black;">Binary Model Metrics</h5>
-                <table style="text-align:left; width:100%">
-                    <tbody style="text-align:left">
-                        <tr style="text-align:left">
-                            <th> BINARY MODEL METRICS </th>
-                        </tr>
+                <p>
+                    <h3>Binary Model Metrics</h3>
+                    <table class="metricstable">
+
                         <tr>
                             <td>F1 Score</td>
                             <td>{{binary_metrics.f1score}}</td>
@@ -348,9 +433,8 @@
                             <td>False Negatives</td>
                             <td>{{binary_metrics.fn}}</td>
                         </tr>
-                    </tbody>
-                </table>
-
+                    </table>
+                </p>
 
             </div>
             <div class="column side">
@@ -370,8 +454,10 @@
                 <br />
             </div>
             <div class="column middle">
-                <p>This demo allows you to manually test a domain name to predict whether it is a malicious DGA domain
-                    or a benign domain.</p>
+                <p>
+                    This demo allows you to manually test a domain name to predict whether it is a malicious DGA domain
+                    or a benign domain.
+                </p>
                 <br />
             </div>
             <div class="column side">
@@ -385,7 +471,34 @@
                 <input class="btn success" type="submit" value="Submit" />
             </div>
         </form>
-        <div class="results-group">
+        <div class="row">
+            <div class="column side">
+                <br />
+            </div>
+            <div class="column middle">
+                <h3 style="text-align: center">URL: <b>{{binary_output.url}}</b> </h3>
+                <table class="metricstable">
+
+                    <tr>
+                        <td>Type: </td>
+                        <td><b>{{binary_output.type}}</b></td>
+                    </tr>
+                    <tr>
+                        <td>DGA Class:</td>
+                        <td> <b>{{multi_output.type}}</b></td>
+                    </tr>
+                    <tr>
+                        <td>Prediction Probability: </td>
+                        <td> <b>{{multi_output.probability}}</b></td>
+                    </tr>
+                </table>
+             </div>
+            <div class="column side">
+                <br />
+            </div>
+
+        </div>
+        <!--<div class="results-group">
             <h4>Binary Model</h4>
             <p>URL: <b>{{binary_output.url}}</b> </p>
             <p>Type: <b>{{binary_output.type}}</b></p>
@@ -394,7 +507,7 @@
             <p>URL: <b>{{multi_output.url}}</b> </p>
             <p>DGA Class: <b>{{multi_output.type}}</b></p>
             <p>Prediction Probability: <b>{{multi_output.probability}}</b></p>
-        </div>
+        </div>-->
     </div>
 
     <div class="main">
