@@ -101,7 +101,7 @@ class LSTMMulti:
 
 
     def predict(self, _input):
-        print("LSTM MUlticlass Prediction")
+        print("LSTM Multiclass Prediction")
         print("Input: ", _input)
         inputSeq = sequence.pad_sequences(self.encoder.texts_to_sequences(_input), maxlen=75)
         with lstm_multi_graph.as_default():
