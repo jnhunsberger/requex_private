@@ -1,9 +1,16 @@
-.form-group {
+/*.form-group {
     position: relative;
 	background-color: #009933;
     text-align: center;
 	opacity: .75;
 	padding: 15px 0;
+}*/
+
+.form-group {
+    position: relative;
+    opacity: .75;
+    padding: 50px;
+    text-align: center;
 }
 
 .results-group {
@@ -42,6 +49,50 @@ img.displayed {
     width: 100%;
 }
 
+.container {
+    font-family: "Doppio One";
+    text-align: left;
+    color: white;
+    background: url(Monitor.png) no-repeat center;
+    display: inline-block;
+    position: relative;
+    background-size: contain;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.container:after {
+    padding-top: 75%;
+    /* the monitor image is 800x600 so set the padding top % to match 600/800 = .75 */
+    display: block;
+    content: '';
+}
+
+.demomain {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    text-align: center;
+    margin-top: 5%;
+}
+
+.topleft {
+    position: absolute;
+    top: 50px;
+    left: 70px;
+    font-size: 18px;
+    color: black;
+}
+
+.topcenter {
+    position: absolute;
+    top: 50px;
+    left: 70px;
+    font-size: 18px;
+    color: black;
+}
 
 input[type=text] {
     padding: 12px 20px;
@@ -64,11 +115,12 @@ input:placeholder-shown + label {
     transform: translateY(1rem);
 }
 
-html { 
-  background: url("http://people.ischool.berkeley.edu/~shulok/cyber/code_full.jpg") no-repeat center fixed; 
-  background-size: cover;
-  font-family: "Arial";
-  font-size: 20px;
+html {
+    background: url(code_full.jpg) no-repeat center fixed;
+    background-size: cover;
+    font-family: "Open Sans";
+    font-weight: normal;
+    font-size: 18px;
 }
 
 * {
@@ -162,26 +214,27 @@ body {
 	text-align: center;
 	color: white;
 }
-		  
+
 h1 {
-	margin: 50px;
+    margin: 50px;
     color: white;
-    font-family: Impact;
+    font-family: Orbitron;
     font-size: 500%;
-	text-align: center;
-	
+    font-weight: bolder;
+    text-align: center;
 }
 
 h2 {
-	margin: 20px;
+    margin: 20px;
     color: white;
-    font-family: Impact;
+    font-weight: bolder;
+    font-family: Orbitron;
     font-size: 300%;
-	text-align: center;
+    text-align: center;
 }
 
 h3 {
-    font-family: Impact;
+    font-family: Orbitron;
     font-size: 200%;
     margin-top: 20px;
 }
@@ -192,11 +245,6 @@ h4 {
     margin-top: 10px;
 }
 
-.container {
-    position: relative;
-    text-align: center;
-    color: white;
-}
 
 /* Centered text */
 .centered {
@@ -252,6 +300,7 @@ th {
     table-layout: fixed;
     border-collapse: collapse;
     width: 70%;
+    
 }
 
     .metricstable td {
@@ -259,6 +308,7 @@ th {
         vertical-align: text-top;
         font-family: "Arial";
         font-size: 20px;
+        padding-left: 30%;
     }
 
     .metricstable td, .metricstable.th {
@@ -343,6 +393,8 @@ a {
     cursor: pointer;
 	border-radius: 10px;
 }
+
+
 
 /* Green */
 .success {

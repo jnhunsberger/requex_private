@@ -1,5 +1,14 @@
 <head>
-
+    
+    <!-- For main text -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Open Sans">
+    <!-- For text on demo screen -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Doppio One">
+    <!-- For headings -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Orbitron">
     <link type="text/css" rel="stylesheet" href="{{url_for('static', filename='css/styles.css') }}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
@@ -52,25 +61,105 @@
 <div class="topnav" id="navigation">
 
     <a class="topnavbtn" href="#team">Team</a>
-    <a class="topnavbtn" href="#demo">Demo</a>
     <a class="topnavbtn" href="#model">Model</a>
     <a class="topnavbtn" href="#data">Data</a>
     <a class="topnavbtn" href="#about">Solution</a>
     <a class="topnavbtn" href="#problem">Problem</a>
     <a class="topnavbtn" href="#story">Story</a>
+    <a class="topnavbtn" href="#demo">Demo</a>
     <a class="topnavbtn" href="#home">Home</a>
 
 </div>
 
 <div id="home"><br /></div>
 <div class="firstpage">
-    <h1>RequeX DNS</h1>
+    <h1>Reque<span style="color: red">X</span> DNS</h1>
     <h2>Malicious Domain Detection </h2>
     <br /><br /><br />
-    <a class="btnlarge" href="#story"><b>Learn More >></b></a>
+    <a class="btnlarge" href="#demo"><b>Try Now >></b></a>
+    
 </div>
 
 <body>
+
+    <div class="black-group" id="demo">
+        <h2>Demo</h2>
+        <div class="row">
+            <div class="column side">
+                <br />
+            </div>
+            <div class="column middle">
+                <p>
+                    This demo allows you to manually test a domain name to predict whether it is a malicious DGA domain
+                    or a benign domain.
+                </p>
+                <div class="container">
+                    <div class="demomain">
+                        <form>
+                            <div class="form-group">
+                                <input type="text" style="height:30px" name="URL_Binary" placeholder="Enter a domain name">
+                                <input class="btn success" type="submit" value="Submit" />
+                            </div>
+                        </form>
+                   
+                        <br/>
+                        <h3 style="text-align: center; ">URL: <b>{{binary_output.url}}</b> </h3>
+                        <table class="metricstable">
+
+                            <tr>
+                                <td>Type: </td>
+                                <td><b>{{binary_output.type}}</b></td>
+                            </tr>
+                            <tr>
+                                <td>DGA Class:</td>
+                                <td> <b>{{multi_output.type}}</b></td>
+                            </tr>
+                            <tr>
+                                <td>Prediction Probability: </td>
+                                <td> <b>{{multi_output.probability}}</b></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="column side">
+                <br />
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="column side">
+                <br />
+            </div>
+            <div class="column middle">
+                
+            </div>
+            <div class="column side">
+                <br />
+            </div>
+            
+        </div>
+        
+        <div style="text-align: center">
+            <br /><br /><br /><br />
+            <a class="btnlarge" href="#story"><b>Learn More >></b></a>
+        </div>
+        <!--<div class="results-group">
+            <h4>Binary Model</h4>
+            <p>URL: <b>{{binary_output.url}}</b> </p>
+            <p>Type: <b>{{binary_output.type}}</b></p>
+            <br />
+            <h4>Multiclass Model</h4>
+            <p>URL: <b>{{multi_output.url}}</b> </p>
+            <p>DGA Class: <b>{{multi_output.type}}</b></p>
+            <p>Prediction Probability: <b>{{multi_output.probability}}</b></p>
+        </div>-->
+    </div>
+
+    <div class="main">
+        <section></section>
+    </div>
     <div class="black-group" id="story">
         <h2 text-align: center>Story</h2>
         <div class="row">
@@ -107,7 +196,8 @@
                     ransom was paid.
                 </p>
                 <p>
-                    On October 15th, ONWASA issued a <a href="https://www.onwasa.com/DocumentCenter/View/3701/Scan-from-2018-10-15-08_08_13-A">
+                    On October 15th, ONWASA issued a
+                    <a href="https://www.onwasa.com/DocumentCenter/View/3701/Scan-from-2018-10-15-08_08_13-A">
                         press
                         release
                     </a>
@@ -176,7 +266,7 @@
                     <img class="displayed" src="{{url_for('static', filename='css/DGAalgorithm.png') }}" alt="DGA-based malware operation">
                 </p>
                 <p>
-                    <ul style="list-style-type:circle">
+                    <ul style="list-style-type: circle">
                         <li>Step 1: The malware sends requests to a DNS server to see if a generated domain exists.</li>
                         <li>Step 2: The vast majority of domains do not exist.</li>
                         <li>
@@ -259,6 +349,7 @@
                     In ONWASA’s case, the RYUK ransomware would never have attacked them.
                 </p>
                 <h3>Architecture</h3>
+                <p>Below is a high level diagram of our solution architecture. The end user configures their DNS to use RequeX DNS.</p>
             </div>
             <div class="column side">
                 <br />
@@ -316,7 +407,7 @@
             </div>
         </div>
         <div style="margin-left: 10%; margin-right: 10%">
-            
+
         </div>
 
     </div>
@@ -364,7 +455,7 @@
             <div class="column middle">
                 <p>
                     The domain names have distinct differences in frequency counts. There are far more j's, q's, x's and z's in the malicious
-                    domain  names than in the benign ones. There are also no dashes in the malicious domain names and far more periods in the
+                    domain names than in the benign ones. There are also no dashes in the malicious domain names and far more periods in the
                     benign dataset.
                 </p>
 
@@ -385,8 +476,8 @@
             </div>
             <div class="column middle">
                 <p>
-                    The domain name lengths vary between datasets. The distribution of benign domain names is a fairly standard distribution that peaks 
-                    around 16 characters. 
+                    The domain name lengths vary between datasets. The distribution of benign domain names is a fairly standard distribution that peaks
+                    around 16 characters.
                 </p>
 
                 <p><b>Domain Name Length Analysis</b></p>
@@ -408,9 +499,9 @@
                 <br />
             </div>
             <div class="column middle">
-               
+
                 <h3>Objective</h3>
-                        
+
                 <p>
                     Our main objective was to predict whether a domain name represented a malicious website or
                     a benign one, with at least
@@ -418,7 +509,7 @@
                     malicious. And our third
                     objective was to minimize our false positives so as not to block benign websites.
                 </p>
-                        
+
                 <h3>The Machine Learning Model</h3>
                 <p>
                     To prepare the data for training, we tokenized the domain name strings by converting the characters
@@ -473,76 +564,11 @@
         <section></section>
     </div>
 
-    <div class="black-group" id="demo">
-        <h2>Demo</h2>
-        <div class="row">
-            <div class="column side">
-                <br />
-            </div>
-            <div class="column middle">
-                <p>
-                    This demo allows you to manually test a domain name to predict whether it is a malicious DGA domain
-                    or a benign domain.
-                </p>
-                <br />
-            </div>
-            <div class="column side">
-                <br />
-            </div>
 
-        </div>
-        <form>
-            <div class="form-group">
-                <input type="text" style="height:30px" name="URL_Binary" placeholder="Enter a domain name">
-                <input class="btn success" type="submit" value="Submit" />
-            </div>
-        </form>
-        <div class="row">
-            <div class="column side">
-                <br />
-            </div>
-            <div class="column middle">
-                <h3 style="text-align: center">URL: <b>{{binary_output.url}}</b> </h3>
-                <table class="metricstable">
-
-                    <tr>
-                        <td>Type: </td>
-                        <td><b>{{binary_output.type}}</b></td>
-                    </tr>
-                    <tr>
-                        <td>DGA Class:</td>
-                        <td> <b>{{multi_output.type}}</b></td>
-                    </tr>
-                    <tr>
-                        <td>Prediction Probability: </td>
-                        <td> <b>{{multi_output.probability}}</b></td>
-                    </tr>
-                </table>
-             </div>
-            <div class="column side">
-                <br />
-            </div>
-
-        </div>
-        <!--<div class="results-group">
-            <h4>Binary Model</h4>
-            <p>URL: <b>{{binary_output.url}}</b> </p>
-            <p>Type: <b>{{binary_output.type}}</b></p>
-            <br />
-            <h4>Multiclass Model</h4>
-            <p>URL: <b>{{multi_output.url}}</b> </p>
-            <p>DGA Class: <b>{{multi_output.type}}</b></p>
-            <p>Prediction Probability: <b>{{multi_output.probability}}</b></p>
-        </div>-->
-    </div>
-
-    <div class="main">
-        <section></section>
-    </div>
 
     <div class="white-group" id="team">
-        <h2 style="text-align:center; color:black;">Our Team</h2>
-        <table style="width:100%">
+        <h2 style="text-align: center; color: black;">Our Team</h2>
+        <table style="width: 100%">
             <tr>
                 <td><img src="{{url_for('static', filename='css/jhunsberger.png') }}" alt="Jason Hunsberger"></td>
                 <td><img src="{{url_for('static', filename='css/aniruddh.png') }}" alt="Aniruddh Nautiyal" style="opacity: 1;"></td>
@@ -550,22 +576,22 @@
                 <td><img src="{{url_for('static', filename='css/liz.png') }}" alt="Elizabeth Shulok"></td>
             </tr>
             <tr>
-                <td style="font-size: 18px; font-weight: bold; color:black">Jason Hunsberger</td>
-                <td style="font-size: 18px; font-weight: bold; color:black">Aniruddh Nautiyal</td>
-                <td style="font-size: 18px; font-weight: bold; color:black">Surya Nimmagadda</td>
-                <td style="font-size: 18px; font-weight: bold; color:black">Elizabeth Shulok</td>
+                <td style="font-size: 18px; font-weight: bold; color: black">Jason Hunsberger</td>
+                <td style="font-size: 18px; font-weight: bold; color: black">Aniruddh Nautiyal</td>
+                <td style="font-size: 18px; font-weight: bold; color: black">Surya Nimmagadda</td>
+                <td style="font-size: 18px; font-weight: bold; color: black">Elizabeth Shulok</td>
             </tr>
             <tr>
-                <td style="font-size: 17px; font-style: italic; color:black">Title</td>
-                <td style="font-size: 17px; font-style: italic; color:black">Title</td>
-                <td style="font-size: 17px; font-style: italic; color:black">Distinguished Engineer</td>
-                <td style="font-size: 16px; font-style: italic; color:black">Principal Engineer</td>
+                <td style="font-size: 17px; font-style: italic; color: black">Digital Product Manager</td>
+                <td style="font-size: 17px; font-style: italic; color: black">Staff Test Engineer</td>
+                <td style="font-size: 17px; font-style: italic; color: black">Distinguished Engineer</td>
+                <td style="font-size: 16px; font-style: italic; color: black">Principal Engineer</td>
             </tr>
             <tr>
-                <td style="font-size: 17px; font-weight: bold; color:#595959;">Company</td>
-                <td style="font-size: 17px; font-weight: bold; color:#595959;">Company</td>
-                <td style="font-size: 17px; font-weight: bold; color:#595959;">Juniper Networks</td>
-                <td style="font-size: 16px; font-weight: bold; color:#595959;">Autodesk</td>
+                <td style="font-size: 17px; font-weight: bold; color: #595959;">Boston Area Non-profit</td>
+                <td style="font-size: 17px; font-weight: bold; color: #595959;">Cypress Semiconductor</td>
+                <td style="font-size: 17px; font-weight: bold; color: #595959;">Juniper Networks</td>
+                <td style="font-size: 16px; font-weight: bold; color: #595959;">Autodesk</td>
             </tr>
             <!--<tr>
                 <td style="font-size: 17px; font-weight: bold; color:#595959;">Company</td>
