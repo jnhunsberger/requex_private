@@ -1,18 +1,18 @@
 #!/usr/bin/python3
 
-REFPATH = "./"
-PROJECT_ROOT = "/Users/nscsekhar/Desktop/nscsekhar/Desktop/Surya/Personal/MIDS/W210/Project/team_cyber/"
+PROJECT_ROOT = "./"  # Running from code directory
+
 MULTI_TOKENIZER_FILE = PROJECT_ROOT + "saved_models/multiclass_tokenizer.pkl"
 MULTI_CATEGORIES_FILE = PROJECT_ROOT + "saved_models/multiclass_categories.pkl"
 MULTI_MODEL_JSON = PROJECT_ROOT + "saved_models/multiclass_LSTM.json"
 MULTI_MODEL_H5 = PROJECT_ROOT + "saved_models/multiclass_LSTM.h5"
+MULTI_CLASS_REPORT = PROJECT_ROOT + "saved_models/multiclass_class_report.json"
+MULTI_METRICS_REPORT = PROJECT_ROOT + "saved_models/multiclass_metrics_report.json"
 
-dga_csv = PROJECT_ROOT + "data/2018_0923/dga-feed-high.csv"
-cisco_csv = PROJECT_ROOT + "data/2018_0923/top-1m.csv"
 SUFFIXES = [' DGA', ' (', ' -']
 
 import sys
-sys.path.append(REFPATH)
+sys.path.append(PROJECT_ROOT)
 import lstm_multiclass 
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -91,8 +91,8 @@ def prepDataset(dga_file, cisco_file):
 testmodel = lstm_multiclass.LSTMMulti()
 testmodel.load(MULTI_TOKENIZER_FILE, MULTI_CATEGORIES_FILE, MULTI_MODEL_JSON, MULTI_MODEL_H5)
 
-# urllist = ["www.google.com", "www.netflix.com", "plvklpgwivery.com"]
-urllist = ["www.google.com"]
+urllist = ["www.google.com", "www.netflix.com", "plvklpgwivery.com"]
+# urllist = ["cogbdrmn.com"]
 urltypes, pred_probs = testmodel.predict(urllist)
 print("URL type:", urltypes)
 print("Probabilty:", pred_probs)
