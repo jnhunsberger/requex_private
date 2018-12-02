@@ -1,15 +1,8 @@
-/*.form-group {
-    position: relative;
-	background-color: #009933;
-    text-align: center;
-	opacity: .75;
-	padding: 15px 0;
-}*/
 
 .form-group {
     position: relative;
     opacity: .75;
-    padding: 50px;
+    /*padding: 50px;*/
     text-align: center;
 }
 
@@ -50,7 +43,8 @@ img.displayed {
 }
 
 .container {
-    font-family: "Doppio One";
+    font-family: "Orbitron";
+    font-size: 20px;
     text-align: left;
     color: white;
     background: url(Monitor.png) no-repeat center;
@@ -74,31 +68,39 @@ img.displayed {
     bottom: 0;
     right: 0;
     left: 0;
-    text-align: center;
-    margin-top: 5%;
+    text-align: left;
+    margin-top: 8%;
+    margin-left: 10%;
+    margin-right: 10%;
+
 }
 
-.topleft {
-    position: absolute;
-    top: 50px;
-    left: 70px;
-    font-size: 18px;
-    color: black;
-}
-
-.topcenter {
-    position: absolute;
-    top: 50px;
-    left: 70px;
-    font-size: 18px;
-    color: black;
+h4 {
+    font-family: "Orbitron";
+    text-align: left;
+    color: white;
+    font-size: 150%;
+    margin-top: 10px;
+    word-wrap: break-word;
 }
 
 input[type=text] {
-    padding: 12px 20px;
+    padding: 5px 20px;
     box-sizing: border-box;
-	border: 3px solid gray;
-    border-radius: 10px;
+    border: 3px solid gray;
+    border-radius: 6px;
+    font-size: 16px;
+    width: 70%;
+}
+
+.btn {
+    border: 2px solid white;
+    background-color: #009933;
+    color: black;
+    padding: 5px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 6px;
 }
 
 label {
@@ -201,8 +203,12 @@ body, html, .main {
     clear: both;
 }
 p {
-    margin-top: 50px;
+    margin-top: 15px;
    
+}
+
+figcaption {
+    font-size: 80%;
 }
 
 section {
@@ -239,13 +245,6 @@ h3 {
     margin-top: 20px;
 }
 
-h4 {
-    font-family: Impact;
-    font-size: 100%;
-    margin-top: 10px;
-}
-
-
 /* Centered text */
 .centered {
     position: absolute;
@@ -271,44 +270,16 @@ th {
     text-align: left;
 }
 
-.subtable {
-    table-layout: fixed;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-.subtable td {
-       
-    text-align: left;
-    vertical-align: text-top;
-    font-family: "Arial";
-    font-size: 20px;
-}
-
-.subtable th {
-    
-    text-align: center;
-    
-}
-
-.subtable td, .subtable.th {
-    width: 50%;
-    padding: 20px;
-}
-
 .metricstable {
     table-layout: fixed;
     border-collapse: collapse;
-    width: 70%;
     
 }
 
     .metricstable td {
         text-align: left;
         vertical-align: text-top;
-        font-family: "Arial";
-        font-size: 20px;
-        padding-left: 30%;
+        padding-right: 20px;
     }
 
     .metricstable td, .metricstable.th {
@@ -373,7 +344,7 @@ a {
 .btnlarge {
     background-color: #4CAF50;
     color: white;
-    padding: 15px 28px;
+    padding: 10px 25px;
     font-size: 20px;
     cursor: pointer;
     border-radius: 5px;
@@ -383,18 +354,6 @@ a {
 .btnlarge:hover {
     background-color: #71c174;
 }
-
-.btn {
-    border: 2px solid white;
-    background-color: #009933;
-    color: black;
-    padding: 5px 28px;
-    font-size: 16px;
-    cursor: pointer;
-	border-radius: 10px;
-}
-
-
 
 /* Green */
 .success {
@@ -424,3 +383,35 @@ a:active {
     text-decoration: none;
 }
 
+.logo {
+    color: red;
+    font-size: 125%;
+    /*font-weight: bolder;*/
+}
+
+h5 {
+    font-size: 200%;
+    text-align: center;
+    font-weight: bolder;
+    color: red;
+}
+
+.blinking {
+    animation: blinkingText 1s infinite;
+}
+
+@keyframes blinkingText {
+    0% { color: red; }
+
+
+
+    50% { color: transparent; }
+
+
+    100% { color: red; }
+}
+
+.subheading {
+    font-size: 125%;
+    font-weight: bold;
+}

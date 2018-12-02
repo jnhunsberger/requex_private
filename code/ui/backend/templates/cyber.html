@@ -1,14 +1,14 @@
 <head>
-    
+
     <!-- For main text -->
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Open Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
     <!-- For text on demo screen -->
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Doppio One">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Doppio One">
     <!-- For headings -->
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Orbitron">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron">
+    <!-- Stylized X -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rock Salt">
+    <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Piedra">-->
     <link type="text/css" rel="stylesheet" href="{{url_for('static', filename='css/styles.css') }}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
@@ -55,7 +55,14 @@
 
         });
 
-
+        function showhideMulticlass() {
+            var x = document.getElementById("results");
+            if (x.toString().contains("Benign")) {
+                x.style.visibility = "hidden";
+            } else {
+                x.style.visibility = "visible";
+            }
+        }
     </script>
 </head>
 <div class="topnav" id="navigation">
@@ -73,7 +80,7 @@
 
 <div id="home"><br /></div>
 <div class="firstpage">
-    <h1>Reque<span style="color: red">X</span> DNS</h1>
+    <h1>Reque<span class="logo">&#x2718;</span> DNS</h1>
     <h2>Malicious Domain Detection </h2>
     <br /><br /><br />
     <a class="btnlarge" href="#demo"><b>Try Now >></b></a>
@@ -89,22 +96,21 @@
                 <br />
             </div>
             <div class="column middle">
-                <p>
-                    This demo allows you to manually test a domain name to predict whether it is a malicious DGA domain
-                    or a benign domain.
+                <p style="text-align: center">
+                    Enter a domain name to test if RequeX DNS would block access to it.
                 </p>
                 <div class="container">
                     <div class="demomain">
                         <form>
                             <div class="form-group">
-                                <input type="text" style="height:30px" name="URL_Binary" placeholder="Enter a domain name">
-                                <input class="btn success" type="submit" value="Submit" />
+                                <input type="text"  name="URL_Binary" placeholder="Enter a domain name">
+                                <input class="btn success" type="submit" value="Test" onclick="showhideMulticlass()"/>
                             </div>
                         </form>
-                   
-                        <br/>
-                        <h3 style="text-align: center; ">URL: <b>{{binary_output.url}}</b> </h3>
-                        <table class="metricstable">
+                        
+                        <h5 class="blinking">X</h5>
+                        <h4 ><b>{{binary_output.url}}</b> </h4>
+                        <table class="metricstable" id="results">
 
                             <tr>
                                 <td>Type: </td>
@@ -128,33 +134,11 @@
             </div>
         </div>
         
-        <div class="row">
-            <div class="column side">
-                <br />
-            </div>
-            <div class="column middle">
-                
-            </div>
-            <div class="column side">
-                <br />
-            </div>
-            
-        </div>
         
         <div style="text-align: center">
             <br /><br /><br /><br />
             <a class="btnlarge" href="#story"><b>Learn More >></b></a>
         </div>
-        <!--<div class="results-group">
-            <h4>Binary Model</h4>
-            <p>URL: <b>{{binary_output.url}}</b> </p>
-            <p>Type: <b>{{binary_output.type}}</b></p>
-            <br />
-            <h4>Multiclass Model</h4>
-            <p>URL: <b>{{multi_output.url}}</b> </p>
-            <p>DGA Class: <b>{{multi_output.type}}</b></p>
-            <p>Prediction Probability: <b>{{multi_output.probability}}</b></p>
-        </div>-->
     </div>
 
     <div class="main">
@@ -349,7 +333,7 @@
                     In ONWASA’s case, the RYUK ransomware would never have attacked them.
                 </p>
                 <h3>Architecture</h3>
-                <p>Below is a high level diagram of our solution architecture. The end user configures their DNS to use RequeX DNS.</p>
+                <p>Below is a high level diagram of our solution's architecture. </p>
             </div>
             <div class="column side">
                 <br />
@@ -365,7 +349,18 @@
                 <br />
             </div>
             <div class="column middle">
+                <p>
+                    The end user configures their DNS to use RequeX DNS. RequeX DNS uses a load balancer to resolve DNS requests.
+                    The DNS servers utilize an Apache Kafka stream processor to distribute the data in a scalable fasion. Apache Storm subscribes
+                    to that  datafeed, tokenizing the domain names and uses our models to predicts whether the domain is benign or malicious, and
+                    if malicious, the family of malware to which it belongs. These results are published to a new Kafka channel to which our
+                    master DNS server subscribes and then updates the DNS Response Policy Zones (RPZ).
+                </p>
+                <p>In a separate process, we collect training data (benign and malicious domain names), prep the data for analysis, store it, then train the models. 
+                    The trained models are then deployed to Apache Storm for domain name prediction. Training is an ongoing process to keep up with new forms of
+                    DGA malware.</p>
                 <h3>Training Pipeline</h3>
+                <p>The diagram below shows the steps from raw data from Cisco Umbrella and Bambenek to our trained model files.</p>
             </div>
             <div class="column side">
                 <br />
@@ -382,6 +377,7 @@
             </div>
             <div class="column middle">
                 <h3>Inference Pipeline</h3>
+                <p>The inference pipeline diagram prodiveds a detailed look at how a domain name is predicted and classified in the RequeX DNS system.</p>
             </div>
             <div class="column side">
                 <br />
@@ -398,6 +394,8 @@
             </div>
             <div class="column middle">
                 <h3>Serving Applications</h3>
+                <p>As seen below, there are several ways in which our output data can be consumed. At a basic level, a domain name can be run through the system using
+                    a cURL command or our web UI, or it can be accessed by a DNS erver via Kafka. REST APIs are provided from our inference engine which runs on Flask.</p>
                 <p>
                     <img class="displayed" src="{{url_for('static', filename='css/servingapplication.png') }}" alt="RequeX training pipeline" width="1210">
                 </p>
@@ -433,11 +431,12 @@
                 <h3>Analysis</h3>
                 <p>
                     We performed some EDA on the datasets to see if there were obvious differences in the names of the DGA domains and the
-                    benign domains. A few differences were apparent.
+                    benign domains. A few differences were apparent. Although we did not ultimately use the EDA for feature engineering,
+                    it served as a way to confirm the datasets should be different enough to predict using machine learning.
                 </p>
-                <p><b>Character Frequency Analysis</b></p>
+                <p class="subheading">Character Frequency Analysis</p>
                 <p>The following chart shows the normalized character frequencies of the characters in each domain name set.</p>
-                <p><b>Domain Name Length Analysis</b></p>
+
             </div>
             <div class="column side">
                 <br />
@@ -459,7 +458,8 @@
                     benign dataset.
                 </p>
 
-                <p><b>Domain Name Length Analysis</b></p>
+                <p class="subheading">Domain Name Length Analysis</p>
+                <p>The histograms below show the distribution of domain name lengths for the different datasets.</p>
             </div>
             <div class="column side">
                 <br />
@@ -475,12 +475,45 @@
                 <br />
             </div>
             <div class="column middle">
-                <p>
-                    The domain name lengths vary between datasets. The distribution of benign domain names is a fairly standard distribution that peaks
-                    around 16 characters.
-                </p>
 
-                <p><b>Domain Name Length Analysis</b></p>
+                <p>
+                    The distribution of benign domain names is a fairly standard distribution that peaks
+                    around 16 characters. Both the mixed and high confidence datasets have a second peak around 30 characters. You can also see
+                    that domain names of lengths less than 10 characters or greater than 33 are more likely to be benign than malicious.
+                </p>
+                <p class="subheading">Top Level Domain Analysis</p>
+                <p>The top level domains of .com, .net and .org were the top three for each dataset. The charts below shows the relative
+                    frequency of the next 10 most common top level domains, in order by top level domains for each dataset.</p>
+                <p>
+                    <img class="displayed" src="{{url_for('static', filename='css/tld_top_cisco2.png') }}" alt="Top level domain frequencies">
+                    <img class="displayed" src="{{url_for('static', filename='css/tld_top_dlg2.png') }}" alt="Top level domain frequencies">
+                    <img class="displayed" src="{{url_for('static', filename='css/tld_top_dlg3.png') }}" alt="Top level domain frequencies">
+                </p>
+                <p>
+                    Of special note is the that .ru (for Russia) is the 4th most commong top level domain in the Cisco Umbrella set. The .biz domain
+                    is also far more common in the malicious datasets. And especially interesting is that the .pw domain is the 6th most common
+                    top level domain for the malicious data sets, given that it is the country code top-level domain for Palau, an island nation
+                   with a population size of roughly 22,000.
+                </p>
+            </div>
+            <div class="column side">
+                <br />
+            </div>
+        </div>
+        <div style="margin-left: 10%; margin-right: 10%">
+            
+        </div>
+        <div class="row">
+            <div class="column side">
+                <br />
+            </div>
+            <div class="column middle">
+
+                <p>
+                    The distribution of benign domain names is a fairly standard distribution that peaks
+                    around 16 characters. Both the mixed and high confidence datasets have a second peak around 30 characters. You can also see
+                    that domain names of lengths less than 10 characters or greater than 33 are more likely to be benign than malicious.
+                </p>
             </div>
             <div class="column side">
                 <br />
