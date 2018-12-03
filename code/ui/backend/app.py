@@ -72,7 +72,7 @@ def get_multi(multi_query):
 def get():
 
     binary_response = {'url': ' ', 'type': ' '}
-    multi_response = {'type': 'nonDGA', 'probability': '1.0'}
+    multi_response = {'type': 'non-DGA', 'probability': '1.0'}
 
     binary_query = request.args.get("URL_Binary")
     if binary_query:
