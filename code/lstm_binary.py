@@ -26,6 +26,7 @@ class LSTMBinary:
         self.encoder = text.Tokenizer(num_words=500, char_level=True)
 
         self.model = Sequential()
+        self.labels = None
 
         #
         # Model metrics
@@ -100,7 +101,7 @@ class LSTMBinary:
         print('MODEL SAVED TO DISK!')
         pass
 
-    def load(self, tokenizer_file, model_json, model_h5, model_report=None):
+    def load(self, tokenizer_file, model_json, model_h5, categories_file=None, model_report=None):
         #
         # Load the tokenizer
         #
@@ -119,23 +120,35 @@ class LSTMBinary:
         global graph
         graph = tf.get_default_graph()
 
-        with open(model_report) as report:
-            metrics = json.load(report)
-            self.f1score = metrics["DGA"]["f1-score"]
-            self.precision = metrics["DGA"]["precision"]
-            self.recall = metrics["DGA"]["recall"]
-            self.accuracy = metrics["accuracy"]
-            self.fp = metrics["false positives"]
-            self.fn = metrics["false negatives"]
+        if categories_file:
+            with open(categories_file, 'rb') as handle:
+                self.labels = pickle.load(handle).tolist()
+                print(self.labels)
+
+        if model_report:
+            with open(model_report) as report:
+                metrics = json.load(report)
+                self.f1score = metrics["DGA"]["f1-score"]
+                self.precision = metrics["DGA"]["precision"]
+                self.recall = metrics["DGA"]["recall"]
+                self.accuracy = metrics["accuracy"]
+                self.fp = metrics["false positives"]
+                self.fn = metrics["false negatives"]
 
         print('SAVED BINARY MODEL IS NOW LOADED!')
 
     def predict(self, input):
-        print(input)
+        # print(input)
         inputSeq = sequence.pad_sequences(self.encoder.texts_to_sequences(input), maxlen=75)
         with graph.as_default():
-            output = self.model.predict_classes(inputSeq)
-        return output
+            output_classes = self.model.predict_classes(inputSeq)
+        
+        output = []
+        for output_class in output_classes:
+            print(self.labels[int(output_class)])
+            output.append(self.labels[int(output_class)])
+        
+        return  output
 
 
     def dump_reports(self, X_test, Y_test, Y_pred, bit_mask, format_m_report, format_c_report, verbose=False):
