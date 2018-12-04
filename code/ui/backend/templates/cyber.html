@@ -84,7 +84,7 @@
                     maliciousSybol.style.visibility = "hidden";
                     urlString.style.visibility = "hidden";  // in case a previous url is displayed
                     typeLabel.style.visibility = "hidden";
-
+               
                 } else {
                     // This should be nonMalicious
                     typeLabel.style.visibility = "visible";
@@ -151,15 +151,17 @@
                                 <button class="btn success" type="submit">Test</button>
                             </div>
                         </form>
-                        
-                        <span id="maliciousX" class="malicious">&#x2718;</span>
-                        
-                        <span id="benign" class="benign">&#x2714;</span><h4 id="url" class="resultstext">{{binary_output.url}}</h4>
+                        <br/><br />
+                        <h4 id="url" class="resultstext">{{binary_output.url}}</h4>
                         <table class="metricstable" id="results">
 
                             <tr>
                                 <td id="typeLabel">Type: </td>
-                                <td id="binarytype" class="resultstext">{{binary_output.type}}</td>
+                                <td>
+                                     <span id="binarytype" class="resultstext">{{binary_output.type}}</span>
+                                    <span id="benign" class="benign">  &#x2714;</span>
+                                    <span id="maliciousX" class="malicious">  &#x2718;</span>
+                                </td>
                             </tr>
                             <tr>
                                 <td id="DGAClassLabel">DGA Class:</td>
