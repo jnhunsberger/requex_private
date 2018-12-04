@@ -7,6 +7,7 @@ from flask import request
 
 
 import sys
+import json
 PROJECT_ROOT = "./"
 #PROJECT_ROOT = "/app/"
 sys.path.append(PROJECT_ROOT)
@@ -28,6 +29,9 @@ MULTI_TOKENIZER_FILE = PROJECT_ROOT + "saved_models/multiclass_tokenizer.pkl"
 MULTI_CATEGORIES_FILE = PROJECT_ROOT + "saved_models/multiclass_categories.pkl"
 MULTI_MODEL_JSON = PROJECT_ROOT + "saved_models/multiclass_LSTM.json"
 MULTI_MODEL_H5 = PROJECT_ROOT + "saved_models/multiclass_LSTM.h5"
+MULTI_MODEL_METRICS_REPORT = PROJECT_ROOT + "saved_models/multiclass_metrics_report.json"
+
+LR_MODEL_METRICS_REPORT = PROJECT_ROOT + "saved_models/logisticR_metrics_report.json"
 
 # initialize flask application
 app = Flask(__name__)
@@ -51,6 +55,25 @@ binary_metrics = {'f1score': round(binary_model.f1score, 3),
                     'fp': interpret_false(binary_model.fp), 
                     'fn': interpret_false(binary_model.fn)  }
 
+with open(MULTI_MODEL_METRICS_REPORT) as report:
+    metrics = json.load(report)
+
+    multi_metrics = {'f1score': round(metrics["weighted avg"]["f1-score"], 3), 
+                        'accuracy': round(metrics["accuracy"], 3), 
+                        'precision': round(metrics["weighted avg"]["precision"], 3), 
+                        'recall': round(metrics["weighted avg"]["recall"], 3), 
+                        'fp': interpret_false(metrics["false positives"]), 
+                        'fn': interpret_false(metrics["false negatives"])  }
+
+with open(LR_MODEL_METRICS_REPORT) as report:
+    metrics = json.load(report)
+
+    lr_metrics = {'f1score': round(metrics["weighted avg"]["f1-score"], 3), 
+                        'accuracy': round(metrics["accuracy"], 3), 
+                        'precision': round(metrics["weighted avg"]["precision"], 3), 
+                        'recall': round(metrics["weighted avg"]["recall"], 3), 
+                        'fp': interpret_false(metrics["false positives"]), 
+                        'fn': interpret_false(metrics["false negatives"])  }
 
 # argument parsing
 parser = reqparse.RequestParser()
@@ -88,7 +111,7 @@ def get():
         else:
             multi_response = {'type': '', 'probability': ''}
 
-    return render_template("cyber.html", binary_metrics=binary_metrics, binary_output=binary_response, multi_output=multi_response )
+    return render_template("cyber.html", binary_metrics=binary_metrics, binary_output=binary_response, multi_output=multi_response, multi_metrics=multi_metrics, lr_metrics=lr_metrics )
 
 
 if __name__ == '__main__':
