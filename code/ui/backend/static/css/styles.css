@@ -111,11 +111,6 @@ h5 {
     color: red;
 }
 
-.form-group {
-    position: relative;
-    opacity: .75;
-    text-align: center;
-}
 
 input[type=text] {
     padding: 5px 20px;
@@ -225,6 +220,12 @@ th {
     color: black;
 }
 
+.form-group {
+    position: relative;
+    opacity: .75;
+    text-align: center;
+}
+
 .btn {
     border: 2px solid white;
     background-color: #009933;
@@ -288,6 +289,11 @@ th {
     clear: both;
 }
 
+.resultstext {
+    font-weight: bold;
+}
+
+
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
     .column.side, .column.middle {
@@ -342,10 +348,6 @@ th {
     /*font-weight: bolder;*/
 }
 
-.blinking {
-    animation: blinkingText 1s infinite;
-}
-
 @keyframes blinkingText {
     0% { color: red; }
 
@@ -360,4 +362,19 @@ th {
 .subheading {
     font-size: 125%;
     font-weight: bold;
+}
+
+.malicious {
+    font-size: 200%;
+    text-align: center;
+    font-weight: bolder;
+    color: red;
+    animation: blinkingText 1s infinite;
+}
+
+.benign {
+    font-size: 200%;
+    text-align: center;
+    font-weight: bolder;
+    color: #4CAF50
 }

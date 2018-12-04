@@ -55,14 +55,58 @@
 
         });
 
-        function showhideMulticlass() {
-            var x = document.getElementById("results");
-            if (x.toString().contains("Benign")) {
-                x.style.visibility = "hidden";
-            } else {
-                x.style.visibility = "visible";
+        $(function() {
+            // if no multiclass return, hide results element
+
+            var binaryResult = document.getElementById("binarytype");
+            var classLabel = document.getElementById("DGAClassLabel");
+            var multiclassType = document.getElementById("multitype");
+            var predictionLabel = document.getElementById("DGAProbability");
+            var predictionValue = document.getElementById("predictionprob");
+            var maliciousSybol = document.getElementById("maliciousX");
+            var benignSymbol = document.getElementById("benign");
+            var urlString = document.getElementById("url");
+            var typeLabel = document.getElementById("typeLabel");
+
+            var resultString = multiclassType.innerHTML;
+
+            // if multitype value is 1 or 0, then url is not malicious or no url has been submitted
+            if (resultString.length < 2) {
+                classLabel.style.visibility = "hidden";
+                multiclassType.style.visibility = "hidden";
+                predictionLabel.style.visibility = "hidden";
+                predictionValue.style.visibility = "hidden";
+
+                // if no binary results either
+                if (binaryResult.innerHTML.length < 2) {
+                    binaryResult.style.display = "none";
+                    benignSymbol.style.display = "none";
+                    maliciousSybol.style.visibility = "hidden";
+                    urlString.style.visibility = "hidden";  // in case a previous url is displayed
+                    typeLabel.style.visibility = "hidden";
+
+                } else {
+                    // This should be nonMalicious
+                    typeLabel.style.visibility = "visible";
+                    urlString.style.visibility = "visible"; 
+                    benignSymbol.style.display = "inline";
+                    maliciousSybol.style.display = "none";
+                }
+            } else {    // This is malicious
+                typeLabel.style.visibility = "visible";
+                urlString.style.visibility = "visible"; 
+                binaryResult.style.visibility = "visible";  // always visible if there are any results
+                classLabel.style.visibility = "visible";
+                multiclassType.style.visibility = "visible";
+                predictionLabel.style.visibility = "visible";
+                predictionValue.style.visibility = "visible";
+                benignSymbol.style.display = "none";
+                maliciousSybol.style.display = "inline";
             }
-        }
+            
+        });
+
+        
     </script>
 </head>
 <div class="topnav" id="navigation">
@@ -104,25 +148,26 @@
                         <form>
                             <div class="form-group">
                                 <input type="text"  name="URL_Binary" placeholder="Enter a domain name" autocomplete="off">
-                                <input class="btn success" type="submit" value="Test" onclick="showhideMulticlass()"/>
+                                <button class="btn success" type="submit">Test</button>
                             </div>
                         </form>
                         
-                        <h5 class="blinking">X</h5>
-                        <h4 ><b>{{binary_output.url}}</b> </h4>
+                        <span id="maliciousX" class="malicious">&#x2718;</span>
+                        
+                        <span id="benign" class="benign">&#x2714;</span><h4 id="url" class="resultstext">{{binary_output.url}}</h4>
                         <table class="metricstable" id="results">
 
                             <tr>
-                                <td>Type: </td>
-                                <td><b>{{binary_output.type}}</b></td>
+                                <td id="typeLabel">Type: </td>
+                                <td id="binarytype" class="resultstext">{{binary_output.type}}</td>
                             </tr>
                             <tr>
-                                <td>DGA Class:</td>
-                                <td> <b>{{multi_output.type}}</b></td>
+                                <td id="DGAClassLabel">DGA Class:</td>
+                                <td id="multitype" class="resultstext">{{multi_output.type}}</td>
                             </tr>
                             <tr>
-                                <td>Prediction Probability: </td>
-                                <td> <b>{{multi_output.probability}}</b></td>
+                                <td id="DGAProbability">Prediction Probability: </td>
+                                <td id="predictionprob" class="resultstext" >{{multi_output.probability}}</td>
                             </tr>
                         </table>
                     </div>
