@@ -553,99 +553,60 @@
                 </p>
                 <p>We created binary and multi-class LSTM models.</p>
                 <p>
-                    <img class="displayed" src="{{url_for('static', filename='css/modeling_diagram.png') }}" alt="Tokening of domain names">
+                    <img class="displayed" src="{{url_for('static', filename='css/modeling_diagram.png') }}" alt="Binary and Multiclass models diagram">
                 </p>
                 <p>
-                    <h3>Binary Model Metrics</h3>
+                    <h3>Model Metrics</h3>
+                    <p>We evaluated the binary and multiclass models and for comparison, we trained and tested a logistic regression model. The resulting metrics
+                        are listed in the table below.</p>
                     <table class="metricstable">
-
+                        <tr>
+                            <th>Metric</th>
+                            <th>Binary</th>
+                            <th>Multiclass</th>
+                            <th>Logistic Regression</th>
+                        </tr>
                         <tr>
                             <td>F1 Score</td>
                             <td>{{binary_metrics.f1score}}</td>
-                        </tr>
-                        <tr>
-                            <td>Accuracy</td>
-                            <td>{{binary_metrics.accuracy}}</td>
-                        </tr>
-                        <tr>
-                            <td>Precision</td>
-                            <td>{{binary_metrics.precision}}</td>
-                        </tr>
-                        <tr>
-                            <td>Recall</td>
-                            <td>{{binary_metrics.recall}}</td>
-                        </tr>
-                        <tr>
-                            <td>False Positives</td>
-                            <td>{{binary_metrics.fp}}</td>
-                        </tr>
-                        <tr>
-                            <td>False Negatives</td>
-                            <td>{{binary_metrics.fn}}</td>
-                        </tr>
-                    </table>
-                </p>
-                <p>
-                    <h3>Multiclass Model Metrics</h3>
-                    <table class="metricstable">
-
-                        <tr>
-                            <td>F1 Score</td>
                             <td>{{multi_metrics.f1score}}</td>
-                        </tr>
-                        <tr>
-                            <td>Accuracy</td>
-                            <td>{{multi_metrics.accuracy}}</td>
-                        </tr>
-                        <tr>
-                            <td>Precision</td>
-                            <td>{{multi_metrics.precision}}</td>
-                        </tr>
-                        <tr>
-                            <td>Recall</td>
-                            <td>{{multi_metrics.recall}}</td>
-                        </tr>
-                        <tr>
-                            <td>False Positives</td>
-                            <td>{{multi_metrics.fp}}</td>
-                        </tr>
-                        <tr>
-                            <td>False Negatives</td>
-                            <td>{{multi_metrics.fn}}</td>
-                        </tr>
-                    </table>
-                </p>
-                <p>
-                    <h3>Logistic Regression Model Metrics</h3>
-                    <table class="metricstable">
-
-                        <tr>
-                            <td>F1 Score</td>
                             <td>{{lr_metrics.f1score}}</td>
                         </tr>
                         <tr>
                             <td>Accuracy</td>
+                            <td>{{binary_metrics.accuracy}}</td>
+                            <td>{{multi_metrics.accuracy}}</td>
                             <td>{{lr_metrics.accuracy}}</td>
                         </tr>
                         <tr>
                             <td>Precision</td>
+                            <td>{{binary_metrics.precision}}</td>
+                            <td>{{multi_metrics.precision}}</td>
                             <td>{{lr_metrics.precision}}</td>
                         </tr>
                         <tr>
                             <td>Recall</td>
+                            <td>{{binary_metrics.recall}}</td>
+                            <td>{{multi_metrics.recall}}</td>
                             <td>{{lr_metrics.recall}}</td>
                         </tr>
                         <tr>
                             <td>False Positives</td>
+                            <td>{{binary_metrics.fp}}</td>
+                            <td>{{multi_metrics.fp}}</td>
                             <td>{{lr_metrics.fp}}</td>
                         </tr>
                         <tr>
                             <td>False Negatives</td>
+                            <td>{{binary_metrics.fn}}</td>
+                            <td>{{multi_metrics.fn}}</td>
                             <td>{{lr_metrics.fn}}</td>
                         </tr>
                     </table>
                 </p>
-
+                <p>
+                    <img class="displayed" src="{{url_for('static', filename='css/model_metrics.png') }}" alt="Model metrics chart">
+                </p>
             </div>
             <div class="column side">
                 <br />
