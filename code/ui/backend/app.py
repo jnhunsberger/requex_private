@@ -44,7 +44,7 @@ multi_model = lstm_multiclass.LSTMMulti()
 multi_model.load(MULTI_TOKENIZER_FILE, MULTI_CATEGORIES_FILE, MULTI_MODEL_JSON, MULTI_MODEL_H5)
 
 def interpret_false(value):
-    num = min(round(value, 3) * 1000, 1000)
+    num = min(round(value * 1000), 1000)
     return(str(num) + " out of 1000")
 
 
