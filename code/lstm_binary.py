@@ -146,7 +146,7 @@ class LSTMBinary:
         output = []
         for output_class in output_classes:
             print(self.labels[int(output_class)])
-            output.append(self.labels[int(output_class)])
+            output.append('DGA' if self.labels[int(output_class)] == 'DGA' else 'Benign')
         
         return  output
 
