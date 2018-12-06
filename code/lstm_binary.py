@@ -123,6 +123,11 @@ class LSTMBinary:
         if categories_file:
             with open(categories_file, 'rb') as handle:
                 self.labels = pickle.load(handle).tolist()
+                #
+                # Hardcoding for the demo.
+                #
+                self.labels[0] = 'non-DGA'
+                self.labels[1] = 'DGA'
                 print(self.labels)
 
         if model_report:
