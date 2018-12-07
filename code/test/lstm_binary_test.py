@@ -39,7 +39,7 @@ def test_predict():
     testmodel.load(BINARY_TOKENIZER_FILE, BINARY_MODEL_JSON, BINARY_MODEL_H5, BINARY_CATEGORIES_FILE,  BINARY_METRICS_REPORT)
     print(testmodel.get_metrics())
 
-    urllist = ["www.google.com", "www.netflix.com", "plvklpgwivery.com"]
+    urllist = ["www.google.com", "www.netflix.com", "plvklpgwivery.com", "z328.entelchile.net"]
     urltypes = testmodel.predict(urllist)
     print("URL type:", urltypes)
 
