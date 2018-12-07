@@ -1,14 +1,12 @@
 <head>
 
     <!-- For main text -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto Slab">
     <!-- For text on demo screen -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Doppio One">
     <!-- For headings -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron">
-    <!-- Stylized X -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rock Salt">
-    <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Piedra">-->
+    
     <link type="text/css" rel="stylesheet" href="{{url_for('static', filename='css/styles.css') }}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
@@ -141,7 +139,7 @@
             </div>
             <div class="column middle">
                 <p style="text-align: center">
-                    Enter a domain name to test if RequeX DNS would block access to it.
+                    Enter a domain name to test if Reque<span style="color: red;">&#x2718;</span> DNS would block access to it.
                 </p>
                 <div class="container">
                     <div class="demomain">
@@ -152,7 +150,7 @@
                             </div>
                         </form>
                         <br/><br />
-                        <h4 id="url" class="resultstext">{{binary_output.url}}</h4>
+                        <h4 id="url">{{binary_output.url}}</h4>
                         <table class="metricstable" id="results">
 
                             <tr>
@@ -202,41 +200,29 @@
                 <p>
                     In September 2018, hurricane Florence struck the North Carolina coast as a powerful Category 1
                     storm. It brought with it not only high winds,
-                    but also record levels of rainfall. In its path was the North Carolina shoreline. Onslow County
-                    took a direct hit from Hurricane Florence.
-                    With some areas in the county receiving over 30 inches of rainfall over the course of the multi-day
-                    storm, there was massive flooding.
+                    but record levels of rainfall. In its path was the North Carolina shoreline. Onslow County
+                    took a direct hit from Hurricane Florence resulting in massive flooding.
                 </p>
                 <p><img class="displayed" src="{{url_for('static', filename='css/hurricane-florence.jpg') }}" alt="Hurricane Florence"></p>
                 <figcaption>Source: Threat Post</figcaption>
                 <p>
                     The Onslow Water and Sewer Authority (ONWASA) is responsible for providing clean water to the over
                     175,000 people who live in Onslow County.
-                    With all the flooding and infrastructure damage, they had an incredible task ahead of them. What
-                    they didn’t realize was that
-                    the hurricane was not the only problem they were going to face.
+                    With all the flooding and infrastructure damage, they had an incredible task ahead of them. 
                 </p>
                 <p>
-                    Starting on October 4th, ONWASA IT personnel noticed an aggressive malware infiltrating their
-                    network defenses.
-                    It was a well-known and dangerous malware called Emotet. Despite their multi-layered security
-                    protections, the IT staff struggled to control it.
-                    Then it took a turn for the worse. Around 3am on October 13th, the Emotet malware contacted its
-                    command and control servers and downloaded a new payload,
-                    the ransomware RYUK. This ransomware encrypted and locked out all of ONWASA’s computers unless a
-                    ransom was paid.
+                    But the hurricane wasn’t the only challenge they were going to face. Little did they know that their computer network 
+                    was infiltrated by a dangerous malware called Emotet in early October. Then, around 3am on October 13th, the Emotet malware contacted its 
+                    command and control servers and downloaded ransomware which encrypted and locked out all of ONWASA’s computers. 
+                    The only way to recover them was for ONWASA to pay a ransom to the hackers. </p>
+                <p>
+                    ONWASA refused to pay and had to revert to responding to all requests using manual processes. It took weeks for ONWASA to recover. 
+                    As a result, the malware directly impacted ONWASA’s ability to respond quickly and timely to their customers in their time of need.
+                    
+
                 </p>
                 <p>
-                    On October 15th, ONWASA issued a
-                    <a href="https://www.onwasa.com/DocumentCenter/View/3701/Scan-from-2018-10-15-08_08_13-A">
-                        press
-                        release
-                    </a>
-                    saying that their network was compromised and all computer systems used to process service orders,
-                    manage water connections/disconnections,
-                    and all engineering activities were inoperable. ONWASA refused to pay the ransom and had to revert
-                    to responding to all requests using
-                    manual processes. The water authority spent weeks recovering from the attack.
+                    Fortunately, the impact was not greater.
                 </p>
                 <br />
             </div>
@@ -256,42 +242,28 @@
             </div>
             <div class="column middle">
                 <p>
-                    Emotet is causing problems beyond just ONWASA. The Quarterly Threat Report for the third quarter,
+                    The cyber attack experienced by ONWASA, is just one of many similar attacks. The Quarterly Threat Report for the third quarter,
                     2018 from
                     <a href="https://www.proofpoint.com/us">Proofpoint</a> (a cybersecurity company that provides
                     threat intelligence on the latest
-                    cyber attacks being launched via multiple sources) shows that banking trojans are the largest, most
-                    active category of
-                    malware across email, mobile apps, and social media.
+                    cyber attacks being launched via multiple sources) shows that banking trojans, a category that includes Emotet, are the largest, most
+                    active category of malware across email, mobile apps, and social media.
                 </p>
                 <p>
-                    <img class="displayed" src="{{url_for('static', filename='css/malware_by_category.png') }}" alt="Malware by category pie chart">
-                    <figcaption>Source: Proofpoint</figcaption>
-                </p>
-                <p>Of banking trojans, Emotet is the second most popular malware in use today.</p>
-                <p>
-                    <img class="displayed" src="{{url_for('static', filename='css/relative_volume.png') }}" alt="Relative volume of banking trojan pie chart">
-                    <figcaption>Source: Proofpoint</figcaption>
-                </p>
-                <p>
-                    A key element in Emotet's attack sequence is its communication with command and control servers (C2
-                    servers). Emotet thives on its ability to
-                    update itself and offer iteself on the black market as a platform for further malware delivery. It
-                    was this capability that downloaded
-                    the ransomeware that caused the most acute trouble for ONWASA.
+                    A key element in Emotet's attack sequence, as well as many pieces of malware, is its communication with command and control servers (C2
+                    servers). This communication allows malware like Emotet to download new attack instructions or to monetize their botnet by selling
+                    access to the network of infected computers. It was this capability that downloaded the ransomware that caused the most acute trouble for ONWASA.
                 </p>
                 <p>
                     <img class="displayed" src="{{url_for('static', filename='css/emotet_infection_process.png') }}"
                          alt="Emotet infection process">
                     <figcaption>Source: US-CERT, emphasis on step 3 added</figcaption>
                 </p>
-
+                <p class="subheading">Domain Generation Algorithm (DGA)</p>
                 <p>
                     Emotet is one of many malware variants that utilize a domain generation algorithm (DGA) to evade
-                    established malware protection
-                    strategies. These domain generating algorithms are capable of creating thousands of domains per
-                    day. The typical operation of
-                    DGA-based malware is depicted in the diagram below.
+                    established malware protection strategies. These domain generating algorithms can create thousands of domains per
+                    day. The typical operation of DGA-based malware is depicted in the diagram below.
                 </p>
                 <p>
                     <img class="displayed" src="{{url_for('static', filename='css/dga_algorithm.png') }}" alt="DGA-based malware operation">
@@ -311,18 +283,11 @@
                     </ul>
                 </p>
                 <p>
-                    The asymmetry of the DGA works to the advantage of the attacker. The bad guys only have to register
-                    a statistically small number
-                    of these domains for the malware to receive their instructions. The good guys would have a full
-                    time job trying to chase down
-                    all of those domains and blocking them.
+                    Traditionally, security teams rely on static rules and blacklists to block communication with malicious domains. These methods, 
+                    while better than nothing, are increasingly no longer effective. Malware, like Emotet, uses algorithms to generate thousands
+                    of domains every day. There are now too many domain names being generated each day for security teams to try to block all of them.
                 </p>
-                <p>
-                    Thousands of malware rely on this communication technique to advance their goals and take advantage
-                    of their victims.
-                    Our team is dedicated to stopping these communications in their tracks.
-                </p>
-
+               
 
             </div>
             <div class="column side">
@@ -343,14 +308,14 @@
             </div>
             <div class="column middle">
                 <p>
-                    We believe that a combination of threat intelligence and machine learning integrated into DNS
-                    servers can halt the C2 server communications
+                    Our team aims to solve this problem by using models that can predict a malicious domain and block communications without using static lists.
+                    We believe that a combination of threat intelligence and machine learning integrated into DNS servers can halt the C2 server communications
                     used by malware.
                 </p>
                 <p>
-                    Our solution is RequeX DNS, a cloud-based, network security intelligent DNS firewall that protects
+                    Our solution is Reque<span style="color: red;">&#x2718;</span> DNS, a cloud-based, network security intelligent DNS firewall that protects
                     consumers and businesses. Rather than
-                    preventing the initial infection, the goal of RequeX DNS is to halt all communications from a
+                    preventing the initial infection, the goal of Reque<span style="color: red;">&#x2718;</span> DNS is to halt all communications from a
                     malware to its command and control servers.
                 </p>
                 <p>
@@ -397,9 +362,9 @@
             </div>
             <div class="column middle">
                 <p>
-                    The end user configures their DNS to use RequeX DNS. RequeX DNS uses a load balancer to resolve DNS requests.
-                    The DNS servers utilize an Apache Kafka stream processor to distribute the data in a scalable fasion. Apache Storm subscribes
-                    to that  datafeed, tokenizing the domain names and uses our models to predicts whether the domain is benign or malicious, and
+                    The end user configures their DNS to use Reque<span style="color: red;">&#x2718;</span> DNS. Reque<span style="color: red;">&#x2718;</span> DNS uses a load balancer to resolve DNS requests.
+                    The DNS servers utilize an Apache Kafka stream processor to distribute the data in a scalable fashion. Apache Storm subscribes
+                    to that  data feed, tokenizing the domain names and uses our models to predicts whether the domain is benign or malicious, and
                     if malicious, the family of malware to which it belongs. These results are published to a new Kafka channel to which our
                     master DNS server subscribes and then updates the DNS Response Policy Zones (RPZ).
                 </p>
@@ -424,7 +389,7 @@
             </div>
             <div class="column middle">
                 <h3>Inference Pipeline</h3>
-                <p>The inference pipeline diagram prodiveds a detailed look at how a domain name is predicted and classified in the RequeX DNS system.</p>
+                <p>The inference pipeline diagram provides a detailed look at how a domain name is predicted and classified in the Reque<span style="color: red;">&#x2718;</span> DNS system.</p>
             </div>
             <div class="column side">
                 <br />
@@ -442,7 +407,7 @@
             <div class="column middle">
                 <h3>Serving Applications</h3>
                 <p>As seen below, there are several ways in which our output data can be consumed. At a basic level, a domain name can be run through the system using
-                    a cURL command or our web UI, or it can be accessed by a DNS erver via Kafka. REST APIs are provided from our inference engine which runs on Flask.</p>
+                    a cURL command or our web UI, or it can be accessed by a DNS server via Kafka. REST APIs are provided from our inference engine which runs on Flask.</p>
                 <p>
                     <img class="displayed" src="{{url_for('static', filename='css/servingapplication.png') }}" alt="RequeX training pipeline" width="1210">
                 </p>
@@ -529,7 +494,7 @@
                     that domain names of lengths less than 10 characters or greater than 33 are more likely to be benign than malicious.
                 </p>
                 <p class="subheading">Top Level Domain Analysis</p>
-                <p>The top level domains of .com, .net and .org were the top three for each dataset. The charts below shows the relative
+                <p>The top level domains of .com, .net and .org were the top three for each dataset. The charts below show the relative
                     frequency of the next 10 most common top level domains, in order by top level domains for each dataset.</p>
                 <p>
                     <img class="displayed" src="{{url_for('static', filename='css/tld_top_cisco2.png') }}" alt="Top level domain frequencies">
@@ -537,7 +502,7 @@
                     <img class="displayed" src="{{url_for('static', filename='css/tld_top_dlg3.png') }}" alt="Top level domain frequencies">
                 </p>
                 <p>
-                    Of special note is the that .ru (for Russia) is the 4th most commong top level domain in the Cisco Umbrella set. The .biz domain
+                    Of special note is the that .ru (for Russia) is the 4th most common top level domain in the Cisco Umbrella set. The .biz domain
                     is also far more common in the malicious datasets. And especially interesting is that the .pw domain is the 6th most common
                     top level domain for the malicious data sets, given that it is the country code top-level domain for Palau, an island nation
                    with a population size of roughly 22,000.
@@ -593,7 +558,7 @@
                 <h3>The Machine Learning Model</h3>
                 <p>
                     To prepare the data for training, we tokenized the domain name strings by converting the characters
-                    in the domain names to an integer based sequence.
+                    in the domain names to an integer-based sequence.
                 </p>
                 <p>
                     <img class="displayed" src="{{url_for('static', filename='css/tokenizing.png') }}" alt="Tokening of domain names">
@@ -609,8 +574,8 @@
                     <table class="metricstable">
                         <tr>
                             <th>Metric</th>
-                            <th>Binary</th>
-                            <th>Multiclass</th>
+                            <th>LSTM Binary</th>
+                            <th>LSTM Multiclass</th>
                             <th>Logistic Regression</th>
                         </tr>
                        <tr>

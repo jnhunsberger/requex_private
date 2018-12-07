@@ -8,7 +8,7 @@ head {
 html {
     background: url(code_full.jpg) no-repeat center fixed;
     background-size: cover;
-    font-family: "Open Sans";
+    font-family: "Roboto Slab";
     font-weight: normal;
     font-size: 18px;
 }
@@ -96,7 +96,7 @@ h3 {
 }
 
 h4 {
-    font-family: "Orbitron";
+    font-family: "Roboto Slab";
     text-align: left;
     color: white;
     font-size: 150%;
@@ -237,7 +237,7 @@ th {
 }
 
 .container {
-    font-family: "Orbitron";
+    font-family: "Roboto Slab";
     font-size: 20px;
     text-align: left;
     color: white;
@@ -304,6 +304,7 @@ th {
 .metricstable {
     table-layout: fixed;
     border-collapse: collapse;
+    font-size: 18px;
 }
 
 .metricstable td {
