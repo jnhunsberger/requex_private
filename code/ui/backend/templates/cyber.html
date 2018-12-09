@@ -245,15 +245,14 @@
             <div class="column middle">
                 <p>
                     The cyber attack experienced by ONWASA, is just one of many similar attacks. The Quarterly Threat Report for the third quarter,
-                    2018 from
-                    <a href="https://www.proofpoint.com/us">Proofpoint</a> (a cybersecurity company that provides
-                    threat intelligence on the latest
-                    cyber attacks being launched via multiple sources) shows that banking trojans, a category that includes Emotet, are the largest, most
+                    2018 from cybersecurity company 
+                    <a href="https://www.proofpoint.com/us">Proofpoint</a> shows that banking trojans, a category that includes Emotet, are the largest, most
                     active category of malware across email, mobile apps, and social media.
                 </p>
+                <h3>Command and Control Servers</h3>
                 <p>
-                    A key element in Emotet's attack sequence, as well as many pieces of malware, is its communication with command and control servers (C2
-                    servers). This communication allows malware like Emotet to download new attack instructions or to monetize their botnet by selling
+                    A key element in Emotet's attack sequence, as well as similar types of malware, is its communication with command and control servers (C2
+                    servers). This communication allows malware to download new attack instructions or to monetize their botnet by selling
                     access to the network of infected computers. It was this capability that downloaded the ransomware that caused the most acute trouble for ONWASA.
                 </p>
                 <p>
@@ -261,7 +260,7 @@
                          alt="Emotet infection process">
                     <figcaption>Source: US-CERT, emphasis on step 3 added</figcaption>
                 </p>
-                <p class="subheading">Domain Generation Algorithm (DGA)</p>
+                <h3>Domain Generation Algorithm (DGA)</h3>
                 <p>
                     Emotet is one of many malware variants that utilize a domain generation algorithm (DGA) to evade
                     established malware protection strategies. These domain generating algorithms can create thousands of domains per
@@ -570,6 +569,8 @@
                 </p>
 
                 <h3>The Machine Learning Model</h3>
+                <p>Whe chose to start with a long short-term memory (LSTM) network classifier based on <a href="https://arxiv.org/abs/1611.00791">research by Endgame, Inc</a> in 2016.
+                    Employing an LSTM model avoids the vanishing gradients problem common with recurrent neural networks.</p>
                 <p>
                     To prepare the data for training, we tokenized the domain name strings by converting the characters
                     in the domain names to an integer-based sequence.
@@ -577,14 +578,16 @@
                 <p>
                     <img class="displayed" src="{{url_for('static', filename='css/tokenizing.png') }}" alt="Tokening of domain names">
                 </p>
-                <p>We created binary and multi-class LSTM models.</p>
+                <p>
+                    We created binary and multi-class LSTM models. After evaluating these LSTM models, we compared against a logistic regression model,
+                    which performed significantly worse for classifying domain names.
+                </p>
                 <p>
                     <img class="displayed" src="{{url_for('static', filename='css/modeling_diagram.png') }}" alt="Binary and Multiclass models diagram">
                 </p>
                 <p>
                     <h3>Model Metrics</h3>
-                    <p>We evaluated the binary and multiclass models and for comparison, we trained and tested a logistic regression model. The resulting metrics
-                        are listed in the table below.</p>
+                    <p>The resulting metrics for the 3 models we evaluated are listed in the table below.</p>
                     <table class="metricstable">
                         <tr>
                             <th>Metric</th>
