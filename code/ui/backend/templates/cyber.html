@@ -126,7 +126,7 @@
 <section id="home"><br /></section>
 <div class="firstpage">
     <h1>Reque<span class="logo">&#x2718;</span> DNS</h1>
-    <h2>Malicious Domain Detection </h2>
+    <h2 style="font-family: Roboto Slab">Block Malicious Domain Requests <i>Intelligently</i> </h2>
     <br /><br /><br />
     <a class="btnlarge" href="#demo"><b>Try Now >></b></a>
     
@@ -204,27 +204,26 @@
             <div class="column middle">
 
                 <p>
-                    In September 2018, hurricane Florence struck the North Carolina coast as a powerful Category 1
-                    storm. It brought with it not only high winds,
-                    but record levels of rainfall. In its path was the North Carolina shoreline. Onslow County
-                    took a direct hit from Hurricane Florence resulting in massive flooding.
+                    In September 2018, hurricane Florence struck the North Carolina shoreline. It brought Category 1 force winds and massive flooding.
                 </p>
+
                 <p><img class="displayed" src="{{url_for('static', filename='css/hurricane-florence.jpg') }}" alt="Hurricane Florence"></p>
                 <figcaption>Source: Threat Post</figcaption>
+                <p>Hackers also sensed an opportunity.</p>
                 <p>
-                    The Onslow Water and Sewer Authority (ONWASA) is responsible for providing clean water to the over
-                    175,000 people who live in Onslow County.
-                    With all the flooding and infrastructure damage, they had an incredible task ahead of them. 
+                    The hackers had in their sights the Onslow Water and Sewer Authority (or ONWASA).
+                    It is responsible for providing clean water to 175,000 people in the region.
                 </p>
                 <p>
-                    But the hurricane wasn’t the only challenge they were going to face. Little did they know that their computer network 
-                    was infiltrated by a dangerous malware called Emotet in early October. Then, around 3am on October 13th, the Emotet malware contacted its 
-                    command and control servers and downloaded ransomware which encrypted and locked out all of ONWASA’s computers. 
-                    The only way to recover them was for ONWASA to pay a ransom to the hackers. </p>
+                    In the middle of their disaster response, hackers planted a trojan-horse malware called Emotet on their network. 
+                    After lying dormant for a few weeks, the Emotet-infected computers contacted their remote command and control servers and 
+                    downloaded new malware to ONWASA’s computers. This ransomware encrypted and locked out all of ONWASA’s customer-facing systems. 
+                </p>
                 <p>
-                    ONWASA refused to pay and had to revert to responding to all requests using manual processes. It took weeks for ONWASA to recover. 
-                    As a result, the malware directly impacted ONWASA’s ability to respond quickly and timely to their customers in their time of need.
-                    
+                    The only way to recover them was for ONWASA to pay a ransom to the hackers. With no guarantee that the hackers would honor the 
+                    terms of their extortion, ONWASA refused to pay. They had to revert to responding to all requests using manual processes. 
+                    It took weeks for ONWASA to recover. As a result, the malware directly impacted ONWASA’s ability to respond quickly and 
+                    timely to their customers in their time of need.
 
                 </p>
                 <p>
@@ -248,22 +247,24 @@
             </div>
             <div class="column middle">
                 <p>
-                    The cyber attack experienced by ONWASA is just one of many similar attacks. The Quarterly Threat Report for the third quarter,
-                    2018 from cybersecurity company 
-                    <a href="https://www.proofpoint.com/us">Proofpoint</a> shows that banking trojans, a category that includes Emotet, are the largest, most
-                    active category of malware across email, mobile apps, and social media.
+                    The cyber attack experienced by ONWASA is just one of many similar attacks. There are two key aspects to these attacks which are defined below.
                 </p>
                 <h3>Command and Control Servers</h3>
                 <p>
-                    A key element in Emotet's attack sequence, as well as similar types of malware, is its communication with command and control servers (C2
-                    servers). This communication allows malware to download new attack instructions or to monetize their botnet by selling
-                    access to the network of infected computers. It was this capability that downloaded the ransomware that caused the most acute trouble for ONWASA.
+                    This diagram from US-CERT shows how Emotet and similar malware works. We have highlighted in green a key step in Emotet’s attack sequence:
+                    its communication with command and control servers. 
                 </p>
                 <p>
                     <img class="displayed" src="{{url_for('static', filename='css/emotet_infection_process.png') }}"
                          alt="Emotet infection process">
                     <figcaption>Source: US-CERT, emphasis on step 3 added</figcaption>
                 </p>
+
+                <p>
+                    Communication with command and control servers (C2 servers) allows malware to download new attack instructions or to monetize their botnet by selling
+                    access to the network of infected computers. It was this capability that downloaded the ransomware that caused the most acute trouble for ONWASA.
+                </p>
+
                 <h3>Domain Generation Algorithm (DGA)</h3>
                 <p>
                     Emotet is one of many malware variants that utilize a domain generation algorithm (DGA) to evade
@@ -281,14 +282,16 @@
                         <li>Step 4: The C2 server sends an update which launches the next phase of the attack.</li>
                     </ul>
                 </p>
-                <p>The vast majority of DGA domains do not exist. But that is not a problem for the malware operator. They only need to register a small
-                    percentage of the domains for the malware to connect successfully to its C2 server. In fact it is adventag</p>
+                <p>
+                    The vast majority of DGA domains do not exist. But that is not a problem for the malware operator. They only need to register a small
+                    percentage of the domains for the malware to connect successfully to its C2 server. 
+                </p>
                 <p>
                     Traditionally, security teams rely on static rules and blacklists to block communication with malicious domains. These methods are
-                    increasingly less effective as malware evolves to use genrated domains. Malware like Emotet, uses algorithms to generate thousands
-                    of domains every day. There are now too many domain names being generated each day for security teams to try to block all of them.
+                    increasingly ineffective as malware evolves to use genrated domains. Malware like Emotet, uses domain generating algorithms to 
+                    generate thousands of domains every day. There are now too many domain names being generated each day for security teams to try to block all of them.
                 </p>
-               
+
 
             </div>
             <div class="column side">
@@ -315,36 +318,35 @@
                 </p>
                 <p>
                     Our solution is Reque<span style="color: red;">&#x2718;</span> DNS, a cloud-based, network security intelligent DNS firewall that protects
-                    consumers and businesses. Rather than
-                    preventing the initial infection, the goal of Reque<span style="color: red;">&#x2718;</span> DNS is to halt all communications from a
-                    malware to its command and control servers.
+                    consumers and businesses. Rather than preventing the initial infection, the goal of Reque<span style="color: red;">&#x2718;</span> DNS
+                    is to halt all communications from a malware to its command and control servers.
                 </p>
                 <p>
                     Most DNS servers do not block traffic, and most DNS firewalls only use blacklists of known malicious
-                    domain names to determine if a domain
-                    is malicious or benign.
+                    domain names to determine if a domain is malicious or benign.
                 </p>
                 <p>
-                    Our post-infection protection system uses a modified DNS server to prevent communications between
-                    malware and C2 servers.
-                    It can also be used to identify which networks and computers on a network are infected by DGA-based
-                    malware.
+                    Our post-infection protection system uses a modified DNS server to prevent communications between malware and C2 servers. It can also be
+                    used to identify which networks and computers on a network are infected by DGA-based malware.
                 </p>
                 <p>
-                    Below is an updated diagram illustrating how our solution works. In this diagram you can see the
-                    same process as in the previous section,
-                    however the last domain is blocked by our model.
+                    Our solution uses machine learning models to classify domain requests as benign or non-malicious. If they are deemed malicious,
+                    our models will block the DNS traffic. This blockage prevents the malware from communicating with its C2 server.
+                    In ONWASA’s case, the RYUK ransomware would never have attacked them.
+                </p>
+                <p>
+                    Below is an updated diagram illustrating how our solution works.
                 </p>
                 <p>
                     <img class="displayed" src="{{url_for('static', filename='css/requex_diagram.png') }}" alt="DNS solution that halts communication with C2 servers">
                 </p>
                 <p>
-                    Our solution uses machine learning models to classify domain requests as malicious or
-                    non-malicious. If they are deemed malicious,
-                    our models will block the DNS traffic. This blockage prevents the malware from communicating with
-                    its C2 server.
-                    In ONWASA’s case, the RYUK ransomware would never have attacked them.
+                    In this diagram you can see a similar process as in the previous section, however when the malware infected computer sends a request
+                    to the DNS server, Reque<span style="color: red;">&#x2718;</span> DNS analyzes the domain request with our deep learning model and determines that it is
+                    a malicious domain. In this case, the server responds with NXDOMAIN, the same as if the domain did not exist. Since the computer is not able
+                    to connect with the C2 server, no additional malware is downloaded.
                 </p>
+
                 <h3>Architecture</h3>
                 <p>Below is a high level diagram of our solution's architecture. </p>
             </div>
@@ -363,15 +365,32 @@
             </div>
             <div class="column middle">
                 <p>
-                    The end user configures their DNS to use Reque<span style="color: red;">&#x2718;</span> DNS. Reque<span style="color: red;">&#x2718;</span> DNS uses a load balancer to resolve DNS requests.
-                    The DNS servers utilize an Apache Kafka stream processor to distribute the data in a scalable fashion. Apache Storm subscribes
-                    to that  data feed, tokenizing the domain names and uses our models to predict whether the domain is benign or malicious, and
-                    if malicious, the family of malware to which it belongs. These results are published to a new Kafka channel to which our
-                    master DNS server subscribes and then updates the DNS Response Policy Zones (RPZ).
+                    RequeX architecture has three layers - training, inference and the application. 
                 </p>
-                <p>In a separate process, we collect training data (benign and malicious domain names), prepare the data for analysis, store it, then train the models. 
-                    The trained models are then deployed to Apache Storm for domain name prediction. Training is an ongoing process to keep up with new forms of
-                    DGA malware.</p>
+                <p>
+                    One of the important aspects of this problem space is that the malware keeps transforming with new algorithms, so the models and inferences 
+                    need to be up to date for the DNS server to be effective in blocking the malicious domains. We use a layered architecture that can keep up 
+                    with the changing datasets and evolving models, while keeping the application interface the same.
+                </p>
+                <p>
+                    In the <i>training</i> layer, we have a pipeline to collect the data from different sources and then cleanup and merge them into a single dataset. 
+                    This data is used to train our models. The trained models are evaluated and the best models are updated to the inference layer.
+                </p>
+                <p>
+                    In the <i>inference</i> layer, the model is served in an inference engine using an Apache Storm based pipeline which listens on a kafka bus for new requests. 
+                    The inferences include a binary classification of whether a domain is malicious or benign, and a sub-classification of the malicious domains. 
+                    These inferences are published on the kafka bus to serve applications.
+                </p>
+                <p>
+                    In the <i>application</i> layer, we will have DNS resolvers with a frontend load balancer and a DNS Master. These servers connect to the 
+                    inference layer using the kafka bus with different topics. 
+                </p>
+                <p>
+                    When a computer is configured with our Reque<span style="color: red;">&#x2718;</span>  DNS server, the requests are sent to one of these DNS resolvers. The resolvers publish any unresolved domains
+                    on a topic to the kafka bus served by the inference engine. The inference engine responds with the responses on the kafka bus with another topic.
+                    The DNS master listens to these topics and updates its Response Policy Zone (RPZ) list and publishes them to the DNS resolvers.
+                </p>
+               
                 <h3>Training Pipeline</h3>
                 <p>The diagram below shows the steps from raw data from Cisco Umbrella and Bambenek to our trained model files.</p>
             </div>
