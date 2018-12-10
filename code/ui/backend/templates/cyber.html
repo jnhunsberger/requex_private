@@ -377,17 +377,17 @@
                     This data is used to train our models. The trained models are evaluated and the best models are updated to the inference layer.
                 </p>
                 <p>
-                    In the <i>inference</i> layer, the model is served in an inference engine using an Apache Storm based pipeline which listens on a kafka bus for new requests. 
+                    In the <i>inference</i> layer, the model is served in an inference engine using an Apache Storm based pipeline which listens on a Kafka bus for new requests. 
                     The inferences include a binary classification of whether a domain is malicious or benign, and a sub-classification of the malicious domains. 
-                    These inferences are published on the kafka bus to serve applications.
+                    These inferences are published on the Kafka bus to serve applications.
                 </p>
                 <p>
                     In the <i>application</i> layer, we will have DNS resolvers with a frontend load balancer and a DNS Master. These servers connect to the 
-                    inference layer using the kafka bus with different topics. 
+                    inference layer using the Kafka bus with different topics. 
                 </p>
                 <p>
                     When a computer is configured with our Reque<span style="color: red;">&#x2718;</span>  DNS server, the requests are sent to one of these DNS resolvers. The resolvers publish any unresolved domains
-                    on a topic to the kafka bus served by the inference engine. The inference engine responds with the responses on the kafka bus with another topic.
+                    on a topic to the Kafka bus served by the inference engine. The inference engine responds with the responses on the Kafka bus with another topic.
                     The DNS master listens to these topics and updates its Response Policy Zone (RPZ) list and publishes them to the DNS resolvers.
                 </p>
                
