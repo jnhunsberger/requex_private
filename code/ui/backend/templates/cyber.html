@@ -52,9 +52,9 @@
                 } // End if
             });
 
-
         });
 
+        
         $(function() {
             // if no multiclass return, hide results element
 
@@ -114,7 +114,7 @@
     <a class="topnavbtn" href="#team">Team</a>
     <a class="topnavbtn" href="#model">Model</a>
     <a class="topnavbtn" href="#data">Data</a>
-    <a class="topnavbtn" href="#about">Solution</a>
+    <a class="topnavbtn" href="#solution">Solution</a>
     <a class="topnavbtn" href="#problem">Problem</a>
     <a class="topnavbtn" href="#story">Story</a>
     <a class="topnavbtn" href="#demo">Demo</a>
@@ -122,7 +122,8 @@
 
 </div>
 
-<div id="home"><br /></div>
+<body>
+<section id="home"><br /></section>
 <div class="firstpage">
     <h1>Reque<span class="logo">&#x2718;</span> DNS</h1>
     <h2>Malicious Domain Detection </h2>
@@ -131,7 +132,7 @@
     
 </div>
 
-<body>
+
 
     <div class="black-group" id="demo">
         <h2>Demo</h2>
@@ -140,27 +141,30 @@
                 <br />
             </div>
             <div class="column middle">
+                <p>This demo shows the our classification model in action. In reality, this model would be integrated into our
+                    full solution which is described in the sections below, and would be capable of handling thousands of requests 
+                    automatically.</p>
                 <p style="text-align: center">
-                    Enter a domain name to test if Reque<span style="color: red;">&#x2718;</span> DNS would block access to it.
+                    Enter the name of a domain to test if Reque<span style="color: red;">&#x2718;</span> DNS would block access to it.
                 </p>
                 <div class="container">
                     <div class="demomain">
                         <form>
                             <div class="form-group">
-                                <input type="text"  name="URL_Binary" placeholder="Enter a domain name" autocomplete="off">
+                                <input type="text" name="URL_Binary" placeholder="Enter a domain name" autocomplete="off">
                                 <button class="btn success" type="submit">Test</button>
                             </div>
                         </form>
-                        <br/><br />
+                        <br/><br/>
                         <h4 id="url">{{binary_output.url}}</h4>
                         <table class="metricstable" id="results">
 
                             <tr>
                                 <td id="typeLabel">Type: </td>
                                 <td>
-                                     <span id="binarytype" class="resultstext">{{binary_output.type}}</span>
-                                    <span id="benign" class="benign">  &#x2714;</span>
-                                    <span id="maliciousX" class="malicious">  &#x2718;</span>
+                                    <span id="binarytype" class="resultstext">{{binary_output.type}}</span>
+                                    <span id="benign" class="benign"> &#x2714;</span>
+                                    <span id="maliciousX" class="malicious"> &#x2718;</span>
                                 </td>
                             </tr>
                             <tr>
@@ -169,12 +173,12 @@
                             </tr>
                             <tr>
                                 <td id="DGAProbability">Prediction Probability: </td>
-                                <td id="predictionprob" class="resultstext" >{{multi_output.probability}}</td>
+                                <td id="predictionprob" class="resultstext">{{multi_output.probability}}</td>
                             </tr>
                         </table>
                     </div>
                 </div>
-                
+
             </div>
             <div class="column side">
                 <br />
@@ -244,7 +248,7 @@
             </div>
             <div class="column middle">
                 <p>
-                    The cyber attack experienced by ONWASA, is just one of many similar attacks. The Quarterly Threat Report for the third quarter,
+                    The cyber attack experienced by ONWASA is just one of many similar attacks. The Quarterly Threat Report for the third quarter,
                     2018 from cybersecurity company 
                     <a href="https://www.proofpoint.com/us">Proofpoint</a> shows that banking trojans, a category that includes Emotet, are the largest, most
                     active category of malware across email, mobile apps, and social media.
@@ -272,20 +276,16 @@
                 <p>
                     <ul style="list-style-type: circle">
                         <li>Step 1: The malware sends requests to a DNS server to see if a generated domain exists.</li>
-                        <li>Step 2: The vast majority of domains do not exist.</li>
-                        <li>
-                            Step 3: But for the malware operator, that is ok. They only need to register a small
-                            percentage of the domains for the
-                            malware to connect successfully to its C2 server. Once the malware has the IP address, the
-                            malware can then request
-                            its update.
-                        </li>
+                        <li>Step 2: The DNS server responds with an IP address, or a message that the domain does not exist.</li>
+                        <li>Step 3: Once the malware has the IP address, the malware can then request its update.</li>
                         <li>Step 4: The C2 server sends an update which launches the next phase of the attack.</li>
                     </ul>
                 </p>
+                <p>The vast majority of DGA domains do not exist. But that is not a problem for the malware operator. They only need to register a small
+                    percentage of the domains for the malware to connect successfully to its C2 server. In fact it is adventag</p>
                 <p>
-                    Traditionally, security teams rely on static rules and blacklists to block communication with malicious domains. These methods, 
-                    while better than nothing, are increasingly no longer effective. Malware, like Emotet, uses algorithms to generate thousands
+                    Traditionally, security teams rely on static rules and blacklists to block communication with malicious domains. These methods are
+                    increasingly less effective as malware evolves to use genrated domains. Malware like Emotet, uses algorithms to generate thousands
                     of domains every day. There are now too many domain names being generated each day for security teams to try to block all of them.
                 </p>
                
@@ -301,7 +301,7 @@
         <section></section>
     </div>
 
-    <div class="black-group" id="about">
+    <div class="black-group" id="solution">
         <h2 style="text-align: center">Solution</h2>
         <div class="row">
             <div class="column side">
@@ -309,7 +309,7 @@
             </div>
             <div class="column middle">
                 <p>
-                    Our team aims to solve this problem by using models that can predict a malicious domain and block communications without using static lists.
+                    Our team aims to solve this problem by using models that can predict whether a domain is malicious and block communications without using static lists.
                     We believe that a combination of threat intelligence and machine learning integrated into DNS servers can halt the C2 server communications
                     used by malware.
                 </p>
@@ -365,11 +365,11 @@
                 <p>
                     The end user configures their DNS to use Reque<span style="color: red;">&#x2718;</span> DNS. Reque<span style="color: red;">&#x2718;</span> DNS uses a load balancer to resolve DNS requests.
                     The DNS servers utilize an Apache Kafka stream processor to distribute the data in a scalable fashion. Apache Storm subscribes
-                    to that  data feed, tokenizing the domain names and uses our models to predicts whether the domain is benign or malicious, and
+                    to that  data feed, tokenizing the domain names and uses our models to predict whether the domain is benign or malicious, and
                     if malicious, the family of malware to which it belongs. These results are published to a new Kafka channel to which our
                     master DNS server subscribes and then updates the DNS Response Policy Zones (RPZ).
                 </p>
-                <p>In a separate process, we collect training data (benign and malicious domain names), prep the data for analysis, store it, then train the models. 
+                <p>In a separate process, we collect training data (benign and malicious domain names), prepare the data for analysis, store it, then train the models. 
                     The trained models are then deployed to Apache Storm for domain name prediction. Training is an ongoing process to keep up with new forms of
                     DGA malware.</p>
                 <h3>Training Pipeline</h3>
@@ -457,7 +457,7 @@
         </div>
         <div style="margin-left: 10%; margin-right: 10%">
             <p>
-                <img class="displayed" src="{{url_for('static', filename='css/character analysis.png') }}" alt="Character analysis">
+                <img class="displayed" src="{{url_for('static', filename='css/letter_count_all_separate.png') }}" alt="Character analysis">
             </p>
         </div>
         <div class="row">
