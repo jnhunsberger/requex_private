@@ -371,7 +371,7 @@
             </div>
             <div class="column middle">
                 <p>
-                    RequeX architecture has three layers - training, inference and the application. 
+                    The Reque<span style="color: red;">&#x2718;</span> architecture has three layers - training, inference and the application. 
                 </p>
                 <p>
                     One of the important aspects of this problem space is that the malware keeps transforming with new algorithms, so the models and inferences 
@@ -637,7 +637,7 @@
                             <th>LSTM Multiclass</th>
                             <th>Logistic Regression</th>
                         </tr>
-                       <tr>
+                        <tr>
                             <td>Accuracy</td>
                             <td>{{binary_metrics.accuracy}}</td>
                             <td>{{multi_metrics.accuracy}}</td>
@@ -675,14 +675,16 @@
                         </tr>
                     </table>
                 </p>
-                <p>
-                    <img class="displayed" src="{{url_for('static', filename='css/model_metrics.png') }}" alt="Model metrics chart">
-                </p>
+                
             </div>
             <div class="column side">
                 <br />
             </div>
         </div>
+        <div style="margin-left: 15%; margin-right: 15%"><p>
+            <img class="displayed" src="{{url_for('static', filename='css/model_metrics.png') }}" alt="Model metrics chart">
+        </p>
+            </div>
     </div>
 
 <div class="main">
