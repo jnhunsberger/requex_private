@@ -154,6 +154,14 @@ th {
     text-align: left;
 }
 
+ul {
+    padding-left: 50px;
+}
+
+ul.a {
+    list-style-type: circle;
+}
+
 /*Custom style classes*/
 .firstpage {
     height: 100%;
@@ -263,7 +271,7 @@ th {
     right: 0;
     left: 0;
     text-align: left;
-    margin-top: 10%;
+    margin-top: 5%;
     margin-left: 10%;
     margin-right: 10%;
 }
@@ -274,12 +282,12 @@ th {
 
 /* Left and right column */
 .column.side {
-    width: 20%;
+    width: 24%;
 }
 
 /* Middle column */
 .column.middle {
-    width: 60%;
+    width: 52%;
 }
 
 /* Clear floats after the columns */
@@ -289,9 +297,25 @@ th {
     clear: both;
 }
 
+.altcolumn {
+    float: left;
+}
+
+
+/* Left and right column */
+    .altcolumn.side {
+        width: 15%;
+    }
+
+/* Middle column */
+    .altcolumn.middle {
+        width: 70%;
+    }
+
 .resultstext {
     font-weight: bold;
 }
+
 
 
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
@@ -315,6 +339,28 @@ th {
 
 .metricstable td, .metricstable.th {
     width: 25%;
+}
+
+.twocoltable {
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.twocoltable.th {
+    font-size: 150%;
+    font-weight: bold;
+    /*padding-bottom: 20px;*/
+}
+
+.twocoltable td, .twocoltable.th {
+    width: 400px;
+    text-align: left;
+    vertical-align: text-top;
+    padding-right: 25px;
+}
+
+.twocoltable td {
+    font-size: 18px;
 }
 
 .btnlarge {

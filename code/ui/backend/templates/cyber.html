@@ -112,6 +112,7 @@
 <div class="topnav" id="navigation">
 
     <a class="topnavbtn" href="#team">Team</a>
+    <a class="topnavbtn" href="#roadmap">Roadmap</a>
     <a class="topnavbtn" href="#model">Model</a>
     <a class="topnavbtn" href="#data">Data</a>
     <a class="topnavbtn" href="#solution">Solution</a>
@@ -126,7 +127,7 @@
 <section id="home"><br /></section>
 <div class="firstpage">
     <h1>Reque<span class="logo">&#x2718;</span> DNS</h1>
-    <h2 style="font-family: Roboto Slab">Block Malicious Domain Requests <i>Intelligently</i> </h2>
+    <h2 style="font-family: Roboto Slab"><span style="color: red;">Block</span> Malicious Domain Requests <i>Intelligently</i> </h2>
     <br /><br /><br />
     <a class="btnlarge" href="#demo"><b>Try Now >></b></a>
     
@@ -141,14 +142,15 @@
                 <br />
             </div>
             <div class="column middle">
-                <p>This demo shows the our classification model in action. In reality, this model would be integrated into our
-                    full solution which is described in the sections below, and would be capable of handling thousands of requests 
-                    automatically.</p>
-                <p style="text-align: center">
-                    Enter the name of a domain to test if Reque<span style="color: red;">&#x2718;</span> DNS would block access to it.
-                </p>
+
+               
                 <div class="container">
+                   
                     <div class="demomain">
+                        <p style="text-align: center">
+                            Enter the name of a domain to test if Reque<span style="color: red;">&#x2718;</span> DNS would block access to it.
+                        </p>
+                        <br />
                         <form>
                             <div class="form-group">
                                 <input type="text" name="URL_Binary" placeholder="Enter a domain name" autocomplete="off">
@@ -156,7 +158,7 @@
                             </div>
                         </form>
                         <br/><br/>
-                        <h4 id="url">{{binary_output.url}}</h4>
+                        <p id="url">{{binary_output.url}}</p>
                         <table class="metricstable" id="results">
 
                             <tr>
@@ -178,7 +180,11 @@
                         </table>
                     </div>
                 </div>
-
+                <p>
+                    This demo shows the our classification model in action. In reality, this model would be integrated into our
+                    full solution which is described in the sections below, and would be capable of handling thousands of requests
+                    automatically.
+                </p>
             </div>
             <div class="column side">
                 <br />
@@ -467,18 +473,18 @@
                     it served as a way to confirm the datasets should be different enough to predict using machine learning.
                 </p>
                 <p class="subheading">Character Frequency Analysis</p>
-                <p>The following chart shows the normalized character frequencies of the characters in each domain name set.</p>
-
+                <p>The following chart shows the character frequencies of the characters in each domain name set. The values have been normalized to account for the
+                    different sizes of the datasets, while showing the different patterns of letter frequencies.</p>
+                
+                <p>
+                <img class="displayed" src="{{url_for('static', filename='css/letter_count_all_separate.png') }}" alt="Character analysis">
+            </p>
             </div>
             <div class="column side">
                 <br />
             </div>
         </div>
-        <div style="margin-left: 10%; margin-right: 10%">
-            <p>
-                <img class="displayed" src="{{url_for('static', filename='css/letter_count_all_separate.png') }}" alt="Character analysis">
-            </p>
-        </div>
+       
         <div class="row">
             <div class="column side">
                 <br />
@@ -493,7 +499,7 @@
                 <p>We calculated the heirarchy count for each domain name. Amazon.com would have a heirarchy count of 2, while pages.github.com
                     would have a count of 3. The following histograms compare the three datasets by heirachy count.</p>
                 <p>
-                    <img class="displayed" src="{{url_for('static', filename='css/hierarchy_count.png') }}" alt="Heirarchy analysis">
+                    <img class="displayed" src="{{url_for('static', filename='css/hierarchy_count_colored.png') }}" alt="Heirarchy analysis">
                 </p>
                 <p>The one feature that jumps out is that benign domain names are more likely to have higher heirarchies than the malicious domain names, 
                     while the malicious DGA domains predominantly have heirarchy counts of 2. This matches what we saw above, that benign domain
@@ -510,16 +516,15 @@
             <div class="column middle">
                 <p class="subheading">Domain Name Length Analysis</p>
                 <p>We also compared the name lengths of the domains in the datasets. The histograms below show the distribution of domain name lengths for the different datasets.</p>
+                <p>
+                <img class="displayed" src="{{url_for('static', filename='css/domain_length_separate.png') }}" alt="Character analysis">
+            </p>
             </div>
             <div class="column side">
                 <br />
             </div>
         </div>
-        <div style="margin-left: 10%; margin-right: 10%">
-            <p>
-                <img class="displayed" src="{{url_for('static', filename='css/domain_length.png') }}" alt="Character analysis">
-            </p>
-        </div>
+        
         <div class="row">
             <div class="column side">
                 <br />
@@ -534,23 +539,14 @@
                 <p class="subheading">Top Level Domain Analysis</p>
                 <p>
                     The top level domains of .com, .net and .org were the top three for each dataset. The charts below show the relative
-                    frequency of the next 10 most common top level domains, in order by top level domains for each dataset.
+                    frequency of the 15 most common top level domains. Each chart shows the top 15 ordered by one of the datasets, with the
+                    other two datasets shown in grey for comparison..
                 </p>
-            </div>
-            <div class="column side">
-                <br />
-            </div>
-        </div>
-        <div style="margin-left: 10%; margin-right: 10%">
-            <img class="displayed" src="{{url_for('static', filename='css/tld_top_cisco2.png') }}" alt="Top level domain frequencies">
-            <img class="displayed" src="{{url_for('static', filename='css/tld_top_dlg2.png') }}" alt="Top level domain frequencies">
-            <img class="displayed" src="{{url_for('static', filename='css/tld_top_dlg3.png') }}" alt="Top level domain frequencies">
-        </div>
-        <div class="row">
-            <div class="column side">
-                <br />
-            </div>
-            <div class="column middle">
+                <p>
+                    <img class="displayed" src="{{url_for('static', filename='css/tld_top_cisco2.png') }}" alt="Top level domain frequencies">
+                    <img class="displayed" src="{{url_for('static', filename='css/tld_top_dlg2.png') }}" alt="Top level domain frequencies">
+                    <img class="displayed" src="{{url_for('static', filename='css/tld_top_dlg3.png') }}" alt="Top level domain frequencies">
+                </p>
                 <p>
                     Of special note is the that .ru (for Russia) is the 4th most common top level domain in the Cisco Umbrella set. The .biz domain
                     is also far more common in the malicious datasets. And especially interesting is that the .pw domain is the 6th most common
@@ -558,6 +554,33 @@
                     with a population size of roughly 22,000.
                 </p>
 
+                <p class="subheading">Distinct Word Analysis</p>
+                <p>
+                    We also explored Natural Language Processing techniques to segment the domain labels further into smaller chunks of meaningful words,
+                    to see if some metrics based on such segmentation are able to show any appreciable difference between the DGA and benign categories.
+                </p>
+                <p>The strongest signal we found is in the number of distinct words in the domain name, normalized by the domain length. 
+                    There is at least an order of difference between the two categories.</p>
+                <p>
+                    Other metrics, such as raw/normalized scoring based on vocabulary contexts and raw count of or normalized number of digit characters
+                    in the domain name don't seem to offer any appreciable differentiation between the DGA and benign domains.</p>
+
+                <p>Below you will see how DGA and benign domains compared in number of distinct words, normalized by domain length. Both linear and log
+                    results are shown.</p>
+                
+            </div>
+            <div class="column side">
+                <br />
+            </div>
+        </div>
+        <div><img class="displayed" src="{{url_for('static', filename='css/requex_sbs_normalized_number_of_distinct_words.png') }}" alt="Normalized Number of Distinct Words"></div>
+        
+        <div class="row">
+            <div class="column side">
+                <br />
+            </div>
+            <div class="column middle">
+                
             </div>
             <div class="column side">
                 <br />
@@ -662,45 +685,185 @@
         </div>
     </div>
 
-    <div class="main">
-        <section></section>
+<div class="main">
+    <section></section>
+</div>
+
+<div class="black-group" id="roadmap">
+    <h2>Roadmap</h2>
+    <div class="row">
+        <div class="altcolumn side">
+            <br />
+        </div>
+        <div class="altcolumn middle">
+            <table class="twocoltable">
+                <tr>
+                    <th class="twocoltable th">MVP Roadmap</th>
+                    <th class="twocoltable th">Post-MVP Roadmap</th>
+                </tr>
+                <tr>
+                    <td>
+                        <p><span style="color: #4CAF50">&#x2714; </span>  Find data sources </p>
+                        <p><span style="color: #4CAF50">&#x2714; </span>  Build binary and multiclass models</p>
+                        <p>
+                            <span style="color: #4CAF50">&#x2714; </span>  Automate:
+                            <ul class="a">
+                                <li>data collection</li>
+                                <li>model training</li>
+                                <li>model evaluation</li>
+                            </ul>
+                        </p>
+                        <p><span style="color: #4CAF50">&#x2714; </span>  Build demonstration UI (requex.net)</p>
+                        <p>&#x2B55; Integrate solution into DNS infrastructure</p>
+                        <p>&#x2B55; Deploy to first customer and evaluate</p>
+
+                    </td>
+                    <td><p>&#x2B55; Build customer reporting and customization portal</p>
+                        <p>&#x2B55; Diversify the DGA threat intelligence data</p>
+                        <p>&#x2B55; Build adversarial binary and multiclass models</p>
+                        <p>&#x2B55; Scale out our infrastructure</p>
+                        
+                    </td>
+                </tr>
+               
+            </table>
+        </div>
+       
+        <div class="altcolumn side">
+            <br />
+        </div>
+    </div>
+</div>
+
+
+
+<div class="white-group" id="team">
+    <h2 style="text-align: center; color: black;">Our Team</h2>
+    <table style="width: 100%">
+        <tr>
+            <td><img src="{{url_for('static', filename='css/jhunsberger.png') }}" alt="Jason Hunsberger"></td>
+            <td><img src="{{url_for('static', filename='css/aniruddh.png') }}" alt="Aniruddh Nautiyal"></td>
+            <td><img src="{{url_for('static', filename='css/surya.png') }}" alt="Surya Nimmagadda"></td>
+            <td><img src="{{url_for('static', filename='css/liz.png') }}" alt="Elizabeth Shulok"></td>
+        </tr>
+        <tr>
+            <td style="font-size: 18px; font-weight: bold; color: black">Jason Hunsberger</td>
+            <td style="font-size: 18px; font-weight: bold; color: black">Aniruddh Nautiyal</td>
+            <td style="font-size: 18px; font-weight: bold; color: black">Surya Nimmagadda</td>
+            <td style="font-size: 18px; font-weight: bold; color: black">Elizabeth Shulok</td>
+        </tr>
+        <tr>
+            <td style="font-size: 17px; font-style: italic; color: black">Digital Product Manager</td>
+            <td style="font-size: 17px; font-style: italic; color: black">Staff Test Engineer</td>
+            <td style="font-size: 17px; font-style: italic; color: black">Distinguished Engineer</td>
+            <td style="font-size: 16px; font-style: italic; color: black">Principal Engineer</td>
+        </tr>
+        <tr>
+            <td style="font-size: 17px; font-weight: bold; color: #595959;">Boston Area Non-profit</td>
+            <td style="font-size: 17px; font-weight: bold; color: #595959;">Cypress Semiconductor</td>
+            <td style="font-size: 17px; font-weight: bold; color: #595959;">Juniper Networks</td>
+            <td style="font-size: 16px; font-weight: bold; color: #595959;">Autodesk</td>
+        </tr>
+        <tr>
+            <td><a href="https://www.linkedin.com/in/jnhunsberger/"><img src={{url_for('static', filename='css/In-Black-14px.png') }} alt="LinkedIn"></a></td>
+            <td style="font-size: 17px; font-weight: bold; color:#595959;"></td>
+            <td><a href="https://www.linkedin.com/in/surya-nimmagadda-301b195/"><img src={{url_for('static', filename='css/In-Black-14px.png') }} alt="LinkedIn"></a></td>
+            <td><a href="https://www.linkedin.com/in/eshulok/"><img src={{url_for('static', filename='css/In-Black-14px.png') }} alt="LinkedIn"></a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="black-group" id="thankyou">
+    <h2>Thank you</h2>
+    <div class="row">
+        <div class="altcolumn side">
+            <br />
+        </div>
+        <div class="altcolumn middle">
+            <p>We would like to extend our deepest thanks to the following for their insight, support, data and time.</p>
+            
+            <table class="twocoltable">
+                <tr>
+                    <th class="twocoltable th">Paul Vixie</th>
+                    <th class="twocoltable th">Cisco Umbrella</th>
+                </tr>
+                <tr>
+                    <td>CEO, Farsight Security</td>
+                    <td> Daily top 1 million domains </td>
+                </tr>
+            </table>
+
+        </div>
+        <div class="altcolumn side">
+            <br />
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="altcolumn side">
+            <br />
+        </div>
+        <div class="altcolumn middle">
+
+            <table class="twocoltable">
+                <tr>
+                    <th class="twocoltable th">John Bambanek</th>
+                    <th class="twocoltable th">Endgame, Inc</th>
+                </tr>
+                <tr>
+                    <td>Bambanek Consulting</td>
+                    <td> Research on using LSTMs for Domain Generating Algorithms</td>
+                </tr>
+            </table>
+
+        </div>
+        <div class="altcolumn side">
+            <br />
+        </div>
     </div>
 
+    <div class="row">
+        <div class="altcolumn side">
+            <br />
+        </div>
+        <div class="altcolumn middle">
 
+            <table class="twocoltable">
+                <tr>
+                    <th class="twocoltable th">Joyce Shen</th>
+                    <th class="twocoltable th"></th>
+                </tr>
+                <tr>
+                    <td>UC Berkeley and Tenfore Holdings</td>
+                    <td></td>
+                </tr>
+            </table>
 
-    <div class="white-group" id="team">
-        <h2 style="text-align: center; color: black;">Our Team</h2>
-        <table style="width: 100%">
-            <tr>
-                <td><img src="{{url_for('static', filename='css/jhunsberger.png') }}" alt="Jason Hunsberger"></td>
-                <td><img src="{{url_for('static', filename='css/aniruddh.png') }}" alt="Aniruddh Nautiyal" style="opacity: 1;"></td>
-                <td><img src="{{url_for('static', filename='css/surya.png') }}" alt="Surya Nimmagadda"></td>
-                <td><img src="{{url_for('static', filename='css/liz.png') }}" alt="Elizabeth Shulok"></td>
-            </tr>
-            <tr>
-                <td style="font-size: 18px; font-weight: bold; color: black">Jason Hunsberger</td>
-                <td style="font-size: 18px; font-weight: bold; color: black">Aniruddh Nautiyal</td>
-                <td style="font-size: 18px; font-weight: bold; color: black">Surya Nimmagadda</td>
-                <td style="font-size: 18px; font-weight: bold; color: black">Elizabeth Shulok</td>
-            </tr>
-            <tr>
-                <td style="font-size: 17px; font-style: italic; color: black">Digital Product Manager</td>
-                <td style="font-size: 17px; font-style: italic; color: black">Staff Test Engineer</td>
-                <td style="font-size: 17px; font-style: italic; color: black">Distinguished Engineer</td>
-                <td style="font-size: 16px; font-style: italic; color: black">Principal Engineer</td>
-            </tr>
-            <tr>
-                <td style="font-size: 17px; font-weight: bold; color: #595959;">Boston Area Non-profit</td>
-                <td style="font-size: 17px; font-weight: bold; color: #595959;">Cypress Semiconductor</td>
-                <td style="font-size: 17px; font-weight: bold; color: #595959;">Juniper Networks</td>
-                <td style="font-size: 16px; font-weight: bold; color: #595959;">Autodesk</td>
-            </tr>
-            <tr>
-                <td><a href="https://www.linkedin.com/in/jnhunsberger/"><img src={{url_for('static', filename='css/In-Black-14px.png') }} alt="LinkedIn"></a></td>
-                <td style="font-size: 17px; font-weight: bold; color:#595959;">Company</td>
-                <td style="font-size: 17px; font-weight: bold; color:#595959;">Company</td>
-                <td><a href="https://www.linkedin.com/in/eshulok/"><img src={{url_for('static', filename='css/In-Black-14px.png') }} alt="LinkedIn"></a></td>
-            </tr>
-        </table>
+        </div>
+        <div class="altcolumn side">
+            <br />
+        </div>
     </div>
+    <div class="row">
+        <div class="altcolumn side">
+            <br />
+        </div>
+        <div class="altcolumn middle">
+            <table class="twocoltable">
+                <tr>
+                    <th class="twocoltable th">David Steier</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>UC Berkeley and Deloitte Consulting</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <div class="altcolumn side">
+            <br />
+        </div>
+    </div>
+</div>
 </body>
