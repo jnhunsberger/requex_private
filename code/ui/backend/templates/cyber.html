@@ -379,7 +379,7 @@
                 </p>
                 <p>
                     When a computer is configured with our Reque<span style="color: red;">&#x2718;</span> DNS server, the requests are sent to one of these DNS resolvers.
-                    The resolvers publish all domains on a topic to the Kafka bus served by the inference engine. The inference engine responds with the
+                    The resolvers publish any non-cached domains on a topic on a topic to the Kafka bus served by the inference engine. The inference engine responds with the
                     responses on the Kafka bus with another topic.
                     The DNS master listens to these topics and updates its Response Policy Zone (RPZ) list and publishes them to the DNS resolvers.
                 </p>
