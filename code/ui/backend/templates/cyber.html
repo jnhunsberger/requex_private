@@ -1,15 +1,27 @@
 <head>
+    <title>RequeX DNS</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Jason Hunsberger, Elizabeth Shulok, Surya Nimmgadda, Aniruddh Nautiyal">
+    <meta name="description" content="RequeX DNS is an intelligent DNS firewall that uses deep-learning models to block malicious domain requests.">
 
-    <!-- For main text -->
+    <!-- Favicons for browser tab -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static', filename='css/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static', filename='css/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static', filename='css/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{url_for('static', filename='css/site.webmanifest') }}">
+    <link rel="mask-icon" href="{{url_for('static', filename='css/safari-pinned-tab.svg') }}" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Font for main text -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto Slab">
-    <!-- For text on demo screen -->
+    <!-- Font for text on demo screen -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Doppio One">
-    <!-- For headings -->
+    <!-- Font for headings -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron">
-    <!-- Favicon for browser tab -->
-    <link rel="icon" type="image/png" href="{{url_for('static', filename='css/LogoBlack.png') }}">
-    
+    <!-- Main style sheet -->
     <link type="text/css" rel="stylesheet" href="{{url_for('static', filename='css/styles.css') }}" />
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
@@ -54,7 +66,7 @@
 
         });
 
-        
+
         $(function() {
             // if no multiclass return, hide results element
 
@@ -84,17 +96,17 @@
                     maliciousSybol.style.visibility = "hidden";
                     urlString.style.visibility = "hidden";  // in case a previous url is displayed
                     typeLabel.style.visibility = "hidden";
-               
+
                 } else {
                     // This should be nonMalicious
                     typeLabel.style.visibility = "visible";
-                    urlString.style.visibility = "visible"; 
+                    urlString.style.visibility = "visible";
                     benignSymbol.style.display = "inline";
                     maliciousSybol.style.display = "none";
                 }
             } else {    // This is malicious
                 typeLabel.style.visibility = "visible";
-                urlString.style.visibility = "visible"; 
+                urlString.style.visibility = "visible";
                 binaryResult.style.visibility = "visible";  // always visible if there are any results
                 classLabel.style.visibility = "visible";
                 multiclassType.style.visibility = "visible";
@@ -103,10 +115,10 @@
                 benignSymbol.style.display = "none";
                 maliciousSybol.style.display = "inline";
             }
-            
+
         });
 
-        
+
     </script>
 </head>
 <div class="topnav" id="navigation">
@@ -129,7 +141,7 @@
     <h2 style="font-family: Roboto Slab"><span style="color: red;">Block</span> Malicious Domain Requests <i>Intelligently</i> </h2>
     <br /><br /><br />
     <a class="btnlarge" href="#demo"><b>Try Now >></b></a>
-    
+
 </div>
 
 
@@ -142,9 +154,9 @@
             </div>
             <div class="column middle">
 
-               
+
                 <div class="container">
-                   
+
                     <div class="demomain">
                         <p style="text-align: center">
                             Enter the name of a domain to test if Reque<span style="color: red;">&#x2718;</span> DNS would block access to it.
@@ -189,8 +201,8 @@
                 <br />
             </div>
         </div>
-        
-        
+
+
         <div style="text-align: center">
             <br /><br /><br /><br />
             <a class="btnlarge" href="#story"><b>Learn More >></b></a>
@@ -200,7 +212,7 @@
     <div class="main">
         <section></section>
     </div>
- 
+
     <div class="black-group" id="problem">
         <h2 style="text-align: center">The Problem</h2>
         <div class="row">
@@ -209,19 +221,19 @@
             </div>
             <div class="column middle">
                 <p>
-                    Malware and hacking is an issue that affects all of society. In 2016 alone, cyber attacks cost the US economy over <b>$100B</b>.
+                    Malware and hacking is an issue that affects all of society. In 2016 alone, <a href="https://www.whitehouse.gov/wp-content/uploads/2018/03/The-Cost-of-Malicious-Cyber-Activity-to-the-U.S.-Economy.pdf">cyber attacks cost the US economy over <b>$100B</b></a>.
                     These attacks not only affect the economy, but the general public as well.
                 </p>
                 <h3>A Story</h3>
                 <p>
-                    In September 2018, hurricane Florence struck the North Carolina shoreline. It brought Category 1 force winds and massive flooding.
+                    In September 2018, hurricane Florence struck the North Carolina shoreline. It brought Category-1 force winds and massive flooding.
                 </p>
 
                 <p><img class="displayed" src="{{url_for('static', filename='css/hurricane-florence.jpg') }}" alt="Hurricane Florence"></p>
                 <figcaption>Source: Threat Post</figcaption>
                 <p>Hackers also sensed an opportunity.</p>
                 <p>
-                    Their target was the Onslow Water and Sewer Authority. ONWASA is responsible for providing clean water to 175,000 people in the region.
+                    Their target was the <a href="https://www.onwasa.com/31/About-Us">Onslow Water and Sewer Authority</a>. ONWASA is responsible for providing clean water to 175,000 people in the region.
                     The hackers slipped the trojan-horse malware Emotet onto ONWASA’s network. Once established, Emotet contacted its remote command and control
                     servers and downloaded more malware. This malware contained ransomware which encrypted and locked all of ONWASA’s customer-facing systems –
                     in the middle of their disaster response!
@@ -281,7 +293,7 @@
                     Traditionally, security teams use blacklists to block these communications. Unfortunately, blacklists are not effective against
                     domain generating algorithms: there are thousands of domains being generated every day.
                 </p>
- 
+
             </div>
             <div class="column side">
                 <br />
@@ -302,18 +314,14 @@
             <div class="column middle">
                 <p>
                     To solve the problems presented by malware that uses domain generation algorithms, our team is building Reque<span style="color: red;">&#x2718;</span> DNS -
-                    an intelligent DNS firewall with an integrated deep-learning model that can block requests to algorithm-generated domains. This blockage prevents 
+                    an intelligent DNS firewall with an integrated deep-learning model that can block requests to algorithm-generated domains. This blockage prevents
                     the malware from communicating with its C2 server.
                 </p>
-                
+
                 <p>
                     Most DNS servers do not block traffic, and most DNS firewalls only use blacklists of known malicious
                     domain names to determine if a domain is malicious or benign.
                 </p>
-                <p>
-                    Our post-infection protection system can also be used to identify which networks and computers on a network are infected by DGA-based malware.
-                </p>
-                
                 <p>
                     Below is an updated diagram illustrating how our solution works.
                 </p>
@@ -324,7 +332,7 @@
                     <li>Step 1: The malware sends requests to a DNS server to see if a generated domain exists.</li>
                     <li>Step 2: The DNS server analyzes the domain request with our deep-learning model and determines that the domain is malicious. It responds the same as if
                         the domain did not exist.</li>
-                    
+
                 </ul></p>
                 <p>
                     The malware-infected computer never receives the IP address of the C2 server so no additional malware is downloaded.  In ONWASA’s case,
@@ -349,35 +357,35 @@
             </div>
             <div class="column middle">
                 <p>
-                    The Reque<span style="color: red;">&#x2718;</span> architecture has three layers - training, inference and the application. 
+                    The Reque<span style="color: red;">&#x2718;</span> architecture has three layers - training, inference, and the application.
                 </p>
                 <p>
-                    One of the important aspects of this problem space is that the malware keeps transforming with new algorithms, so the models and inferences 
-                    need to be up to date for the DNS server to be effective in blocking the malicious domains. We use a layered architecture that can keep up 
+                    One of the important aspects of this problem space is that the malware keeps transforming with new algorithms, so the models and inferences
+                    need to be up to date for the DNS server to be effective in blocking the malicious domains. We use a layered architecture that can keep up
                     with the changing datasets and evolving models, while keeping the application interface the same.
                 </p>
                 <p>
-                    In the <i>training</i> layer, we have a pipeline to collect the data from different sources and then cleanup and merge them into a single dataset. 
+                    In the <i>training</i> layer, we have a pipeline to collect the data from different sources and then cleanup and merge them into a single dataset.
                     This data is used to train our models. The trained models are evaluated and the best models are updated to the inference layer.
                 </p>
                 <p>
-                    In the <i>inference</i> layer, the model is served in an inference engine using an Apache Storm based pipeline which listens on a Kafka bus for new requests. 
-                    The inferences include a binary classification of whether a domain is malicious or benign, and a sub-classification of the malicious domains. 
+                    In the <i>inference</i> layer, the model is served in an inference engine using an Apache Storm based pipeline which listens on a Kafka bus for new requests.
+                    The inferences include a binary classification of whether a domain is malicious or benign, and a sub-classification of the malicious domains.
                     These inferences are published on the Kafka bus to serve applications.
                 </p>
                 <p>
-                    In the <i>application</i> layer, we will have DNS resolvers with a frontend load balancer and a DNS Master. These servers connect to the 
-                    inference layer using the Kafka bus with different topics. 
+                    In the <i>application</i> layer, we have DNS resolvers with a frontend load balancer and a DNS Master. These servers connect to the
+                    inference layer using the Kafka bus with different topics.
                 </p>
                 <p>
-                    When a computer is configured with our Reque<span style="color: red;">&#x2718;</span>  DNS server, the requests are sent to one of these DNS resolvers. 
-                    The resolvers publish any unresolved domains on a topic to the Kafka bus served by the inference engine. The inference engine responds with the 
+                    When a computer is configured with our Reque<span style="color: red;">&#x2718;</span> DNS server, the requests are sent to one of these DNS resolvers.
+                    The resolvers publish all domains on a topic to the Kafka bus served by the inference engine. The inference engine responds with the
                     responses on the Kafka bus with another topic.
                     The DNS master listens to these topics and updates its Response Policy Zone (RPZ) list and publishes them to the DNS resolvers.
                 </p>
-               
+
                 <h3>Training Pipeline</h3>
-                <p>The diagram below shows the steps from raw data from Cisco Umbrella and Bambenek to our trained model files.</p>
+                <p>The diagram below shows the steps from importing raw data from Cisco Umbrella and Bambenek Consulting to training our model files.</p>
             </div>
             <div class="column side">
                 <br />
@@ -412,7 +420,7 @@
             </div>
             <div class="column middle">
                 <h3>Serving Applications</h3>
-                <p>The inference engine, which runs on Flask, provides rest apis to the models, which are used to serve the web interface used in the demo. 
+                <p>The inference engine, which runs on Flask, provides REST apis to the models, which are used to serve the web interface used in the demo.
 
                     It is packaged in a docker container and can be launched in any cloud environment.
                     </p>
@@ -443,7 +451,7 @@
                 <h3>Datasets</h3>
                 <p>
                     Our data came from two main sources: the free <a href="http://s3-us-west-1.amazonaws.com/umbrella-static/index.html">Cisco Umbrella</a> list of the top million domain
-                    names by popularity, which we assumed to be benign, and <a href="https://osint.bambenekconsulting.com/feeds/">Bambenek Consulting's free feeds</a> of
+                    names by popularity, which we assumed to be benign, and Bambenek Consulting's feeds of
                     recent DGA domains. For the Bambenek list, we used both the default (or mixed) confidence feed,
                     and the high confidence feed. We analyzed a total of 1.36M domain names, 1 million benign (73.5%)
                     and 360k malicious (26.5%).
@@ -457,7 +465,7 @@
                 <p class="subheading">Character Frequency Analysis</p>
                 <p>The following chart shows the character frequencies of the characters in each domain name set. The values have been normalized to account for the
                     different sizes of the datasets, while showing the different patterns of letter frequencies.</p>
-                
+
                 <p>
                 <img class="displayed" src="{{url_for('static', filename='css/letter_count_all_separate.png') }}" alt="Character analysis">
             </p>
@@ -466,7 +474,7 @@
                 <br />
             </div>
         </div>
-       
+
         <div class="row">
             <div class="column side">
                 <br />
@@ -510,7 +518,7 @@
                 <br />
             </div>
         </div>
-        
+
         <div class="row">
             <div class="column side">
                 <br />
@@ -526,7 +534,7 @@
                 <p>
                     The top level domains of .com, .net and .org were the top three for each dataset. The charts below show the relative
                     frequency of the 15 most common top level domains. Each chart shows the top 15 ordered by one of the datasets, with the
-                    other two datasets shown in grey for comparison..
+                    other two datasets shown in grey for comparison.
                 </p>
                 <p>
                     <img class="displayed" src="{{url_for('static', filename='css/tld_top_cisco2.png') }}" alt="Top level domain frequencies">
@@ -534,7 +542,7 @@
                     <img class="displayed" src="{{url_for('static', filename='css/tld_top_dlg3.png') }}" alt="Top level domain frequencies">
                 </p>
                 <p>
-                    Of special note is the that .ru (for Russia) is the 4th most common top level domain in the Cisco Umbrella set. The .biz domain
+                    Of special note is that .ru (for Russia) is the 4th most common top level domain in the Cisco Umbrella set. The .biz domain
                     is also far more common in the malicious datasets. And especially interesting is that the .pw domain is the 6th most common
                     top level domain for the malicious data sets, given that it is the country code top-level domain for Palau, an island nation
                     with a population size of roughly 22,000.
@@ -545,7 +553,7 @@
                     We also explored Natural Language Processing techniques to segment the domain labels further into smaller chunks of meaningful words,
                     to see if some metrics based on such segmentation are able to show any appreciable difference between the DGA and benign categories.
                 </p>
-                <p>The strongest signal we found is in the number of distinct words in the domain name, normalized by the domain length. 
+                <p>The strongest signal we found is in the number of distinct words in the domain name, normalized by the domain length.
                     There is at least an order of difference between the two categories.</p>
                 <p>
                     Other metrics, such as raw/normalized scoring based on vocabulary contexts and raw count of or normalized number of digit characters
@@ -553,20 +561,20 @@
 
                 <p>Below you will see how DGA and benign domains compared in number of distinct words, normalized by domain length. Both linear and log
                     results are shown.</p>
-                
+
             </div>
             <div class="column side">
                 <br />
             </div>
         </div>
         <div><img class="displayed" src="{{url_for('static', filename='css/requex_sbs_normalized_number_of_distinct_words.png') }}" alt="Normalized Number of Distinct Words"></div>
-        
+
         <div class="row">
             <div class="column side">
                 <br />
             </div>
             <div class="column middle">
-                
+
             </div>
             <div class="column side">
                 <br />
@@ -591,18 +599,18 @@
                 <p>
                     Our main objective was to predict whether a domain name represented a malicious website or
                     a benign one, with an accuracy rate close to 99%. Our second objective was to predict the DGA class of domain names deemed
-                    malicious. And our third objective was to minimize our false positives so as not to block benign websites.
+                    malicious. And our third objective was to minimize our false positive rate so as not to block benign websites.
                 </p>
 
                 <h3>The Machine Learning Model</h3>
                 <p>
-                    We wanted a model that can learn to capture the mechanism generating the sequence of characters in the domain name, but not necessarily memorize it. 
+                    We wanted a model that can learn to capture the mechanism generating the sequence of characters in the domain name, but not necessarily memorize it.
                     A long short-term memory (LSTM) model is suited for this. Employing an LSTM model avoids the vanishing gradients problem common with recurrent neural networks.
                 </p>
                 <p>
                     When our DNS server gets a domain name request, the process for classifying the domain goes like this:
                     <ol style="list-style-position: inside; padding-left: 12px;">
-                        <li>We convert the domain name characters into integer sequences based on a dictionary of character, a process known as tokenization.</li>
+                        <li>We convert the domain name characters into integer sequences based on a dictionary of characters, a process known as tokenization.</li>
                         <li>The tokenized sequence goes through a character-level embedding layer which is then sent to the LSTM layer.</li>
                         <li>Finally, some dropout is applied.</li>
                     </ol>
@@ -615,7 +623,7 @@
                     <img class="displayed" src="{{url_for('static', filename='css/tokenizing.png') }}" alt="Tokening of domain names">
                 </p>
                 <p>
-                    We created binary and multi-class LSTM models. After evaluating these LSTM models, we compared against a logistic regression model,
+                    We created binary and multi-class LSTM models. After evaluating these LSTM models, we compared their performance against a baseline logistic regression model,
                     which performed significantly worse for classifying domain names.
                 </p>
                 <p>
@@ -623,17 +631,17 @@
                 </p>
                      <h3>Model Metrics</h3>
                     <p>
-                        In cybersecurity, it is important to have high accuracy in order to prevent incorrect blockages. Our binary model (that either 
+                        In cybersecurity, it is important to have high accuracy in order to prevent incorrect blockages. Our binary model (that either
                         allows or blocks an incoming domain request) achieves approximately <b>98.9%</b> accuracy on our test data.</p>
-                    
-                <p>This accuracy is even maintained over time. With a model we trained using data from October, we were able to achieve 97.6% accuracy on data from four weeks later. 
+
+                <p>This accuracy is even maintained over time. With a model we trained using data from October, we were able to achieve 97.6% accuracy on data from four weeks later.
                     The one area the October model struggled with was new malware categories. This will require us to keep our models up-to-date with the latest data.
                 </p>
-                <p>Another important metric is the false positive rate - the number of benign domain getting classified as malicious, and hence blocked. A high false positive 
+                <p>Another important metric is the false positive rate - the number of benign domains getting classified as malicious, and hence blocked. A high false positive
                     rate would cause legitimate sites to be blocked. This would lead to a frustrating user experience and severely limit our product’s uptake.
                 </p>
-                <p>Our binary model achieves a 0.7% False Positive rate. In other words, for every 1000 requests processed, 7 benign domains are classified as malicious. 
-                    While this is not too bad at this early stage, we want to get the False Positive rate even lower. Some research shows we can get it close to 1 in 10000 with sufficient training data. 
+                <p>Our binary model achieves a 0.7% False Positive rate. In other words, for every 1000 requests processed, 7 benign domains are classified as malicious.
+                    While this is not too bad at this early stage, we want to get the False Positive rate even lower. Some research shows we can get it close to 1 in 10,000 with sufficient training data.
                 </p>
                 <p>
                     The resulting metrics for the 3 models we evaluated are listed in the table and chart below.
@@ -684,11 +692,11 @@
                         </tr>
                     </table>
                 </p>
-                <p>As shown above, our binary model performs the best, followed by our multiclass model (due to multiple classification categories) 
-                    while logistic regression lags substantially behind. Not only is the accuracy much lower, the logistic regression model is
+                <p>As shown above, our binary model performs the best, followed by our multiclass model (due to multiple classification categories)
+                    while the baseline logistic regression model lags substantially behind. Not only is the accuracy much lower, the logistic regression model is
                     6 to 7 times worse on False Positives.
                 </p>
-                
+
             </div>
             <div class="column side">
                 <br />
@@ -736,19 +744,19 @@
                     </td>
                     <td><p>&#x2B55; Build customer reporting and customization portal</p>
                         <p>&#x2B55; Diversify our DGA threat intelligence data</p>
-                        <p>&#x2B55; Build adversarial binary and multiclass models</p>
-                        <p>&#x2B55; Scale out our infrastructure</p>
-                        
+                        <p>&#x2B55; Build new binary and multiclass models</p>
+                        <p>&#x2B55; Scale our infrastructure</p>
+
                     </td>
                 </tr>
-               
+
             </table>
             <p>Our team has made significant progress towards our MVP. You can see our progress above.</p>
             <p>Our next phase is to focus on integrating our models into our DNS infrastructure. From there, we need to find a customer willing to try our solution.</p>
             <p>Beyond our MVP, we have plans to build a customer portal for reporting and customization. We also want to diversify our training data and build more sophisticated models.
-                We anticipate malware will soon use more complex domain generating algorithms and we want to be ready for them.</p>   
+                We anticipate malware will soon use more complex domain generating algorithms and we want to be ready for them.</p>
             <p>Ultimately, we will need to scale our infrastructure to take on more customers.</p>
-            
+
             <h3>Next Steps</h3>
             <p>We are looking for partners who can:
                 <ul>
@@ -760,7 +768,7 @@
                 </ul>
             </p>
         </div>
-       
+
         <div class="altcolumn side">
             <br />
         </div>
@@ -814,7 +822,7 @@
         </div>
         <div class="altcolumn middle">
             <p>We would like to extend our deepest thanks to the following for their insight, support, data and time.</p>
-            
+
             <table class="twocoltable">
                 <tr>
                     <td>
@@ -838,7 +846,7 @@
                         <p style="font-weight: bold; font-size: 150%">Endgame, Inc</p>
                         <p>Research on using LSTMs for Domain Generating Algorithms</p>
                     </td>
-                
+
             </table>
 
         </div>
@@ -846,7 +854,7 @@
             <br />
         </div>
     </div>
-    
-  
+
+
 </div>
 </body>
