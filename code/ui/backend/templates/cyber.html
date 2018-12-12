@@ -1,4 +1,4 @@
-<head>
+﻿<head>
     <title>RequeX DNS</title>
     <meta charset="utf-8">
     <meta name="author" content="Jason Hunsberger, Elizabeth Shulok, Surya Nimmgadda, Aniruddh Nautiyal">
@@ -742,7 +742,8 @@
                         <p>&#x2B55; Deploy to first customer and evaluate</p>
 
                     </td>
-                    <td><p>&#x2B55; Build customer reporting and customization portal</p>
+                    <td>
+                        <p>&#x2B55; Build customer reporting and customization portal</p>
                         <p>&#x2B55; Diversify our DGA threat intelligence data</p>
                         <p>&#x2B55; Build new binary and multiclass models</p>
                         <p>&#x2B55; Scale our infrastructure</p>
@@ -751,14 +752,29 @@
                 </tr>
 
             </table>
+            
+        </div>
+
+        <div class="altcolumn side">
+            <br />
+        </div>
+    </div>
+    <div class="row">
+        <div class="column side">
+            <br />
+        </div>
+        <div class="column middle">
             <p>Our team has made significant progress towards our MVP. You can see our progress above.</p>
             <p>Our next phase is to focus on integrating our models into our DNS infrastructure. From there, we need to find a customer willing to try our solution.</p>
-            <p>Beyond our MVP, we have plans to build a customer portal for reporting and customization. We also want to diversify our training data and build more sophisticated models.
-                We anticipate malware will soon use more complex domain generating algorithms and we want to be ready for them.</p>
+            <p>
+                Beyond our MVP, we have plans to build a customer portal for reporting and customization. We also want to diversify our training data and build more sophisticated models.
+                We anticipate malware will soon use more complex domain generating algorithms and we want to be ready for them.
+            </p>
             <p>Ultimately, we will need to scale our infrastructure to take on more customers.</p>
 
             <h3>Next Steps</h3>
-            <p>We are looking for partners who can:
+            <p>
+                We are looking for partners who can:
                 <ul>
                     <li>Provide more labeled known-good or known-malicious data feeds</li>
                     <li>Lend a hand with DNS expertise</li>
@@ -768,93 +784,92 @@
                 </ul>
             </p>
         </div>
-
-        <div class="altcolumn side">
+        <div class="column side">
             <br />
         </div>
     </div>
-</div>
 
 
 
-<div class="white-group" id="team">
-    <h2 style="text-align: center; color: black;">Our Team</h2>
-    <table style="width: 100%">
-        <tr>
-            <td><img src="{{url_for('static', filename='css/jhunsberger.png') }}" alt="Jason Hunsberger"></td>
-            <td><img src="{{url_for('static', filename='css/aniruddh.png') }}" alt="Aniruddh Nautiyal"></td>
-            <td><img src="{{url_for('static', filename='css/surya.png') }}" alt="Surya Nimmagadda"></td>
-            <td><img src="{{url_for('static', filename='css/liz.png') }}" alt="Elizabeth Shulok"></td>
-        </tr>
-        <tr>
-            <td style="font-size: 18px; font-weight: bold; color: black">Jason Hunsberger</td>
-            <td style="font-size: 18px; font-weight: bold; color: black">Aniruddh Nautiyal</td>
-            <td style="font-size: 18px; font-weight: bold; color: black">Surya Nimmagadda</td>
-            <td style="font-size: 18px; font-weight: bold; color: black">Elizabeth Shulok</td>
-        </tr>
-        <tr>
-            <td style="font-size: 17px; font-style: italic; color: black">Digital Product Manager</td>
-            <td style="font-size: 17px; font-style: italic; color: black">Staff Test Engineer</td>
-            <td style="font-size: 17px; font-style: italic; color: black">Distinguished Engineer</td>
-            <td style="font-size: 16px; font-style: italic; color: black">Principal Engineer</td>
-        </tr>
-        <tr>
-            <td style="font-size: 17px; font-weight: bold; color: #595959;">Boston Area Non-profit</td>
-            <td style="font-size: 17px; font-weight: bold; color: #595959;">Cypress Semiconductor</td>
-            <td style="font-size: 17px; font-weight: bold; color: #595959;">Juniper Networks</td>
-            <td style="font-size: 16px; font-weight: bold; color: #595959;">Autodesk</td>
-        </tr>
-        <tr>
-            <td><a href="https://www.linkedin.com/in/jnhunsberger/"><img src={{url_for('static', filename='css/In-Black-14px.png') }} alt="LinkedIn"></a></td>
-            <td style="font-size: 17px; font-weight: bold; color:#595959;"></td>
-            <td><a href="https://www.linkedin.com/in/surya-nimmagadda-301b195/"><img src={{url_for('static', filename='css/In-Black-14px.png') }} alt="LinkedIn"></a></td>
-            <td><a href="https://www.linkedin.com/in/eshulok/"><img src={{url_for('static', filename='css/In-Black-14px.png') }} alt="LinkedIn"></a>
-            </td>
-        </tr>
-    </table>
-</div>
-
-<div class="black-group" id="thankyou">
-    <h2>Thank you</h2>
-    <div class="row">
-        <div class="altcolumn side">
-            <br />
-        </div>
-        <div class="altcolumn middle">
-            <p>We would like to extend our deepest thanks to the following for their insight, support, data and time.</p>
-
-            <table class="twocoltable">
+        <div class="white-group" id="team">
+            <h2 style="text-align: center; color: black;">Our Team</h2>
+            <table style="width: 100%">
                 <tr>
+                    <td><img src="{{url_for('static', filename='css/jhunsberger.png') }}" alt="Jason Hunsberger"></td>
+                    <td><img src="{{url_for('static', filename='css/aniruddh.png') }}" alt="Aniruddh Nautiyal"></td>
+                    <td><img src="{{url_for('static', filename='css/surya.png') }}" alt="Surya Nimmagadda"></td>
+                    <td><img src="{{url_for('static', filename='css/liz.png') }}" alt="Elizabeth Shulok"></td>
+                </tr>
+                <tr>
+                    <td style="font-size: 18px; font-weight: bold; color: black">Jason Hunsberger</td>
+                    <td style="font-size: 18px; font-weight: bold; color: black">Aniruddh Nautiyal</td>
+                    <td style="font-size: 18px; font-weight: bold; color: black">Surya Nimmagadda</td>
+                    <td style="font-size: 18px; font-weight: bold; color: black">Elizabeth Shulok</td>
+                </tr>
+                <tr>
+                    <td style="font-size: 17px; font-style: italic; color: black">Digital Product Manager</td>
+                    <td style="font-size: 17px; font-style: italic; color: black">Staff Test Engineer</td>
+                    <td style="font-size: 17px; font-style: italic; color: black">Distinguished Engineer</td>
+                    <td style="font-size: 16px; font-style: italic; color: black">Principal Engineer</td>
+                </tr>
+                <tr>
+                    <td style="font-size: 17px; font-weight: bold; color: #595959;">Boston Area Non-profit</td>
+                    <td style="font-size: 17px; font-weight: bold; color: #595959;">Cypress Semiconductor</td>
+                    <td style="font-size: 17px; font-weight: bold; color: #595959;">Juniper Networks</td>
+                    <td style="font-size: 16px; font-weight: bold; color: #595959;">Autodesk</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.linkedin.com/in/jnhunsberger/"><img src={{url_for('static', filename='css/In-Black-14px.png') }} alt="LinkedIn"></a></td>
+                    <td style="font-size: 17px; font-weight: bold; color:#595959;"></td>
+                    <td><a href="https://www.linkedin.com/in/surya-nimmagadda-301b195/"><img src={{url_for('static', filename='css/In-Black-14px.png') }} alt="LinkedIn"></a></td>
                     <td>
-                        <p style="font-weight: bold; font-size: 150%">Paul Vixie</p>
-                        <p>CEO, Farsight Security</p>
-                        <br />
-                        <p style="font-weight: bold; font-size: 150%">John Bambenek</p>
-                        <p>Bambenek Consulting</p>
-                        <br />
-                        <p style="font-weight: bold; font-size: 150%">Joyce Shen</p>
-                        <p>UC Berkeley and Tenfore Holdings</p>
-                        <br />
-                        <p style="font-weight: bold; font-size: 150%">David Steier</p>
-                        <p>UC Berkeley and Deloitte Consulting</p>
-
+                        <a href="https://www.linkedin.com/in/eshulok/"><img src={{url_for('static', filename='css/In-Black-14px.png') }} alt="LinkedIn"></a>
                     </td>
-                    <td>
-                        <p style="font-weight: bold; font-size: 150%">Cisco Umbrella</p>
-                        <p>Daily top 1 million domains</p>
-                        <br />
-                        <p style="font-weight: bold; font-size: 150%">Endgame, Inc</p>
-                        <p>Research on using LSTMs for Domain Generating Algorithms</p>
-                    </td>
-
+                </tr>
             </table>
+        </div>
+
+        <div class="black-group" id="thankyou">
+            <h2>Thank you</h2>
+            <div class="row">
+                <div class="altcolumn side">
+                    <br />
+                </div>
+                <div class="altcolumn middle">
+                    <p>We would like to extend our deepest thanks to the following for their insight, support, data and time.</p>
+
+                    <table class="twocoltable">
+                        <tr>
+                            <td>
+                                <p style="font-weight: bold; font-size: 150%">Paul Vixie</p>
+                                <p>CEO, Farsight Security</p>
+                                <br />
+                                <p style="font-weight: bold; font-size: 150%">John Bambenek</p>
+                                <p>Bambenek Consulting</p>
+                                <br />
+                                <p style="font-weight: bold; font-size: 150%">Joyce Shen</p>
+                                <p>UC Berkeley and Tenfore Holdings</p>
+                                <br />
+                                <p style="font-weight: bold; font-size: 150%">David Steier</p>
+                                <p>UC Berkeley and Deloitte Consulting</p>
+
+                            </td>
+                            <td>
+                                <p style="font-weight: bold; font-size: 150%">Cisco Umbrella</p>
+                                <p>Daily top 1 million domains</p>
+                                <br />
+                                <p style="font-weight: bold; font-size: 150%">Endgame, Inc</p>
+                                <p>Research on using LSTMs for Domain Generating Algorithms</p>
+                            </td>
+
+                    </table>
+
+                </div>
+                <div class="altcolumn side">
+                    <br />
+                </div>
+            </div>
+
 
         </div>
-        <div class="altcolumn side">
-            <br />
-        </div>
-    </div>
-
-
-</div>
 </body>
